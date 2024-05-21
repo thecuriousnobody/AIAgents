@@ -4,7 +4,9 @@ from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerperDevTool
 from langchain_openai import ChatOpenAI
 
-os.environ["GROQ_API_KEY"] = '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'
+import config
+
+os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
 
 llm = ChatOpenAI(
     openai_api_base="https://api.groq.com/openai/v1",
