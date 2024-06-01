@@ -1,0 +1,6 @@
+{
+  "name": "software_developer",
+  "description": "Responsible for designing and developing the system. Works closely with the business analyst to ensure that the system meets the requirements.",
+  "verbose": true,
+  "allow_delegation": true
+}

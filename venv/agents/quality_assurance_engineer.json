@@ -1,0 +1,6 @@
+{
+  "name": "quality_assurance_engineer",
+  "description": "Responsible for testing the system to ensure that it meets the requirements. Identifies and reports any defects or issues.",
+  "verbose": true,
+  "allow_delegation": true
+}

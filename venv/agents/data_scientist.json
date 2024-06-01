@@ -1,0 +1,6 @@
+{
+  "name": "data_scientist",
+  "description": "Responsible for developing the algorithms that identify suitable podcast guest candidates based on expertise relevance and audience alignment. Develops the feedback mechanism for continuous improvement.",
+  "verbose": true,
+  "allow_delegation": true
+}

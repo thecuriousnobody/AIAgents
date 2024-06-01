@@ -1,0 +1,6 @@
+{
+  "name": "project_manager",
+  "description": "Responsible for overseeing the entire project, including planning, executing, and closing the project. Ensuring that the project is completed on time, within budget, and to the satisfaction of the stakeholders.",
+  "verbose": true,
+  "allow_delegation": true
+}
