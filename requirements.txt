@@ -15,8 +15,8 @@ beautifulsoup4==4.12.3
 Brotli==1.1.0
 build==1.2.1
 cachetools==5.3.3
-certifi @ file:///private/tmp/certifi-20240307-5056-x39hdm/certifi-2024.2.2
-cffi @ file:///private/tmp/cffi-20231015-5876-1oubxev/cffi-1.16.0
+# certifi @ file:///private/tmp/certifi-20240307-5056-x39hdm/certifi-2024.2.2
+# cffi @ file:///private/tmp/cffi-20231015-5876-1oubxev/cffi-1.16.0
 chardet==5.2.0
 charset-normalizer==3.3.2
 chroma-hnswlib==0.7.3
@@ -25,8 +25,8 @@ click==8.1.7
 coloredlogs==15.0.1
 contextlib2==21.6.0
 contourpy==1.2.1
-crewai==0.5.0
-crewai-tools==0.1.7
+crewai
+crewai-tools
 cryptography==42.0.5
 curl_cffi==0.6.3
 cycler==0.12.1
@@ -145,7 +145,7 @@ pluggy==1.5.0
 posthog==3.5.0
 proto-plus==1.23.0
 protobuf==4.25.3
-psutil @ file:///private/tmp/python-psutil-20240120-4912-5zd9yy/psutil-5.9.8
+# psutil @ file:///private/tmp/python-psutil-20240120-4912-5zd9yy/psutil-5.9.8
 pulsar-client==3.5.0
 py==1.11.0
 pyarrow==16.0.0
@@ -176,7 +176,7 @@ python-magic==0.4.27
 python-multipart==0.0.9
 pytube==15.0.0
 pytz==2024.1
-PyYAML @ file:///private/tmp/pyyaml-20231019-6134-1qsnlp0/PyYAML-6.0.1
+#PyYAML @ file:///private/tmp/pyyaml-20231019-6134-1qsnlp0/PyYAML-6.0.1
 rapidfuzz==3.8.1
 ratelimiter==1.2.0.post0
 referencing==0.35.0
