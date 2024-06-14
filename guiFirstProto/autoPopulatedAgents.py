@@ -41,15 +41,12 @@ class GUIApp(tk.Tk):
             )
         }
         self.agents = []
-        self.goal = ""
-
-        self.agent_output_text = tk.Text(self, wrap="word")
+        self.goal = "Get a couple experts who can speak about the evolution of European sexuality over the last 500 years on my podcast"
+        self.context = "I'm a podcaster wanting to interview experts in european sexuality and history of european sexuality"
         print("creating notebook")
         self.create_notebook()
 
-        # Redirect stdout to a custom TextIOWrapper
-        self.stdout = sys.stdout
-        sys.stdout = TextIOWrapper(self.agent_output_text)
+        
 
     def create_notebook(self):
         # Create a notebook for different sections
@@ -67,10 +64,10 @@ class GUIApp(tk.Tk):
         notebook.add(output_frame, text="Output")
         self.create_output_tab(output_frame)
 
-        # Create the Agent Output tab
-        agent_output_frame = ttk.Frame(notebook)
-        notebook.add(agent_output_frame, text="Agent Output")
-        self.create_agent_output_tab(agent_output_frame)
+        # # Create the Agent Output tab
+        # agent_output_frame = ttk.Frame(notebook)
+        # notebook.add(agent_output_frame, text="Agent Output")
+        # self.create_agent_output_tab(agent_output_frame)
 
     def create_agents_tab(self, agents_frame):
         # Create a frame for the goal input
@@ -81,7 +78,9 @@ class GUIApp(tk.Tk):
         goal_label = ttk.Label(goal_frame, text="Goal:")
         goal_label.pack(side="left")
 
-        goal_entry = ttk.Entry(goal_frame, textvariable=tk.StringVar(value=self.goal))
+        default_goal ="Get a couple experts who can speak about the evolution of European sexuality over the last 500 years on my podcast"
+        goal_entry = ttk.Entry(goal_frame, textvariable=tk.StringVar(value=default_goal))
+        # goal_entry.insert("1.0", default_goal)
         goal_entry.pack(side="left", fill="x", expand=True)
 
         # Create a frame for the context input
@@ -91,7 +90,9 @@ class GUIApp(tk.Tk):
         context_label = ttk.Label(context_frame, text="Context:")
         context_label.pack(side="left")
 
+        default_context = "I'm a podcaster wanting to interview experts in european sexuality and history of european sexuality"
         context_entry = tk.Text(context_frame, height=5, wrap="word")
+        context_entry.insert("1.0", default_context)
         context_entry.pack(side="left", fill="both", expand=True)
 
         set_button = ttk.Button(agents_frame, text="Set Goal and Context", command=lambda: self.set_goal_and_context(goal_entry.get(), context_entry.get("1.0", "end-1c")))
@@ -112,6 +113,28 @@ class GUIApp(tk.Tk):
         self.agents_treeview.pack(side="top", fill="both", expand=True)
         self.agents_treeview.bind("<Double-1>", self.edit_agent_role)
 
+        # Create a new frame to hold the agents treeview and the agent output frame
+        agents_output_frame = ttk.Frame(agents_frame)
+        agents_output_frame.pack(side="top", fill="both", expand=True)
+        self.agents_treeview.pack(side="left", fill="both", expand=True)
+
+        self.agent_output_frame = ttk.Frame(agents_output_frame)
+        self.agent_output_frame.pack(side="right", fill="both", expand=True)
+
+        # Create a text widget to display the agent output
+        self.agent_output_text = tk.Text(self.agent_output_frame, wrap="word")
+        self.agent_output_text.pack(side="top", fill="both", expand=True)
+
+        # Create a scrollbar for the agent output text widget
+        scrollbar = ttk.Scrollbar(self.agent_output_frame, command=self.agent_output_text.yview)
+        scrollbar.pack(side="right", fill="y")
+        self.agent_output_text.config(yscrollcommand=scrollbar.set)
+
+        # Redirect stdout to a custom TextIOWrapper
+        
+        self.stdout = sys.stdout
+        sys.stdout = TextIOWrapper(self.agent_output_text)
+
         # Add buttons to create and run agents
         button_frame = ttk.Frame(agents_frame)
         button_frame.pack(side="bottom", fill="x")
@@ -126,22 +149,31 @@ class GUIApp(tk.Tk):
         run_agents_button.pack(side="left", padx=5, pady=5)
 
     def create_agent_infrastructure(self):
+        print("create_agent_infrastructure called")
         goal = self.goal
         context = self.context
+        
+        # goal ="Get a couple experts who can speak about the evolution of European sexuality over the last 500 years on my podcast"
+        # context = "I'm a podcaster wanting to interview experts in european sexuality and history of european sexuality"
 
         if not goal or not context:
             messagebox.showwarning("Missing Goal or Context", "Please provide both the goal and context before creating the agent infrastructure.")
             return
 
         num_agents, agent_details_list = generate_agent_details(goal, context)
-
+        print("Number of agents:", num_agents)
+        print("Agent details:", agent_details_list)
+        self.agents_treeview.delete(*self.agents_treeview.get_children())
+       
         for agent_details in agent_details_list:
-            agent_name = agent_details["title"].split(": ")[-1].strip('"')
+            name = agent_details["title"].split(": ")[-1].strip('"')
             role = agent_details["role"].split(": ")[-1].strip('"')
             backstory = agent_details["backstory"].strip()
             llm_name = "Claude"  # You can set a default LLM or provide an option to select one
-            self.create_agent(agent_name, role, llm_name, None, backstory=backstory)
-
+            self.create_agent(name, role, llm_name, None, backstory=backstory)
+            
+        
+    
     def create_output_tab(self, output_frame):
         # Create a text area to display the output
         print("Creating Output tab")
@@ -209,52 +241,6 @@ class GUIApp(tk.Tk):
         cancel_button = ttk.Button(button_frame, text="Cancel", command=agent_dialog.destroy)
         cancel_button.pack(side="left", padx=5)
 
-    def add_agent(self):
-        # Create a dialog to get the agent details
-        agent_dialog = tk.Toplevel(self)
-        agent_dialog.title("Add Agent")
-
-        # Add input fields for agent and role
-        agent_label = ttk.Label(agent_dialog, text="Agent:")
-        agent_label.pack(pady=5)
-
-        agent_entry = ttk.Entry(agent_dialog)
-        agent_entry.pack(pady=5)
-
-        role_label = ttk.Label(agent_dialog, text="Role:")
-        role_label.pack(pady=5)
-
-        role_entry = ttk.Entry(agent_dialog)
-        role_entry.pack(pady=5)
-
-        # Add a dropdown list for LLMs
-        llm_label = ttk.Label(agent_dialog, text="LLM:")
-        llm_label.pack(pady=5)
-
-        llm_combobox = ttk.Combobox(agent_dialog, values=["GPT4o", "Claude", "GROQ"])
-        llm_combobox.pack(pady=5)
-
-        # Add buttons to create or cancel the agent
-        button_frame = ttk.Frame(agent_dialog)
-        button_frame.pack(pady=5)
-
-        def create_agent_handler():
-            agent_name = agent_entry.get()
-            llm_name = llm_combobox.get()
-
-            # Generate role and backstory using Claude Anthropic LLM
-            role = generate_agent_details(agent_name)
-
-            print(f"Agent details: {agent_name}, {role}, {llm_name}")
-            self.create_agent(agent_name, role, llm_name, agent_dialog)
-            
-
-        # create_button = ttk.Button(button_frame, text="Create", command=lambda: self.create_agent(agent_entry.get(), role_entry.get(), llm_combobox.get(), agent_dialog))
-        create_button = ttk.Button(button_frame, text="Create", command=create_agent_handler)
-        create_button.pack(side="left", padx=5)
-
-        cancel_button = ttk.Button(button_frame, text="Cancel", command=agent_dialog.destroy)
-        cancel_button.pack(side="left", padx=5)
 
     def create_agent(self, agent_name, role, llm_name, dialog, backstory=None):
         # If backstory is not provided, use the default backstory
@@ -271,17 +257,19 @@ class GUIApp(tk.Tk):
             llm=self.llms[llm_name],  # Use the selected LLM
             name=agent_name  # Add the name attribute
         )
-        print(f"Created agent: {agent_name}")
-        print(f"Role: {role}")
-        print(f"LLM: {llm_name}")
-        print(f"Agent object: {agent}")
-        print("---")
+        self.agent_output_text.see("end")  # Scroll to the end of the text widget
 
+        try:
+            self.agents_treeview.insert("", "end", text=agent_name, values=(role, llm_name))
+        except Exception as e:
+        # Handle the exception
+            print(f"Error occurred while inserting into treeview: {e}")
         self.agents.append(agent)
-        self.agents_treeview.insert("", "end", text=agent_name, values=(role, llm_name))  # Insert name, role, and LLM
 
         if dialog is not None:
             dialog.destroy()
+
+
 
     def edit_agent_role(self, event):
         # Get the selected agent
