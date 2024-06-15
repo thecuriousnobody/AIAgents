@@ -11,6 +11,16 @@ import io
 from agentAggregator import *
 from tkinter import messagebox
 
+OPENAI_API_KEY = config.OPENAI_API_KEY
+
+os.environ["GROQ_API_KEY"] =config.GROQ_API_KEY
+
+llm_GROQ= ChatOpenAI(
+    openai_api_base = "https://api.groq.com/openai/v1",
+    openai_api_key =  os.getenv("GROQ_API_KEY"),
+    model_name = "llama3-70b-8192"
+)
+
 
 os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
 
@@ -169,7 +179,7 @@ class GUIApp(tk.Tk):
             name = agent_details["title"].split(": ")[-1].strip('"')
             role = agent_details["role"].split(": ")[-1].strip('"')
             backstory = agent_details["backstory"].strip()
-            llm_name = "Claude"  # You can set a default LLM or provide an option to select one
+            llm_name = llm_GROQ  # You can set a default LLM or provide an option to select one
             self.create_agent(name, role, llm_name, None, backstory=backstory)
             
         
@@ -254,7 +264,7 @@ class GUIApp(tk.Tk):
             backstory=backstory,
             verbose=False,
             allow_delegation=False,
-            llm=self.llms[llm_name],  # Use the selected LLM
+            llm=llm_GROQ,  # Use the selected LLM
             name=agent_name  # Add the name attribute
         )
         self.agent_output_text.see("end")  # Scroll to the end of the text widget
