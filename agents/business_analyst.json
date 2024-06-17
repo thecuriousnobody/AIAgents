@@ -1,0 +1,6 @@
+{
+  "name": "business_analyst",
+  "description": "Responsible for gathering and analyzing the requirements for the system. Works closely with stakeholders to understand their needs and translate them into functional requirements.",
+  "verbose": true,
+  "allow_delegation": true
+}

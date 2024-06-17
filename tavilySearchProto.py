@@ -1,4 +1,8 @@
 from tavily import TavilyClient
+<<<<<<< HEAD
+=======
+import config
+>>>>>>> duplicate-workingCodeAPIKEYSRemoved
 from podcastShortlisterAgent import topic
 
 
@@ -19,7 +23,11 @@ def process_guest(guest):
     print(guest_name)
     guest_description = guest['description']
     print(guest_description)
+<<<<<<< HEAD
     tavily = TavilyClient(api_key="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")
+=======
+    tavily = TavilyClient(config.TAVILY_API_KEY)
+>>>>>>> duplicate-workingCodeAPIKEYSRemoved
     query = f"{guest_name}, {guest_description}"
     query = query[:399] if len(query) > 400 else query
     tavily_response = tavily.search(query=query, search_depth="advanced")
