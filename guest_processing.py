@@ -8,7 +8,8 @@ def extract_guest_info(guest_entry):
     name = name_match.group(1).strip() if name_match else ''
     description = description_match.group(1).strip() if description_match else ''
     contact = contact_match.group(1).strip() if contact_match else ''
-
+    print("extract guest info being called")
+    print(name)
     return name, description, contact
 
 def process_guest_list(input_text):
