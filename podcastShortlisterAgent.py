@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-import os
-from langchain_community.llms import Ollama
-from crewai import Agent, Task, Crew, Process
-from langchain_openai import ChatOpenAI
-import re
-import os
-from openai import OpenAI
-
-topic = "Shame, scolding and othering in Indian society, examining cultural Norms of Discipline and communication in Indian Society and Beyond"  # Change this variable to the desired topic
-num_guests = 5
-
-os.environ["GROQ_API_KEY"] = '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'
-# os.environ["ANTHROPIC_API_KEY"] = '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'
-=======
 
 from crewai import Agent, Task, Crew, Process
 from langchain_openai import ChatOpenAI
@@ -24,7 +9,6 @@ topic = "The lives of extras in Bollywood, Karnataka Kollywood, TollyWood Telugu
 num_guests = 5
 
 os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
->>>>>>> duplicate-workingCodeAPIKEYSRemoved
 
 if __name__ == '__main__':
     llm = ChatOpenAI(
@@ -58,17 +42,6 @@ if __name__ == '__main__':
         llm=llm
     )
 
-<<<<<<< HEAD
-    # monitor = Agent(
-    #     role="Monitor",
-    #     goal="Monitor the Guest Pooler and Guest Critic to ensure they stay on mission, suggest legitimate and verifiable experts, and keep track of the agreed-upon potential guests.",
-    #     backstory="You are an AI assistant whose job is to monitor the Guest Pooler and Guest Critic agents. Make sure they stay focused on finding guests who are recognized experts in the specified topic, have verifiable credentials and expertise, and align with the Idea Sandbox podcast's mission. Keep track of the potential guests that both agents agree upon and meet the criteria for legitimacy and relevance.",
-    #     verbose=False,
-    #     llm=llm
-    # )
-
-=======
->>>>>>> duplicate-workingCodeAPIKEYSRemoved
     pool_guests = Task(
         description=f"Find potential guests for the Idea Sandbox podcast who are legitimate experts doing verifiable and interesting work related to {topic}.",
         agent=guest_pooler,
@@ -81,14 +54,6 @@ if __name__ == '__main__':
         expected_output=f"A list of potential guests that align with the mission of the Idea Sandbox podcast, have verifiable expertise in {topic}, and are legitimate experts in the field, including their full name, affiliation, and a brief description of their relevant work and contact information..",
     )
 
-<<<<<<< HEAD
-    # monitor_agents = Task(
-    #     description="Monitor the Guest Pooler and Guest Critic to ensure they stay on mission, suggest legitimate and verifiable experts, and keep track of the agreed-upon potential guests.",
-    #     agent=monitor,
-    #     expected_output=f"A final list of potential guests for the Idea Sandbox podcast who are recognized experts in {topic}, have verifiable credentials and expertise, and align with the podcast's mission, including their full name, affiliation, a brief description of their relevant work, and contact information.",
-    # )
-=======
->>>>>>> duplicate-workingCodeAPIKEYSRemoved
 
     crew = Crew(
         agents=[guest_pooler, guest_critic],

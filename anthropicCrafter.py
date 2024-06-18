@@ -1,32 +1,14 @@
 import re
 import os
-<<<<<<< HEAD
-from openai import OpenAI
-from podcastShortlisterAgent import topic
-from tavilySearchProto import process_guest
-from guest_processing import extract_guest_info
-=======
 from podcastShortlisterAgent import topic
 from tavilySearchProto import process_guest
 from guest_processing import extract_guest_info
 import config
->>>>>>> duplicate-workingCodeAPIKEYSRemoved
 import anthropic
 
 # input_text = """
 # 1. Dr. Nandita Chaudhary, University of Delhi - Dr. Chaudhary is a Professor of Psychology at the University of Delhi and has published extensively on shame, guilt, and moral emotions in Indian cultural context. Her work explores the role of shame in Indian society and its implications on mental health. Contact: [nandita.chaudhary@du.ac.in](mailto:nandita.chaudhary@du.ac.in)
 # """
-<<<<<<< HEAD
-input_text = """
-1. Dr. Uma Chakravarti - A historian and gender studies scholar who has written extensively on caste, gender, and communalism in India. She can be reached at [umachakravarti@gmail.com](mailto:umachakravarti@gmail.com).
-2. Dr. Pratiksha Baxi - A sociologist and legal scholar who has researched and written on gender, law, and violence in India. She can be reached at [pratikshabaxi@gmail.com](mailto:pratikshabaxi@gmail.com).
-3. Mr. Amitava Kumar - An author and journalist who has written on identity, migration, and culture. He can be reached at [akumar@hamilton.edu](mailto:akumar@hamilton.edu).
-4. Dr. Nivedita Menon - A political theorist and gender studies scholar who has written on nationalism, secularism, and feminist politics in India. She can be reached at [nivedita.menon@gmail.com](mailto:nivedita.menon@gmail.com).
-5. Dr. Shohini Ghosh - A media scholar and documentary filmmaker who has worked on gender, sexuality, and censorship in India. She can be reached at [shohini.ghosh@gmail.com](mailto:shohini.ghosh@gmail.com).
-"""
-
-
-=======
 # input_text = """
 # 1. Dr. Uma Krishnan - a psychologist who has written extensively on the topic of shame in Indian culture ([www.umakrishnanphd.com](http://www.umakrishnanphd.com)).
 # 2. Srestha Banerjee - the founder of the "Chewing Out" movement ([www.chewingout.org](http://www.chewingout.org)).
@@ -43,7 +25,6 @@ input_text = """
 """
 
 print (input_text)
->>>>>>> duplicate-workingCodeAPIKEYSRemoved
 def format_guest_list(input_text):
     lines = input_text.strip().split("\n")
     formatted_lines = []
@@ -75,53 +56,19 @@ def format_guest_list(input_text):
 
     return "guest_list = \"\"\"\n" + "\n".join(formatted_lines) + "\n\"\"\""
 
-<<<<<<< HEAD
-# def extract_guest_info(guest_entry):
-#     # Extract the name
-#     name_match = re.search(r'^(.*?)\s*[-–]', guest_entry)
-#     if not name_match:
-#         name_match = re.search(r'^(.*?),', guest_entry)
-#     name = name_match.group(1).strip() if name_match else ''
-#
-#     # Extract the description
-#     description_match = re.search(r'[-–,]\s*(.*?)\s*$', guest_entry)
-#     description = description_match.group(1).strip() if description_match else ''
-#
-#     # Extract the contact information
-#     contact_match = re.search(r'\[(.*?)\]\((.*?)\)', description)
-#     if contact_match:
-#         contact_info = contact_match.group(1).strip()
-#         contact_url = contact_match.group(2).strip()
-#         description = description.replace(contact_match.group(0), '').strip()
-#     else:
-#         contact_info = ""
-#         contact_url = ""
-#
-#     return name, description, contact_info, contact_url
-
-# Format the guest list
-formatted_guest_list = format_guest_list(input_text)
-print(formatted_guest_list)
-=======
 
 # Format the guest list
 formatted_guest_list = format_guest_list(input_text)
 # print(formatted_guest_list)
->>>>>>> duplicate-workingCodeAPIKEYSRemoved
 
 # Process the guest list
 guest_list = []
 for guest_entry in formatted_guest_list.strip().split("\n"):
-<<<<<<< HEAD
-    if guest_entry.strip() and not guest_entry.startswith("guest_list = \"\"\""):
-        name, description, contact_info = extract_guest_info(guest_entry)
-=======
     print(formatted_guest_list.strip().split("\n"))
     if guest_entry.strip() and not guest_entry.startswith("guest_list = \"\"\""):
         print("i'm inside if condition")
         name, description, contact_info = extract_guest_info(guest_entry)
         print(name)
->>>>>>> duplicate-workingCodeAPIKEYSRemoved
         if name:
             guest_info = {
                 'name': name,
@@ -132,15 +79,9 @@ for guest_entry in formatted_guest_list.strip().split("\n"):
 
 
 formatted_guest_list = format_guest_list(input_text)
-<<<<<<< HEAD
-print(formatted_guest_list)
-# guests = [guest.strip() for guest in guest_list.split("\n") if guest.strip()]
-# guests = [guest.strip() for guest in formatted_guest_list.strip().split("\n") if guest.strip() and not guest.startswith("guest_list = \"\"\"")]
-=======
 print("printing guest_list")
 print(guest_list)
 print(formatted_guest_list)
->>>>>>> duplicate-workingCodeAPIKEYSRemoved
 
 for guest in guest_list:
     print(guest)
@@ -149,19 +90,6 @@ host_info = {
     "name": "Rajeev Kumar",
     "email": "theideasandboxpodcast@gmail.com",
     "website": "https://theideasandboxpodcast.com/",
-<<<<<<< HEAD
-    "whatsapp": "+13096797200"
-}
-
-client = anthropic.Anthropic(
-    api_key="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",
-)
-model = "claude-3-sonnet-20240229"
-
-
-# Process each guest
-# Process each guest
-=======
     "whatsapp": "+13096797200",
     "substack": "https://thecuriousnobody.substack.com/"
 }
@@ -173,7 +101,6 @@ model = "claude-3-sonnet-20240229"
 # model = "claude-3-opus-20240229"
 # model = "claude-3-haiku-20240307"
 
->>>>>>> duplicate-workingCodeAPIKEYSRemoved
 for guest in guest_list:
     print("Processing guest:", guest)
     tavily_summary = process_guest(guest)
@@ -206,39 +133,17 @@ for guest in guest_list:
     else:
         guest_twitter = ""
 
-<<<<<<< HEAD
-    # Extract the guest website using regex
-    # website_match = re.search(r"Website: (.*)", guest['contact_info'])
-    # if website_match:
-    #     guest_website = website_match.group(1)
-    # else:
-    #     guest_website = ""
-
-
-=======
->>>>>>> duplicate-workingCodeAPIKEYSRemoved
     if twitter_match:
         contact_type = "Twitter"
         contact_info = twitter_match.group(1)
     elif email_match:
         contact_type = "Email"
         contact_info = email_match.group(1)
-<<<<<<< HEAD
-    # elif website_match:
-    #     contact_type = "Website"
-    #     contact_info = website_match.group(1)
-=======
->>>>>>> duplicate-workingCodeAPIKEYSRemoved
     else:
         contact_type = "Unknown"
         contact_info = "N/A"
 
     # from tavilySearchProto import tavily_summary
-<<<<<<< HEAD
-    prompt = f"Consider the following context about {guest_name}'s work and contributions:\n{tavily_summary}\n\n"
-    prompt += f"Given this context, dive into {guest_name}'s work and contributions, seeking out the essence of their research, publications, or insights that resonate with the theme of {topic}. Identify the core philosophy and mission that drive their work, and consider how it ties into the larger conversation around {topic} and the potential implications for the subject matter.\n\n"
-    prompt += f"Write a heartfelt and personalized email from {host_info['name']} to invite {guest_name} to be a guest on the Idea Sandbox podcast. Adopt a warm, genuine, and conversational tone that reflects {host_info['name']}'s own voice and personality. Express {host_info['name']}'s sincere admiration for {guest_name}'s work using language that feels natural and authentic to {host_info['name']}, such as 'As I dove into your work, I was struck by the profound insights you bring to these critical topics.' Highlight how their expertise aligns with the podcast's mission and how their unique perspective could enrich the discussion. Craft the email in a way that feels like a personal message from one person to another, focusing on the key points that will resonate with {guest_name} on a human level. Avoid sounding too formal or automated, and instead aim for a tone that is engaging, enthusiastic, and true to {host_info['name']}'s personality. Include {host_info['name']}'s contact information: Email: {host_info['email']}, Website: {host_info['website']}, WhatsApp: {host_info['whatsapp']}."
-=======
     # prompt = f"Consider the following context about {guest_name}'s work and contributions:\n{tavily_summary}\n\n"
     # prompt += f"Given this context, dive into {guest_name}'s work and contributions, seeking out the essence of their research, publications, or insights that resonate with the theme of {topic}. Identify the core philosophy and mission that drive their work, and consider how it ties into the larger conversation around {topic} and the potential implications for the subject matter.\n\n"
     # prompt += f"Write a heartfelt and personalized email from {host_info['name']} to invite {guest_name} to be a guest on the Idea Sandbox podcast. Adopt a warm, genuine, and conversational tone that reflects {host_info['name']}'s own voice and personality. Express {host_info['name']}'s sincere admiration for {guest_name}'s work using language that feels natural and authentic to {host_info['name']}, such as 'As I dove into your work, I was struck by the profound insights you bring to these critical topics.' Highlight how their expertise aligns with the podcast's mission and how their unique perspective could enrich the discussion. Craft the email in a way that feels like a personal message from one person to another, focusing on the key points that will resonate with {guest_name} on a human level. Avoid sounding too formal or automated, and instead aim for a tone that is engaging, enthusiastic, and true to {host_info['name']}'s personality. Include {host_info['name']}'s contact information: Email: {host_info['email']}, Website: {host_info['website']}, WhatsApp: {host_info['whatsapp']}, Substack: {host_info['substack']}.
@@ -249,7 +154,6 @@ for guest in guest_list:
     prompt += f"Craft the email in a way that feels like a personal message from one person to another, emphasizing the importance and relevance of the topic at hand. Avoid sounding too formal or automated, and instead aim for a tone that is engaging, enthusiastic, and true to {host_info['name']}'s personality.\n\n"
     prompt += f"Please format the email with clear paragraphs, separating each paragraph with a blank line to enhance readability and visual appeal. This will help break up the text and make the email easier to follow.\n\n"
     prompt += f"Include {host_info['name']}'s contact information: Email: {host_info['email']}, Website: {host_info['website']}, WhatsApp: {host_info['whatsapp']}, Substack: {host_info['substack']}."
->>>>>>> duplicate-workingCodeAPIKEYSRemoved
 
     message = client.messages.create(
             model=model,
