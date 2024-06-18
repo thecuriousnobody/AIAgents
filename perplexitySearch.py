@@ -2,10 +2,7 @@ import re
 import os
 from openai import OpenAI
 from podcastShortlisterAgent import topic
-<<<<<<< HEAD
-=======
 import config
->>>>>>> duplicate-workingCodeAPIKEYSRemoved
 
 # Example usage
 input_text = """
@@ -120,11 +117,7 @@ for guest in guests:
         },
     ]
 
-<<<<<<< HEAD
-    client = OpenAI(api_key='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',
-=======
     client = OpenAI(config.PERPLEXITY_API_KEY,
->>>>>>> duplicate-workingCodeAPIKEYSRemoved
                     base_url="https://api.perplexity.ai")
 
     response = client.chat.completions.create(
