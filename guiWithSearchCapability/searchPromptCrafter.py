@@ -17,8 +17,12 @@ def generate_cogent_prompt(query, goal, context):
     and should not include any additional explanations or context unless you deem it necessary."""
 
     prompt = f"""Generate a precise search query that incorporates the given query, goal, and context.
-    The query could be a few lines of text suitable for an internet search. Remember this prompt will be fed into
-    another AI agent that can understand human language, so therefore it needs to be clear and concise, but also 
+    The query could be a few lines of text suitable for an internet search. if the query has a list of people, you will
+    organize the search like a list of people, if it has a list of things, you will organize the search like a list of things.
+    It needs to read like a search query that you would type into a search engine, not like a question or a sentence.
+    Remember this prompt will be fed into
+    another AI agent that can understand human language, so therefore it needs to be clear and could contian slang if you think it
+    might improve chances of getting at an accurate result, but also 
     contain adequate information to guide the search. You also need to incorporate the query into the search query
     such that it is relevant to the goal and context, remember adding relevant keywords and phrases is key to a successful search.
     Anything ommited from the query will not be considered in the search.
@@ -26,8 +30,8 @@ def generate_cogent_prompt(query, goal, context):
 
     message = client.messages.create(
         model=model,
-        max_tokens=1000,
-        temperature=0.0,
+        max_tokens=2000,
+        temperature=0.7,
         system=system_message,
         messages=[
             {
