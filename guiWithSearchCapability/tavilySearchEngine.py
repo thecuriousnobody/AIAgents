@@ -14,15 +14,6 @@ def summarize_tavily_info(tavily_response):
     summary = "\n".join(summary_points)
     return summary
 
-# def extract_keywords(subject_matter, goal, context):
-#     # Tokenize the subject matter, goal, and context
-#     tokens = subject_matter.split() + goal.split() + context.split()
-
-#     # Filter out common words and keep relevant keywords
-#     relevant_keywords = [token for token in tokens
-#                          if token.lower() not in COMMON_WORDS]
-
-#     return relevant_keywords
 
 
 def process_search_results(query, goal, context):
