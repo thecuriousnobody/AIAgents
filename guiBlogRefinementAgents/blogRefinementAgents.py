@@ -81,18 +81,26 @@ class GUIApp(tk.Tk):
         goal_frame.pack(side="top", fill="x", padx=5, pady=5)
 
         goal_label = ttk.Label(goal_frame, text="Goal:")
-        goal_label.pack(side="left")
+        goal_label.pack(side="left", anchor="n")
 
-        default_goal = "Make the most compelling blog possible that is honest, pointed, clear, factually accurate, flows harmoniously, and constructs the arguments in the blog in a very logical and cogent manner."
-        self.goal_var = tk.StringVar(value=default_goal)
-        goal_entry = ttk.Entry(goal_frame, textvariable=self.goal_var)
-        goal_entry.pack(side="left", fill="x", expand=True)
+        default_goal = "Refine the rough cut blog on arranged marriages in India to create a compelling, nuanced, and factually accurate piece that: [Your detailed goal here]"
+        
+        goal_text_frame = ttk.Frame(goal_frame)
+        goal_text_frame.pack(side="left", fill="both", expand=True)
+
+        self.goal_text = tk.Text(goal_text_frame, wrap="word", height=8)
+        self.goal_text.insert("1.0", default_goal)
+        self.goal_text.pack(side="left", fill="both", expand=True)
+
+        goal_scrollbar = ttk.Scrollbar(goal_text_frame, orient="vertical", command=self.goal_text.yview)
+        goal_scrollbar.pack(side="right", fill="y")
+        self.goal_text.configure(yscrollcommand=goal_scrollbar.set)
 
         context_frame = ttk.Frame(agents_frame)
         context_frame.pack(side="top", fill="x", padx=5, pady=5)
 
         context_label = ttk.Label(context_frame, text="Context:")
-        context_label.pack(side="left")
+        context_label.pack(side="left", anchor="n")
 
         default_context = "I am a blogger who deeply cares about the subject matter that I create. I want to be as neutral as possible and make the most compelling argument as I see fit. I'm an optimist in general and tend not to look at the world through cynical eyes. Through this writing, I aim to make the world a better place by spreading good ideas and honest ideas, and by tackling problems in a very nuanced manner without trying to color it with my personal agenda. I don't have an agenda; my agenda is for human flourishing. That is the whole point of the Idea Sandbox podcast as well as the blog. If it becomes an oasis of truth, I would love for that to be the ultimate goal. I'm not looking to make a lot of money; I just want to sustain and see the world evolve to much greater heights."
         self.context_text = tk.Text(context_frame, wrap="word", height=8)
@@ -105,7 +113,7 @@ class GUIApp(tk.Tk):
 
 
         set_button = ttk.Button(agents_frame, text="Set Goal and Context",
-                            command=lambda: self.set_goal_and_context(goal_entry.get(), self.context_text.get('1.0', 'end-1c')))
+                        command=lambda: self.set_goal_and_context(self.goal_text.get('1.0', 'end-1c'), self.context_text.get('1.0', 'end-1c')))
         set_button.pack(side="top", padx=5, pady=5)
 
         self.confirmation_label = ttk.Label(agents_frame, text="", foreground="green")
@@ -199,7 +207,7 @@ class GUIApp(tk.Tk):
 
     def create_agent_infrastructure(self):
         print("create_agent_infrastructure called")
-        goal = self.goal_var.get()
+        goal = self.goal_text.get('1.0', tk.END).strip() 
         context = self.context_text.get('1.0', tk.END).strip()
         
         # goal ="Get a couple experts who can speak about the evolution of European sexuality over the last 500 years on my podcast"
@@ -209,7 +217,8 @@ class GUIApp(tk.Tk):
             messagebox.showwarning("Missing Goal or Context", "Please provide both the goal and context before creating the agent infrastructure.")
             return
 
-        num_agents, agent_details_list = generate_agent_details(self.blog_rough_cut,goal, context)
+        num_agents, agent_details_list, blog_analysis = generate_agent_details(self.blog_rough_cut, goal, context)
+   
         print("Number of agents:", num_agents)
         print("Agent details:", agent_details_list)
         self.agents_treeview.delete(*self.agents_treeview.get_children())
@@ -220,6 +229,9 @@ class GUIApp(tk.Tk):
             backstory = agent_details["backstory"].strip()
             llm_name = llm_GROQ  # You can set a default LLM or provide an option to select one
             self.create_agent(role, llm_name, None, backstory=backstory)
+
+        messagebox.showinfo("Blog Analysis", blog_analysis)
+        self.confirmation_label.config(text="Agent infrastructure created successfully.")
             
 
     def open_search_dialog(self):
@@ -247,7 +259,8 @@ class GUIApp(tk.Tk):
         save_button.pack(side="bottom", fill="x", padx=5, pady=5)
 
     def set_goal_and_context(self, goal, context):
-        self.goal_var.set(goal)
+        self.goal_text.delete('1.0', tk.END)
+        self.goal_text.insert(tk.END, goal)
         self.context_text.delete('1.0', tk.END)
         self.context_text.insert(tk.END, context)
         self.confirmation_label.config(text="Goal and context are set.")
@@ -314,7 +327,7 @@ class GUIApp(tk.Tk):
     def create_agent(self, role, llm, dialog, backstory=None):
         agent = Agent(
             role=role,
-            goal=self.goal_var.get(),
+            goal=self.goal_text.get('1.0', tk.END).strip(),  # Updated this line
             backstory=backstory,
             verbose=False,
             allow_delegation=False,
@@ -394,12 +407,6 @@ class GUIApp(tk.Tk):
             try:
                 task = Task(
                     description=f"Refine the rough cut blog based on your role: {agent.role}",
-                    # context=[
-                    #         {
-                    #             "context": self.context_text.get('1.0', 'end-1c'),
-                    #             "custom_instructions": self.custom_instructions
-                    #         },
-                    # ],
                     agent=agent,
                     expected_output=f"Refined blog content from {agent.role}"
                 )
