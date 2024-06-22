@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, simpledialog
+from tkinter import scrolledtext  # Import the ScrolledText module from tkinter
 from tavily import TavilyClient
 import requests
 import sys
@@ -165,6 +166,18 @@ class GUIApp(tk.Tk):
         create_refined_blog_button = ttk.Button(button_frame, text="Create Refined Blog", command=self.run_agents)
         create_refined_blog_button.pack(side="left", padx=5, pady=5)
 
+         # Add a frame for the '+' and '-' buttons
+        button_frame = ttk.Frame(agents_frame)
+        button_frame.pack(side="bottom", fill="x", padx=5, pady=5)
+
+        # Add agent button
+        add_button = ttk.Button(button_frame, text="+", width=3, command=self.add_agent)
+        add_button.pack(side="left", padx=5)
+
+        # Delete agent button
+        delete_button = ttk.Button(button_frame, text="-", width=3, command=self.delete_agent)
+        delete_button.pack(side="left", padx=5)
+
     def create_blog_input_tab(self, blog_input_frame):
         blog_input_text = tk.Text(blog_input_frame, wrap="word")
         blog_input_text.pack(side="top", fill="both", expand=True)
@@ -242,57 +255,76 @@ class GUIApp(tk.Tk):
     def add_agent(self):
         agent_dialog = tk.Toplevel(self)
         agent_dialog.title("Add Agent")
+        agent_dialog.geometry("500x500")  # Adjusted size for the dialog
 
-        agent_label = ttk.Label(agent_dialog, text="Agent:")
-        agent_label.pack(pady=5)
-
-        agent_entry = ttk.Entry(agent_dialog)
-        agent_entry.pack(pady=5)
-
+        # Role field
         role_label = ttk.Label(agent_dialog, text="Role:")
         role_label.pack(pady=5)
+        role_text = scrolledtext.ScrolledText(agent_dialog, wrap=tk.WORD, width=50, height=5)
+        role_text.pack(pady=5)
 
-        role_entry = ttk.Entry(agent_dialog)
-        role_entry.pack(pady=5)
+        # Backstory field
+        backstory_label = ttk.Label(agent_dialog, text="Backstory:")
+        backstory_label.pack(pady=5)
+        backstory_text = scrolledtext.ScrolledText(agent_dialog, wrap=tk.WORD, width=50, height=10)
+        backstory_text.pack(pady=5)
 
+        # LLM selection
         llm_label = ttk.Label(agent_dialog, text="LLM:")
         llm_label.pack(pady=5)
-
-        llm_combobox = ttk.Combobox(agent_dialog, values=["GPT4o", "Claude", "GROQ"])
+        llm_combobox = ttk.Combobox(agent_dialog, values=list(self.llms.keys()))
         llm_combobox.pack(pady=5)
 
         button_frame = ttk.Frame(agent_dialog)
         button_frame.pack(pady=5)
 
         def create_agent_handler():
-            agent_name = agent_entry.get()
-            llm_name = llm_combobox.get()
-            role = generate_agent_details(agent_name)
+            role = role_text.get("1.0", tk.END).strip()
+            backstory = backstory_text.get("1.0", tk.END).strip()
+            llm_key = llm_combobox.get()
+            llm = self.llms.get(llm_key, llm_GROQ)  # Default to GROQ if not found
 
-            print(f"Agent details: {agent_name}, {role}, llm_name")
-            self.create_agent(agent_name, role, llm_name, agent_dialog)
+            if not role or not backstory or not llm_key:
+                messagebox.showerror("Error", "All fields must be filled")
+                return
+
+            agent = self.create_agent(role, llm, agent_dialog, backstory=backstory)
+            if agent:
+                messagebox.showinfo("Success", f"Agent '{role}' created successfully.")
 
         create_button = ttk.Button(button_frame, text="Create", command=create_agent_handler)
         create_button.pack(side="left", padx=5)
 
         cancel_button = ttk.Button(button_frame, text="Cancel", command=agent_dialog.destroy)
         cancel_button.pack(side="left", padx=5)
+    
+    def delete_agent(self):
+        selected_item = self.agents_treeview.selection()
+        if not selected_item:
+            messagebox.showwarning("No Selection", "Please select an agent to delete.")
+            return
 
-    def create_agent(self, role, llm_name, dialog, backstory=None):
-        if backstory is None:
-            backstory = f"You are an AI agent whose role is {role}, working on the goal: {self.goal_var.get()}"
+        if messagebox.askyesno("Confirm Deletion", "Are you sure you want to delete this agent?"):
+            for item in selected_item:
+                index = self.agents_treeview.index(item)
+                self.agents_treeview.delete(item)
+                del self.agents[index]
+            messagebox.showinfo("Success", "Agent(s) deleted successfully.")
 
+    def create_agent(self, role, llm, dialog, backstory=None):
         agent = Agent(
             role=role,
             goal=self.goal_var.get(),
             backstory=backstory,
             verbose=False,
             allow_delegation=False,
-            llm=llm_GROQ,
+            llm=llm,
         )
         self.agent_output_text.see("end")
 
         try:
+            # Use the model name from the LLM object for display in the treeview
+            llm_name = llm.model_name if hasattr(llm, 'model_name') else str(llm)
             self.agents_treeview.insert("", "end", text=role, values=(backstory, llm_name))
         except Exception as e:
             print(f"Error occurred while inserting into treeview: {e}")
@@ -300,43 +332,50 @@ class GUIApp(tk.Tk):
 
         if dialog is not None:
             dialog.destroy()
-
+        
+        return agent  # Return the created agent
+    
     def edit_agent_role(self, event):
         selected_item = self.agents_treeview.focus()
         if selected_item:
-            agent_name = self.agents_treeview.item(selected_item)["text"]
+            # Get the index of the selected item
+            agent_index = self.agents_treeview.index(selected_item)
             agent_role = self.agents_treeview.item(selected_item)["values"][0]
 
             edit_dialog = tk.Toplevel(self)
             edit_dialog.title("Edit Agent Role")
+            edit_dialog.geometry("400x300")
 
             role_label = ttk.Label(edit_dialog, text="Role:")
             role_label.pack(pady=5)
 
-            role_entry = ttk.Entry(edit_dialog)
-            role_entry.insert(0, agent_role)
-            role_entry.pack(pady=5)
+            role_text = scrolledtext.ScrolledText(edit_dialog, wrap=tk.WORD, width=50, height=10)
+            role_text.insert(tk.END, agent_role)
+            role_text.pack(pady=5, padx=10, expand=True, fill=tk.BOTH)
 
             button_frame = ttk.Frame(edit_dialog)
             button_frame.pack(pady=5)
 
-            save_button = ttk.Button(button_frame, text="Save", command=lambda: self.save_agent_role(selected_item, role_entry.get(), edit_dialog))
+            save_button = ttk.Button(button_frame, text="Save", 
+                                     command=lambda: self.save_agent_role(selected_item, role_text.get("1.0", tk.END).strip(), edit_dialog, agent_index))
             save_button.pack(side="left", padx=5)
 
             cancel_button = ttk.Button(button_frame, text="Cancel", command=edit_dialog.destroy)
             cancel_button.pack(side="left", padx=5)
 
-    def save_agent_role(self, selected_item, new_role, dialog):
-        agent_name = self.agents_treeview.item(selected_item)["text"]
-        for agent in self.agents:
-            if agent_name == agent.name:
-                agent.role = new_role
-                agent.backstory = f"You are an AI agent named {agent_name} working on the goal: {self.goal_var.get()}"
-                break
 
-        self.agents_treeview.item(selected_item, values=(new_role,))
-
+    def save_agent_role(self, item, new_role, dialog, agent_index):
+        # Update the agent's role
+        self.agents[int(agent_index)].role = new_role
+        
+        # Update the treeview
+        self.agents_treeview.item(item, values=(new_role,))
+        
         dialog.destroy()
+
+    def populate_agents_treeview(self):
+        for i, agent in enumerate(self.agents):
+            self.agents_treeview.insert("", "end", text=f"Agent {i+1}", values=(agent.role,), tags=(str(i),))
 
     def create_agent_output_tab(self, agent_output_frame):
         self.agent_output_text = tk.Text(agent_output_frame, wrap="word")
