@@ -11,15 +11,42 @@ def generate_agent_details(blog_rough_cut,goal, context):
     model = "claude-3-5-sonnet-20240620"
     client = anthropic.Anthropic(api_key=config.ANTHROPIC_API_KEY)
 
-    # Generate the number of agents and their titles
-    # agent_generation_prompt = f"Given the goal '{goal}' and the context '{context}', determine the optimal number of agents and generate a title and description for each agent that will contribute to successfully achieving the goal. The agent titles should be formatted as 'Agent [number] Title: [title]' and the descriptions should be 1-2 sentences long, starting with 'This agent will be responsible for...'."
-    agent_generation_prompt = f""""Your primary task is to refine the provided rough cut blog into a compelling, publication-ready piece. 
-    To achieve this, analyze the blog rough cut '{blog_rough_cut}', considering the given goal '{goal}' and context '{context}'. 
-    Determine the optimal number of expert agents needed and generate a title and description for each agent that will 
-    contribute to successfully refining the blog. The agent titles should be formatted as 'Agent [number] Title: [title]' 
-    and the descriptions should be 1-2 sentences long, starting with 'This agent will be responsible for...'. 
-    Each agent should have a specific role in improving the content, structure, clarity, and overall impact of the blog post. 
+    # Step 1: Analyze and distill key points from the rough cut blog
+    analysis_prompt = f"""Analyze the following rough cut blog and distill its key points, main themes, and areas that need improvement. Focus on content, structure, clarity, and overall impact.
+
+    Rough Cut Blog:
+    {blog_rough_cut}
+
+    Provide a concise summary of the key points and areas for improvement."""
+
+    analysis_message = client.messages.create(
+        model=model,
+        max_tokens=1000,
+        temperature=0.0,
+        system="You are an expert content analyst. Your task is to analyze the given rough cut blog and provide a concise summary of its key points and areas for improvement.",
+        messages=[
+            {
+                "role": "user",
+                "content": analysis_prompt,
+            },
+        ]
+    )
+
+    blog_analysis = analysis_message.content[0].text.strip()
+
+    # Step 2: Generate agents based on the analysis, goal, and context
+    agent_generation_prompt = f"""Your primary task is to refine the provided rough cut blog into a compelling, publication-ready piece. 
+    Analyze the following:
+    
+    1. Blog Analysis: {blog_analysis}
+    2. Goal: {goal}
+    3. Context: {context}
+
+    Based on this information, determine the optimal number of expert agents needed and generate a title and description for each agent that will contribute to successfully refining the blog. 
+    The agent titles should be formatted as 'Agent [number] Title: [title]' and the descriptions should be 1-2 sentences long, starting with 'This agent will be responsible for...'. 
+    Each agent should have a specific role in improving the content, structure, clarity, and overall impact of the blog post, addressing the key points and areas for improvement identified in the analysis. 
     The agents will collaborate and iterate on the rough cut until it reaches a state suitable for publication."""
+
 
     agent_generation_message = client.messages.create(
         model=model,
@@ -111,4 +138,4 @@ def generate_agent_details(blog_rough_cut,goal, context):
         print()
 
 
-    return num_agents, agents
+    return num_agents, agents, blog_analysis
