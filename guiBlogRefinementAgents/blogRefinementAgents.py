@@ -11,11 +11,20 @@ from tkinter import messagebox
 # from tavilySearchEngine import process_search_results
 import io
 from blogRefinementAgentSpawner import generate_agent_details
+from langchain_anthropic import ChatAnthropic
 import config
+import json
+from tkinter import filedialog
+from datetime import datetime
 
 # Existing configurations and API keys
 OPENAI_API_KEY = config.OPENAI_API_KEY
 os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
+os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
+
+ClaudeSonnet = ChatAnthropic(
+    model="claude-3-5-sonnet-20240620"
+)
 
 llm_GROQ = ChatOpenAI(
     openai_api_base="https://api.groq.com/openai/v1",
@@ -27,7 +36,7 @@ class GUIApp(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("AI Agent Manager")
-        self.geometry("800x600")
+        self.geometry("1200x800")
         self.llms = {
             "GPT4o": ChatOpenAI(
                 openai_api_base="https://api.openai.com/v1/chat/completions",
@@ -159,6 +168,15 @@ class GUIApp(tk.Tk):
         run_agents_button = ttk.Button(button_frame, text="Run Agents", command=self.run_agents)
         run_agents_button.pack(side="left", padx=5, pady=5)
 
+        button_frame = ttk.Frame(agents_frame)
+        button_frame.pack(side="bottom", fill="x", padx=5, pady=5)
+
+        save_agents_button = ttk.Button(button_frame, text="Save Agents", command=self.save_agents)
+        save_agents_button.pack(side="left", padx=5, pady=5)
+
+        load_agents_button = ttk.Button(button_frame, text="Load Agents", command=self.load_agents)
+        load_agents_button.pack(side="left", padx=5, pady=5)
+
         search_button = ttk.Button(button_frame, text="Search", command=self.open_search_dialog)
         search_button.pack(side="left", padx=5, pady=5)
 
@@ -200,6 +218,35 @@ class GUIApp(tk.Tk):
         self.refined_blog_text = tk.Text(refined_blog_frame, wrap="word")
         self.refined_blog_text.pack(side="top", fill="both", expand=True)
 
+        # Add a scrollbar
+        scrollbar = ttk.Scrollbar(refined_blog_frame, orient="vertical", command=self.refined_blog_text.yview)
+        scrollbar.pack(side="right", fill="y")
+        self.refined_blog_text.configure(yscrollcommand=scrollbar.set)
+
+        # Add the Save Blog button
+        save_blog_button = ttk.Button(refined_blog_frame, text="Save Blog", command=self.save_refined_blog)
+        save_blog_button.pack(side="bottom", pady=10)
+    
+    def save_refined_blog(self):
+        content = self.refined_blog_text.get("1.0", tk.END).strip()
+        if not content:
+            messagebox.showinfo("Empty Blog", "There's no content to save.")
+            return
+
+        file_path = filedialog.asksaveasfilename(
+            defaultextension=".txt",
+            filetypes=[("Text files", "*.txt"), ("All files", "*.*")],
+            title="Save Refined Blog"
+        )
+
+        if file_path:
+            try:
+                with open(file_path, 'w', encoding='utf-8') as f:
+                    f.write(content)
+                messagebox.showinfo("Success", f"Blog saved successfully to {file_path}")
+            except Exception as e:
+                messagebox.showerror("Error", f"An error occurred while saving: {str(e)}")
+
     def refine_blog(self):
         # Implement the blog refinement process using the agents
         # Update the refined_blog_text with the refined blog content
@@ -227,7 +274,7 @@ class GUIApp(tk.Tk):
             # name = agent_details["title"].split(": ")[-1].strip('"')
             role = agent_details["role"].split(": ")[-1].strip('"')
             backstory = agent_details["backstory"].strip()
-            llm_name = llm_GROQ  # You can set a default LLM or provide an option to select one
+            llm_name = ClaudeSonnet  # You can set a default LLM or provide an option to select one
             self.create_agent(role, llm_name, None, backstory=backstory)
 
         messagebox.showinfo("Blog Analysis", blog_analysis)
@@ -385,6 +432,85 @@ class GUIApp(tk.Tk):
         self.agents_treeview.item(item, values=(new_role,))
         
         dialog.destroy()
+
+    def save_agents(self):
+        if not self.agents:
+            messagebox.showinfo("No Agents", "There are no agents to save.")
+            return
+
+        agents_data = []
+        for agent in self.agents:
+            agent_info = {
+                "role": agent.role,
+                "goal": agent.goal,
+                "backstory": agent.backstory,
+                "verbose": agent.verbose,
+                "allow_delegation": agent.allow_delegation,
+                "llm_type": "ChatAnthropic",
+                "llm_model": agent.llm.model
+            }
+            agents_data.append(agent_info)
+        
+        data_to_save = {
+            "agents": agents_data,
+            "metadata": {
+                "date_created": datetime.now().isoformat(),
+                "version": "1.0"  # You can update this as your save format evolves
+            }
+        }
+
+        file_path = filedialog.asksaveasfilename(
+            defaultextension=".json",
+            filetypes=[("JSON files", "*.json"), ("All files", "*.*")],
+            title="Save Agents"
+        )
+
+        if file_path:
+            try:
+                with open(file_path, 'w') as f:
+                    json.dump(data_to_save, f, indent=2)
+                messagebox.showinfo("Success", f"Agents saved successfully to {file_path}")
+            except Exception as e:
+                messagebox.showerror("Error", f"An error occurred while saving: {str(e)}")
+
+    def load_agents(self):
+        file_path = filedialog.askopenfilename(
+            filetypes=[("JSON files", "*.json"), ("All files", "*.*")],
+            title="Load Agents"
+        )
+
+        if file_path:
+            try:
+                with open(file_path, 'r') as f:
+                    data = json.load(f)
+                
+                agents_data = data.get("agents", [])
+                
+                # Clear existing agents
+                self.agents.clear()
+                self.agents_treeview.delete(*self.agents_treeview.get_children())
+
+                for agent_info in agents_data:
+                    if agent_info['llm_type'] == "ChatAnthropic":
+                        llm = ChatAnthropic(model=agent_info['llm_model'])
+                    else:
+                        messagebox.showwarning("Unknown LLM", f"Unknown LLM type: {agent_info['llm_type']}. Using default.")
+                        llm = ChatAnthropic(model="claude-3-5-sonnet-20240620")
+                    
+                    agent = Agent(
+                        role=agent_info['role'],
+                        goal=agent_info['goal'],
+                        backstory=agent_info['backstory'],
+                        verbose=agent_info['verbose'],
+                        allow_delegation=agent_info['allow_delegation'],
+                        llm=llm
+                    )
+                    self.agents.append(agent)
+                    self.agents_treeview.insert("", "end", text=agent.role, values=(agent.backstory, agent_info['llm_model']))
+
+                messagebox.showinfo("Success", f"Agents loaded successfully from {file_path}")
+            except Exception as e:
+                messagebox.showerror("Error", f"An error occurred while loading: {str(e)}")
 
     def populate_agents_treeview(self):
         for i, agent in enumerate(self.agents):
