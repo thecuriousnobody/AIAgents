@@ -19,7 +19,7 @@ def find_potential_guests(niche_topics):
         search_query = f"Individuals or groups working on {topic}, including those with low or no social media presence"
         search_results = process_search_results(search_query)
         for result in search_results:
-            potential_guests.append(result)
+            potential_guests.append(result)  
     return potential_guests
 
 def verify_guest_existence(potential_guests):
