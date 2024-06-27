@@ -1,8 +1,39 @@
-1. Dr. Ionat Zurr - Senior Lecturer, School of Design, University of Western Australia
-Dr. Zurr is a pioneer in the field of Bioart. She co-founded the Tissue Culture and Art Project, which explores the use of tissue technologies as a medium for artistic expression. Her work challenges our perceptions of life and the body in the age of biotechnology.
+1. Bharat Gupta
+   - Professional Title: President of Misinformation Combat Alliance (MCA) and CEO of Jagran New Media
+   - Affiliation: Misinformation Combat Alliance (MCA)
+   - Area of Expertise: Media, Misinformation Combat
+   - Summary of Work: Gupta founded the MCA in January 2022, a collaborative effort to limit the spread of misinformation through targeted interventions. Under his leadership, MCA has grown to include 12 fact-checking organizations, three media companies, and a civic tech organization.
+   - Notable Projects: Establishing the Misinformation Combat Alliance, partnering with Google News Initiative and DataLEADS
+   - Potential Unique Podcast Contribution: Insights on building cross-industry collaborations to combat misinformation, strategies for empowering people with trustworthy information in the digital age
+   - Contact Information: Can be reached through the Misinformation Combat Alliance website
+   - Value as a Guest: Despite not being widely known outside of media circles, Gupta's work in founding and leading the MCA places him at the forefront of combating the 'WhatsApp University' phenomenon in India.
 
-2. Dr. Ubiratan D'Ambrosio - Professor Emeritus, State University of Campinas, Brazil
-Dr. D'Ambrosio is a leading researcher in Ethnomathematics. He has extensively studied mathematical practices of indigenous cultures in Brazil and other parts of the world, highlighting how different cultures develop unique mathematical concepts and problem-solving techniques.
+2. Kiran Garimella
+   - Professional Title: Assistant Professor at the School of Communication and Information at Rutgers University
+   - Affiliation: Rutgers University
+   - Area of Expertise: Computational Social Science, Misinformation on WhatsApp
+   - Summary of Work: Garimella has conducted groundbreaking research on political WhatsApp groups in India, developing innovative methodologies to study misinformation spread.
+   - Notable Projects: On-the-ground survey of political party WhatsApp groups in India
+   - Potential Unique Podcast Contribution: Insights on the mechanics of misinformation spread through WhatsApp in Indian political contexts, discussion of novel research methodologies
+   - Contact Information: Can be reached through Rutgers University
+   - Value as a Guest: Garimella's hands-on research approach provides unique, data-driven insights into the 'WhatsApp University' phenomenon that are not widely publicized.
 
-3. Elsa Olivetti - Associate Professor of Materials Science and Engineering, MIT
-Prof. Olivetti's work embodies Solarpunk principles. She focuses on improving the environmental and economic sustainability of materials in the context of rapid-expanding global demand, particularly in the realm of renewable energy technologies.
+3. Deepfakes Analysis Unit (DAU) Team Member
+   - Professional Title: Researcher or Analyst at the Deepfakes Analysis Unit
+   - Affiliation: Misinformation Combat Alliance (MCA)
+   - Area of Expertise: AI-generated synthetic media, Deepfake detection
+   - Summary of Work: The DAU works to identify and curb the spread of AI-enabled disinformation among internet users in India.
+   - Notable Projects: Launching a WhatsApp tipline in partnership with Meta to combat deepfakes during India's 2024 elections
+   - Potential Unique Podcast Contribution: Technical insights on deepfake detection, discussion of the challenges posed by AI-generated misinformation in the Indian context
+   - Contact Information: Can be reached through the Misinformation Combat Alliance
+   - Value as a Guest: As a member of a specialized unit dealing with cutting-edge misinformation techniques, a DAU team member could offer unique perspectives on the evolving 'WhatsApp University' landscape.
+
+4. Shalini Mishra
+   - Professional Title: Fact-checker
+   - Affiliation: Unknown (possibly independent or affiliated with a fact-checking organization)
+   - Area of Expertise: Election-related misinformation, Fact-checking methodologies
+   - Summary of Work: Mishra has been actively involved in fact-checking efforts during India's elections, working to stem the surge of online misinformation aimed at influencing voters.
+   - Notable Projects: Fact-checking during India's seven-phase election
+   - Potential Unique Podcast Contribution: First-hand experiences of combating election-related misinformation, insights on the challenges faced by fact-checkers in India
+   - Contact Information: Not available, would need to be contacted through professional networks
+   - Value as a Guest: Mishra's on-the-ground experience in fact-checking during high-stakes elections provides a practical perspective on the 'WhatsApp University' phenomenon.

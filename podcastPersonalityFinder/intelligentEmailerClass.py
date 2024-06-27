@@ -51,16 +51,6 @@ host_info = {
     }
 }
 
-# email_crafter = EmailCrafter(host_info["name"], host_info["podcast_name"], host_info["mission"], host_info["contact_info"])
-
-# guest_info = {
-#     "name": "Jane Smith",
-#     "title": "Dr.",
-#     "work_summary": "your groundbreaking research on quantum computing and its potential applications in solving complex societal issues"
-# }
-
-# email_body = email_crafter.craft_email(guest_info, guest_info["work_summary"])
-# print(email_body)
 
 from some_llm_library import LLM  # Placeholder for actual LLM library
 
