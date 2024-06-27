@@ -43,16 +43,8 @@ class GUIApp(tk.Tk):
                 openai_api_key=config.OPENAI_API_KEY,
                 model_name="gpt-4o"
             ),
-            "Claude": ChatOpenAI(
-                openai_api_base="https://api.claude.com/v1",
-                openai_api_key=config.ANTHROPIC_API_KEY,
-                model_name="claude-3-haiku-20240307"
-            ),
-            "GROQ": ChatOpenAI(
-                openai_api_base="https://api.groq.com/openai/v1",
-                openai_api_key=config.ANTHROPIC_API_KEY,
-                model_name="llama3-70b-8192"
-            )
+            "Claude": ClaudeSonnet,
+            "GROQ": llm_GROQ
         }
         self.agents = []
         self.blog_rough_cut = ""

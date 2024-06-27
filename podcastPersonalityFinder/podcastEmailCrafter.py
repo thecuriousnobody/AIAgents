@@ -21,7 +21,6 @@ ClaudeSonnet = ChatAnthropic(
     model="claude-3-5-sonnet-20240620"
 )
 
-
 def parse_podcast_personalities(file_path='/Volumes/Samsung/GIT_Repos/AIAgents/podcastPersonalityFinder/podcastPersonalities.txt'):
  
     with open(file_path, 'r') as file:
@@ -78,12 +77,6 @@ for person in personalities:
     guest_name = person['name']
     guest_title = person['title']
     guest_work_summary = person['work']
-
-# guest_name = " Elsa Olivetti "
-# guest_title = "Associate Professor of Materials Science and Engineering, MIT"
-# guest_work_summary = """
-# Prof. Olivetti's work embodies Solarpunk principles. She focuses on improving the environmental and economic sustainability of materials in the context of rapid-expanding global demand, particularly in the realm of renewable energy technologies
-# """
 
     host_name = "Rajeev Kumar"
     host_podcast = "The Idea Sandbox"
@@ -157,22 +150,35 @@ for person in personalities:
         )
 
         gather_guest_info = Task(
-            description="Research and compile comprehensive information about a potential podcast guest, focusing on their work, expertise, and relevance to the podcast's themes.",
+            description="""Research and compile comprehensive information about a potential podcast guest, focusing on their work, expertise, relevance to the podcast's themes, and most importantly, their contact information.
+
+            Special focus on finding the guest's email address:
+            1. Check the guest's personal or professional website for a contact page or email address.
+            2. Look for the guest's institutional/organizational email if they're affiliated with a university or company.
+            3. Search professional networking sites like LinkedIn for contact information.
+            4. Check recent publications or conference proceedings where the guest may have provided an email for correspondence.
+            5. Look for contact information on their social media profiles.
+            6. If direct email isn't found, identify the most promising method to reach out to the guest (e.g., through their agent, institution, or a contact form on their website).
+
+            Ensure all searches and methods used to find contact information are ethical and respect privacy.""",
             agent=info_gatherer,  # Assuming 'info_gatherer' is your previously defined agent
             expected_output="""A detailed profile of the potential guest, including:
             1. Full name and professional title
             2. Current affiliation (university, organization, company)
-            3. Brief biography highlighting key achievements and background
-            4. Detailed summary of their most significant work or research
-            5. Recent publications, projects, or initiatives
-            6. Any public statements or opinions related to the podcast's themes
-            7. Their potential unique perspective or contribution to the podcast
-            8. Relevant social media profiles or personal websites
-            9. Any previous podcast or media appearances
-            10. Potential talking points or areas of discussion for the podcast
-            
-            The information should be well-organized, accurate, and directly relevant to crafting a personalized invitation and preparing for a potential podcast conversation."""
-    )
+            3. Contact information:
+            a. Email address (primary objective)
+            b. Alternative contact methods if email is not found
+            4. Brief biography highlighting key achievements and background
+            5. Detailed summary of their most significant work or research
+            6. Recent publications, projects, or initiatives
+            7. Any public statements or opinions related to the podcast's themes
+            8. Their potential unique perspective or contribution to the podcast
+            9. Relevant social media profiles or personal websites
+            10. Any previous podcast or media appearances
+            11    12. Methods used to search for contact information and their results
+
+            The information should be well-organized, accurate, and directly relevant to crafting a personalized invitation and preparing for a potential podcast conversation. If an email address is not found, provide a clear explanation of the best alternative method to contact the guest."""
+        )
 
 
         craft_invitation_email = Task(
@@ -194,7 +200,14 @@ for person in personalities:
             - Title: {guest_title}
             - Work Summary: {guest_work_summary}
 
-            The email should:
+            The output should be structured as follows:
+            1. Guest's email address (ONLY if found during info gathering)[blank line] (ONLY if email was found)
+            2. A blank line
+            3. Subject line for the email
+            4. Another blank line
+            5. The body of the email
+
+            The email body should:
             1. Address the guest by name and title
             2. Introduce the host as an individual and the podcast as his personal project
             3. Highlight the guest's work and its relevance to the podcast's mission
@@ -212,18 +225,24 @@ for person in personalities:
             Use the exact host information provided, do not invent or alter any details.
             """,
             agent=email_crafter,
-            expected_output="""A well-crafted, personalized email invitation that includes:
-            1. A warm, personal greeting addressing the guest by name and title
-            2. A brief introduction of the host as an individual and the podcast as his personal project
-            3. A paragraph highlighting the guest's work and its relevance to the podcast's themes
-            4. An explanation of why the guest's perspective would be valuable to the podcast audience
-            5. A clear invitation to participate in the podcast
-            6. A brief description of the podcast format and what to expect
-            7. Flexibility in scheduling and any technical requirements
-            8. The host's contact information and preferred method of communication
-            9. A polite closing that expresses enthusiasm for a potential conversation
+            expected_output="""Output should be structured as follows:
+
+            1. Guest's email address
+            [blank line]
+            2. Subject line
+            [blank line]
+            3. Email body:
+            - A warm, personal greeting addressing the guest by name and title
+            - A brief introduction of the host as an individual and the podcast as his personal project
+            - A paragraph highlighting the guest's work and its relevance to the podcast's themes
+            - An explanation of why the guest's perspective would be valuable to the podcast audience
+            - A clear invitation to participate in the podcast
+            - A brief description of the podcast format and what to expect
+            - Flexibility in scheduling and any technical requirements
+            - The host's contact information and preferred method of communication
+            - A polite closing that expresses enthusiasm for a potential conversation
             
-            The email should be:
+            The email body should be:
             - Between 250-350 words
             - Written in a warm, authentic tone that reflects the host's personal passion for ideas
             - Free of clichés and overly formal language
