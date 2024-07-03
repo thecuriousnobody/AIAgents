@@ -8,7 +8,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
-
+from anthropic import APIStatusError
 
 
 os.environ["OPENAI_API_KEY"] = config.OPENAI_API_KEY
@@ -21,6 +21,27 @@ search_tool = DuckDuckGoSearchRun()
 llm = ChatAnthropic(
     model="claude-3-5-sonnet-20240620"
 )
+
+def retry_on_overload(func, max_retries=5, initial_wait=1):
+    def wrapper(*args, **kwargs):
+        retries = 0
+        while retries < max_retries:
+            try:
+                return func(*args, **kwargs)
+            except APIStatusError as e:
+                if 'overloaded_error' in str(e):
+                    wait_time = initial_wait * (2 ** retries)
+                    print(f"API overloaded. Retrying in {wait_time} seconds...")
+                    time.sleep(wait_time)
+                    retries += 1
+                else:
+                    raise
+        raise Exception("Max retries reached. API still overloaded.")
+    return wrapper
+
+@retry_on_overload
+def kickoff_crew(crew):
+    return crew.kickoff()
 
 def create_reader_agent():
     return Agent(
@@ -115,7 +136,8 @@ def main(input_file_path, output_file_path):
         verbose=2,
         process=Process.sequential
     )
-    document_content = read_crew.kickoff()
+    # document_content = read_crew.kickoff()
+    document_content = kickoff_crew(read_crew)
 
     # Step 2: Summarize the content
     summarize_task = summarize_content_task(summarizer_agent, document_content)
@@ -148,7 +170,8 @@ def main(input_file_path, output_file_path):
     final_prompts = condense_crew.kickoff()
 
     # Write the final prompts to a file
-    with open(output_file_path, 'w') as f:
+    with open(output_file_path, 'a') as f:  # 'a' mode for appending
+        f.write("\n\n--- New Session ---\n\n")  # Add a separator for clarity
         f.write(final_prompts)
 
     print(f"Final prompts have been written to {output_file_path}")
@@ -156,6 +179,6 @@ def main(input_file_path, output_file_path):
 if __name__ == "__main__":
     # input_file = input("Enter the path to your input document: ")
     # output_file = input("Enter the desired path for the output file: ")
-    input_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Kiran Garimella/Kiran Garimella Rough Draft 1.pdf"
+    input_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Kiran Garimella/WhatsApp Benefit from Debunked Fact-Checked Stories.pdf"
     output_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Kiran Garimella/Kiran Garimella Script 1.txt"
     main(input_file, output_file)
