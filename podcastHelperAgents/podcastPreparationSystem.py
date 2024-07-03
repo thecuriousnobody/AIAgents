@@ -9,6 +9,7 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 from anthropic import APIStatusError
+from langchain.agents import Tool
 
 
 os.environ["OPENAI_API_KEY"] = config.OPENAI_API_KEY
@@ -20,6 +21,12 @@ search_tool = DuckDuckGoSearchRun()
 
 llm = ChatAnthropic(
     model="claude-3-5-sonnet-20240620"
+)
+
+search_tool_wrapped = Tool(
+    name="Internet Search",
+    func=search_tool.run,
+    description="Useful for when you need to answer questions about current events. Input should be a search query."
 )
 
 def retry_on_overload(func, max_retries=5, initial_wait=1):
@@ -71,7 +78,7 @@ def create_researcher_agent():
         verbose=True,
         allow_delegation=False,
         llm=llm,
-        tools=[search_tool]
+        tools=[search_tool_wrapped]
     )
 
 def create_condenser_agent():
@@ -110,9 +117,21 @@ def summarize_content_task(summarizer_agent, content):
 
 def research_points_task(researcher_agent, points):
     return Task(
-        description=f"Research and expand on the following points with additional relevant information:\n\n{points}",
+        description=f"""Research and expand on the following points with additional relevant information. 
+        For each point, use the Internet Search tool to find current and relevant information. 
+        Formulate specific search queries for each point to get the most relevant results.
+        
+        Points to research:
+        {points}
+        
+        For each point:
+        1. Formulate a clear search query.
+        2. Use the Internet Search tool with this query.
+        3. Analyze the search results and extract relevant information.
+        4. Expand the original point with this new information.
+        """,
         agent=researcher_agent,
-        expected_output="An expanded version of each point, enriched with additional context, examples, or supporting details."
+        expected_output="An expanded version of each point, enriched with additional context, examples, or supporting details from current sources."
     )
 
 def create_final_prompts_task(condenser_agent, expanded_points):
@@ -179,6 +198,6 @@ def main(input_file_path, output_file_path):
 if __name__ == "__main__":
     # input_file = input("Enter the path to your input document: ")
     # output_file = input("Enter the desired path for the output file: ")
-    input_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Kiran Garimella/WhatsApp Benefit from Debunked Fact-Checked Stories.pdf"
+    input_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Kiran Garimella/FactCheckImagesonWhatsapp.pdf"
     output_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Kiran Garimella/Kiran Garimella Script 1.txt"
     main(input_file, output_file)
