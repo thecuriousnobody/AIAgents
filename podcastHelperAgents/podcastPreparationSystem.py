@@ -199,6 +199,6 @@ def main(input_file_path, output_file_path):
 if __name__ == "__main__":
     # input_file = input("Enter the path to your input document: ")
     # output_file = input("Enter the desired path for the output file: ")
-    input_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Kiran Garimella/KiranGarimellaMyPersonalRant.pdf"
+    input_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Kiran Garimella/Evidence from WhatsApp in India Authors.pdf"
     output_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Kiran Garimella/Kiran Garimella Script 1.txt"
     main(input_file, output_file)
