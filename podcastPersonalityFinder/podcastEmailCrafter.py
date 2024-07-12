@@ -8,26 +8,61 @@ import json
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from langchain_anthropic import ChatAnthropic
 from langchain_community.tools import DuckDuckGoSearchRun
+from duckduckgo_search import DDGS
+# from langchain.utilities import SerpAPIWrapper
 import config
 import os
 import re
+import time
+import random
+
+from crewai_tools.tools import SerperDevTool
+from langchain.tools import Tool
 
 os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
-
-search_tool = DuckDuckGoSearchRun()
+os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
 
 ClaudeSonnet = ChatAnthropic(
     model="claude-3-5-sonnet-20240620"
 )
 
-def parse_podcast_personalities(file_path='/Volumes/Samsung/GIT_Repos/AIAgents/podcastPersonalityFinder/podcastPersonalities.txt'):
- 
+
+# def rate_limited_duckduckgo_search(query: str, max_retries=5, base_delay=1) -> str:
+#     print(f"Searching for: {query}")  # Debug print
+#     ddgs = DDGS()
+#     for attempt in range(max_retries):
+#         try:
+#             results = list(ddgs.text(query, max_results=5))
+#             formatted_results = "\n\n".join([
+#                 f"Title: {result['title']}\nURL: {result['href']}\nSummary: {result['body']}"
+#                 for result in results
+#             ])
+#             return formatted_results
+#         except Exception as e:
+#             if "429 Too Many Requests" in str(e):
+#                 delay = (2 ** attempt) * base_delay + random.uniform(0, 1)
+#                 print(f"Rate limit hit. Retrying in {delay:.2f} seconds...")
+#                 time.sleep(delay)
+#             else:
+#                 raise
+#     raise Exception("Max retries reached. Unable to complete search.")
+#
+# # Create the tool
+# search_tool = Tool.from_function(
+#     func=rate_limited_duckduckgo_search,
+#     name="DuckDuckGo Search",
+#     description="Useful for when you need to answer questions about current events. You should ask targeted questions.",
+#     return_direct=True
+# )
+search_tool = DuckDuckGoSearchRun()
+
+def parse_podcast_personalities(file_path='/Users/rajeevkumar/Documents/TISB Stuff/guestPrep/podcastPrepDocuments/indianBureaucracyGuestListTrial.rtf'):
     with open(file_path, 'r') as file:
         content = file.read()
 
     client = anthropic.Anthropic(api_key=config.ANTHROPIC_API_KEY)
-    model = "claude-3-haiku-20240307"
+    model = "claude-3-5-sonnet-20240620"
 
     system_message = """You are an AI assistant skilled at extracting structured information from text.
     Your task is to parse information about podcast personalities, extracting their name, title, and a brief description of their work."""
@@ -145,7 +180,7 @@ for person in personalities:
             verbose=True,
             allow_delegation=False,
             llm=ClaudeSonnet,
-            tools=[search_tool],  
+            tools=[search_tool],
         
         )
 

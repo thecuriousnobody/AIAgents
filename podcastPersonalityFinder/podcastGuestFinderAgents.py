@@ -74,7 +74,7 @@ if __name__ == '__main__':
 
     # Write the generated content to a file
     try:
-        with open("/Users/rajeevkumar/Documents/BrosRiffn/potentialSocialMediaGuests.txt", "w") as file:
+        with open("/Users/rajeevkumar/Documents/TISB Stuff/potentialIndianBureaucraciesSocialMediaGuests.txt", "w") as file:
             file.write(output)
     except IOError as e:
         print(f"An error occurred while writing to the file: {e}")
