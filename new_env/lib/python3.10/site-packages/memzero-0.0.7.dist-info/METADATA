@@ -1,0 +1,77 @@
+Metadata-Version: 2.1
+Name: memzero
+Version: 0.0.7
+Summary: Long-term memory for AI Agents
+Home-page: https://docs.mem0.ai
+License: Apache-2.0
+Author: Deshraj Yadav
+Author-email: deshraj@mem0.ai
+Requires-Python: >=3.9,<4.0
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: httpx (>=0.27.0,<0.28.0)
+Requires-Dist: posthog (>=3.5.0,<4.0.0)
+Requires-Dist: pydantic (>=2.7.3,<3.0.0)
+Description-Content-Type: text/markdown
+
+# Mem0: Long-Term Memory for LLMs
+
+Mem0 provides a smart, self-improving memory layer for Large Language Models, enabling personalized AI experiences across applications.
+
+## Features
+
+- Persistent memory for users, sessions, and agents
+- Self-improving personalization
+- Simple API for easy integration
+- Cross-platform consistency
+
+## Quick Start
+
+### Installation
+
+```bash
+pip install mem0
+```
+
+## Usage
+
+```python
+from mem0 import Mem0
+
+# Initialize client
+client = Mem0(api_key="your-api-key")
+
+# Add memory
+client.add("User preference: dark mode", user_id="user123")
+
+# Retrieve memories
+memories = client.get_all(user_id="user123")
+
+# Update memory
+client.update(memory_id, data="Updated information")
+
+# Delete memory
+client.delete(memory_id)
+```
+
+## Documentation
+
+For detailed usage and API reference, visit our [documentation](https://docs.mem0.ai).
+
+## Getting Started
+
+1. Sign up at Mem0 Platform
+2. Get your API key from the dashboard
+3. Install the SDK and start integrating
+
+## Support
+
+Join our [slack](https://mem0.ai/slack) or [discord](https://mem0.ai/discord) community for support and discussions.
+
+## License
+
+[Apache 2.0](https://github.com/apache/.github/blob/main/LICENSE)
+

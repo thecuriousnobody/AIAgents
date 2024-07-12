@@ -3,6 +3,7 @@ import sys
 from crewai import Agent, Task, Crew, Process
 from langchain_openai import ChatOpenAI
 from langchain_community.tools import DuckDuckGoSearchRun
+import duckduckgo_search
 from langchain_anthropic import ChatAnthropic
 from langchain.agents import Tool
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -14,7 +15,7 @@ os.environ["OPENAI_API_KEY"] = config.OPENAI_API_KEY
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 
 # Initialize tools and models
-search_tool = DuckDuckGoSearchRun()
+search_tool = duckduckgo_search()
 llm = ChatAnthropic(model="claude-3-5-sonnet-20240620")
 
 search_tool_wrapped = Tool(
@@ -176,7 +177,7 @@ def main(guest_name, guest_designation, output_file_path):
 if __name__ == "__main__":
     # guest_name = input("Enter the guest's name: ")
     # guest_designation = input("Enter the guest's designation: ")
-    guest_name = "Dr. Kiran Garimella"
-    guest_designation = "ASSISTANT PROFESSOR OF LIBRARY AND INFORMATION SCIENCE, Rutgers University"
+    guest_name = "Marina Debris"
+    guest_designation = "Artivist / agitator on a mission to eliminate waste and cruelty to all species"
     output_file = input("Enter the path for the output file: ")
     main(guest_name, guest_designation, output_file)
