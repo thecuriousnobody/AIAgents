@@ -26,38 +26,9 @@ os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
 ClaudeSonnet = ChatAnthropic(
     model="claude-3-5-sonnet-20240620"
 )
-
-
-# def rate_limited_duckduckgo_search(query: str, max_retries=5, base_delay=1) -> str:
-#     print(f"Searching for: {query}")  # Debug print
-#     ddgs = DDGS()
-#     for attempt in range(max_retries):
-#         try:
-#             results = list(ddgs.text(query, max_results=5))
-#             formatted_results = "\n\n".join([
-#                 f"Title: {result['title']}\nURL: {result['href']}\nSummary: {result['body']}"
-#                 for result in results
-#             ])
-#             return formatted_results
-#         except Exception as e:
-#             if "429 Too Many Requests" in str(e):
-#                 delay = (2 ** attempt) * base_delay + random.uniform(0, 1)
-#                 print(f"Rate limit hit. Retrying in {delay:.2f} seconds...")
-#                 time.sleep(delay)
-#             else:
-#                 raise
-#     raise Exception("Max retries reached. Unable to complete search.")
-#
-# # Create the tool
-# search_tool = Tool.from_function(
-#     func=rate_limited_duckduckgo_search,
-#     name="DuckDuckGo Search",
-#     description="Useful for when you need to answer questions about current events. You should ask targeted questions.",
-#     return_direct=True
-# )
 search_tool = DuckDuckGoSearchRun()
 
-def parse_podcast_personalities(file_path='/Users/rajeevkumar/Documents/TISB Stuff/guestPrep/podcastPrepDocuments/indianBureaucracyGuestListTrial.rtf'):
+def parse_podcast_personalities(file_path='/Users/rajeevkumar/Documents/TISB Stuff/guestPrep/podcastPrepDocuments/indianBureaucracyGuestList.rtf'):
     with open(file_path, 'r') as file:
         content = file.read()
 

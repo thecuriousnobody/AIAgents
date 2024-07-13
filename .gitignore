@@ -2,3 +2,5 @@ config.py
 tavilyExperimentation.py
 tavilyFeeder.py
 podcastPersonalities.txt
+new_env/
+venv/
