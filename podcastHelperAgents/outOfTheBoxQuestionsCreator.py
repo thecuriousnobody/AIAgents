@@ -20,17 +20,6 @@ os.environ["OPENAI_API_KEY"] = config.OPENAI_API_KEY
 
 search_tool = DuckDuckGoSearchRun()
 
-# search_tool_wrapped = Tool(
-#     name="Internet Search",
-#     func=search_tool.run,
-#     description="Useful for when you need to answer questions about current events. Input should be a search query."
-# )
-
-# class DelegateInput(BaseModel):
-#     coworker: Literal["Expert Research Agent"] = Field(description="The coworker to delegate the task to")
-#     task: str = Field(description="The task to be delegated")
-#     context: str = Field(description="All necessary context to execute the task")
-
 llm = ChatOpenAI(
     openai_api_base="https://api.groq.com/openai/v1",
     openai_api_key=os.getenv("GROQ_API_KEY"),
@@ -46,46 +35,6 @@ crew_manager = ChatAnthropic(
     max_tokens=1024,
 )
 
-# def delegate_to_coworker(coworker: str, task: str, context: str):
-#     # Implement the delegation logic here
-#     return f"Delegated task '{task}' to {coworker} with context: {context}"
-#
-# delegation_tool = StructuredTool.from_function(
-#     func=delegate_to_coworker,
-#     name="Delegate work to coworker",
-#     description="Delegate a specific task to the Expert Research Agent",
-#     args_schema=DelegateInput
-# )
-# def create_manager_agent():
-#     return Agent(
-#         role="Executive Producer and Interview Strategist",
-#         goal="Oversee and optimize the podcast preparation process, ensuring high-quality research and compelling question formulation.",
-#         backstory="""You are a seasoned media executive and interview strategist with decades of experience
-#         in producing thought-provoking content across various platforms. Your expertise lies in guiding teams
-#         to create exceptional interview experiences that captivate audiences and bring out the best in guests.
-#
-#         Your key responsibilities include:
-#         1. Providing high-level guidance to the research and question formulation process
-#         2. Ensuring that the team's output aligns with the "Idea Sandbox" podcast's vision and goals
-#         3. Identifying opportunities for deeper exploration or unique angles in the interview preparation
-#         4. Offering constructive feedback to improve the quality and impact of the research and questions
-#         5. Maintaining a balance between thorough preparation and creative, spontaneous inquiry
-#
-#         Your management style is characterized by:
-#         1. Empowering team members to excel in their specific roles
-#         2. Fostering collaboration and cross-pollination of ideas between team members
-#         3. Encouraging innovative approaches while maintaining focus on the core objectives
-#         4. Providing timely and insightful feedback to enhance the team's performance
-#         5. Adapting strategies based on the unique characteristics of each guest and topic
-#
-#         While you don't perform the specific tasks of research or question formulation, your oversight
-#         and strategic input are crucial in elevating the quality of the final output. Your goal is to
-#         ensure that the podcast interview is not only informative but also engaging, thought-provoking,
-#         and memorable for both the guest and the audience.""",
-#         verbose=True,
-#         allow_delegation=True,
-#         llm=ClaudeSonnet,
-#     )
 
 # In the main function, create the manager agent
 # manager_agent = create_manager_agent()
@@ -303,7 +252,7 @@ def main(guest_name, profession):
 if __name__ == "__main__":
     # guest_name = input("Enter the guest's name: ")
     # profession = input("Enter the guest's profession: ")
-    guest_name = "Dr. Kiran Garimella "
-    profession = "ASSISTANT PROFESSOR OF LIBRARY AND INFORMATION SCIENCE"
+    guest_name = "Marina Debris"
+    profession = "Creator of Trashion concept, "
     # output_file = input("Enter the path for the output file: ")
     main(guest_name, profession)
