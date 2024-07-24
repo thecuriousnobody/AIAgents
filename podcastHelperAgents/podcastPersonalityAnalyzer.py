@@ -3,8 +3,9 @@ import sys
 from crewai import Agent, Task, Crew, Process
 from langchain_openai import ChatOpenAI
 from langchain_community.tools import DuckDuckGoSearchRun
-import duckduckgo_search
 from langchain_anthropic import ChatAnthropic
+from langchain_groq import ChatGroq
+from groq import Groq
 from langchain.agents import Tool
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
@@ -13,9 +14,15 @@ import time
 
 os.environ["OPENAI_API_KEY"] = config.OPENAI_API_KEY
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
+os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
+
+llmGROQ = ChatGroq(
+    api_key=os.getenv(config.GROQ_API_KEY),
+    model="llama-3.1-70b-versatile"  # or another model available on Groq
+)
 
 # Initialize tools and models
-search_tool = duckduckgo_search()
+search_tool = DuckDuckGoSearchRun()
 llm = ChatAnthropic(model="claude-3-5-sonnet-20240620")
 
 search_tool_wrapped = Tool(
@@ -52,7 +59,7 @@ def create_information_gatherer_agent():
         backstory="You are an expert researcher capable of finding accurate and relevant information about individuals from various online sources.",
         verbose=True,
         allow_delegation=False,
-        llm=llm,
+        llm=llmGROQ,
         tools=[search_tool_wrapped]
     )
 
@@ -63,7 +70,7 @@ def create_social_media_analyzer_agent():
         backstory="You are a social media expert who can extract meaningful insights from public social media profiles and posts.",
         verbose=True,
         allow_delegation=False,
-        llm=llm,
+        llm=llmGROQ,
         tools=[search_tool_wrapped]
     )
 
@@ -74,7 +81,7 @@ def create_publication_reviewer_agent():
         backstory="You are a literary analyst and research expert capable of finding and summarizing key points from an individual's publications.",
         verbose=True,
         allow_delegation=False,
-        llm=llm,
+        llm=llmGROQ,
         tools=[search_tool_wrapped]
     )
 
@@ -85,7 +92,7 @@ def create_sentiment_analyzer_agent():
         backstory="You are an expert in sentiment analysis and can discern underlying tones, biases, and perspectives from written content.",
         verbose=True,
         allow_delegation=False,
-        llm=llm
+        llm=llmGROQ
     )
 
 def create_insight_synthesizer_agent():
@@ -95,7 +102,7 @@ def create_insight_synthesizer_agent():
         backstory="You are a master of synthesis, capable of distilling complex information into clear, actionable insights for podcast preparation.",
         verbose=True,
         allow_delegation=False,
-        llm=llm
+        llm=llmGROQ
     )
 
 def gather_information_task(agent, guest_name, guest_designation):
@@ -177,7 +184,8 @@ def main(guest_name, guest_designation, output_file_path):
 if __name__ == "__main__":
     # guest_name = input("Enter the guest's name: ")
     # guest_designation = input("Enter the guest's designation: ")
-    guest_name = "Marina Debris"
-    guest_designation = "Artivist / agitator on a mission to eliminate waste and cruelty to all species"
-    output_file = input("Enter the path for the output file: ")
+    # output_file = input("Enter the path for the output file: ")
+    guest_name = "Amber Case"
+    guest_designation = "cyborg anthropologist / She studies how humans’ relationship with information is changing the way cultures think, act, and understand their worlds"
+    output_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Amber Case/Amber Case.txt"
     main(guest_name, guest_designation, output_file)
