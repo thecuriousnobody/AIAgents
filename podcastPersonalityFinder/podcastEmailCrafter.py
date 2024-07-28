@@ -28,7 +28,7 @@ ClaudeSonnet = ChatAnthropic(
 )
 search_tool = DuckDuckGoSearchRun()
 
-def parse_podcast_personalities(file_path='/Users/rajeevkumar/Documents/TISB Stuff/guestPrep/podcastPrepDocuments/indianBureaucracyGuestList.rtf'):
+def parse_podcast_personalities(file_path='/Users/rajeevkumar/Documents/TISB Stuff/guestPrep/nicheTOPICSJuly.txt'):
     with open(file_path, 'r') as file:
         content = file.read()
 

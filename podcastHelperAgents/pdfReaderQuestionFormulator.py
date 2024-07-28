@@ -3,7 +3,7 @@ from crewai import Agent, Task, Crew, Process
 import PyPDF2
 from langchain_anthropic import ChatAnthropic
 from langchain.tools import Tool
-from langchain.utilities import SerpAPIWrapper
+from langchain_community.utilities import SerpAPIWrapper
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
@@ -42,7 +42,8 @@ def retry_on_overload(func, max_retries=5, initial_wait=1):
 
 @retry_on_overload
 def kickoff_crew(crew):
-    return crew.kickoff()
+    output = crew.kickoff()
+    return output.result if hasattr(output, 'result') else str(output)
 
 def create_reader_agent():
     return Agent(
@@ -68,10 +69,9 @@ def create_summarizer_agent():
 
 def create_podcast_question_generator():
     return Agent(
-        role="Podcast Question Generator",
-        goal="Generate thought-provoking questions and discussion points for the Idea Sandbox podcast",
-        backstory="You are an expert at crafting engaging questions that spark critical thinking and curiosity. Your questions aim to explore ideas that can lead to societal progress and personal fulfillment, with a focus on scalability to vast populations like India.",
-        verbose=True,
+        role="Quirky Idea Explorer and Question Alchemist",
+        goal="Concoct delightfully unexpected questions that unearth hidden connections, spark 'aha!' moments, and inspire creative problem-solving across diverse contexts",
+        backstory="You're a wildly curious, neurodivergent thinker with a knack for seeing patterns where others see chaos. Your mind leaps between ideas like a caffeinated squirrel, always looking for the weird and wonderful ways concepts can cross-pollinate. You have an uncanny ability to extract core principles from complex ideas (even low-hanging fruit ideas) and playfully apply them to seemingly unrelated problems. Your questions often leave people tilting their heads, then grinning as the connections click. You're equally fascinated by how calm tech might revolutionize chaotic Indian traffic and how it could help introverts navigate boisterous family gatherings. You're also intrigued by how current AI could be creatively applied to these scenarios - maybe an AI traffic conductor that uses calm tech principles, or an AI social coach that whispers calm tech-inspired coping strategies to overwhelmed introverts. You love exploring how AI could be a quirky sidekick in implementing unconventional solutions, while always keeping the human element front and center. No idea is too out-there, and you believe the most brilliant solutions often come from the most unexpected places - whether they're dreamed up by humans, AIs, or a cheeky collaboration between the two.",        verbose=True,
         allow_delegation=False,
         llm=llm,
         tools=[search_tool]
@@ -169,8 +169,8 @@ def main(input_file_path, output_file_path, podcast_description):
     print(f"Research summary and podcast questions have been written to {output_file_path}")
 
 if __name__ == "__main__":
-    input_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Amber Case/Calm Technology Amber Case Book - Part 2.pdf"
-    output_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Amber Case/CalmTechBasedQuestions_Part2.txt"
+    input_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Amber Case/Calm Technology Amber Case Book - Part 4.pdf"
+    output_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Amber Case/CalmTechBasedQuestions_Part4_Quirky.txt"
     podcast_description = """
     A Sandbox Approach To Harvesting/Distilling Great Ideas
     Welcome to the Idea Sandbox podcast, where we dive into the power of ideas and the belief that they are the foundation of all societal progress and personal fulfillment. In a world increasingly focused on legislative solutions, we explore a different path—one where the spread of enlightened ideas can shape our value system and inspire change far beyond what laws alone can achieve.
