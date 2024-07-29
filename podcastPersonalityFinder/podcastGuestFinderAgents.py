@@ -71,7 +71,7 @@ if __name__ == '__main__':
     )
 
     find_potential_guests = Task(
-        description=f"Find individuals or groups working on the generated niche topics who have a low social media presence but are doing interesting and impactful work in their respective fields. Especially working on pursuits in India",
+        description=f"Find individuals or groups working on the generated niche topics who have a low social media presence but are doing interesting and impactful work in their respective fields. Especially working on pursuits in 3rd world countries",
         agent=guest_finder,
         expected_output="A list of potential guests for the podcast, including their names, affiliations, and a brief description of their work related to the generated niche topics.",
     )
@@ -88,7 +88,7 @@ if __name__ == '__main__':
 
     # Write the generated content to a file
     try:
-        with open("/Users/rajeevkumar/Documents/TISB Stuff/nicheTOPICSJulyIndia.txt", "w") as file:
+        with open("/Users/rajeevkumar/Documents/TISB Stuff/nicheTOPICSJuly3rdworld.txt", "w") as file:
             file.write(output)
     except IOError as e:
         print(f"An error occurred while writing to the file: {e}")
