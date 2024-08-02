@@ -8,20 +8,22 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 from anthropic import APIStatusError
+from langchain_community.tools import DuckDuckGoSearchRun
 import time
 
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
 
 llm = ChatAnthropic(model="claude-3-5-sonnet-20240620")
+search_tool = DuckDuckGoSearchRun()
 
-# Set up SerpAPI search
-search = SerpAPIWrapper()
-search_tool = Tool(
-    name="Internet Search",
-    func=search.run,
-    description="Useful for when you need to answer questions about current events or general knowledge. You should ask targeted questions."
-)
+# # Set up SerpAPI search
+# search = SerpAPIWrapper()
+# search_tool = Tool(
+#     name="Internet Search",
+#     func=search.run,
+#     description="Useful for when you need to answer questions about current events or general knowledge. You should ask targeted questions."
+# )
 
 def retry_on_overload(func, max_retries=5, initial_wait=1):
     def wrapper(*args, **kwargs):
@@ -39,6 +41,18 @@ def retry_on_overload(func, max_retries=5, initial_wait=1):
                     raise
         raise Exception("Max retries reached. API still overloaded.")
     return wrapper
+
+def chunk_pdf(file_path, chunk_size=18):
+    chunks = []
+    with open(file_path, 'rb') as file:
+        pdf_reader = PyPDF2.PdfReader(file)
+        total_pages = len(pdf_reader.pages)
+        for i in range(0, total_pages, chunk_size):
+            chunk_text = ""
+            for j in range(i, min(i + chunk_size, total_pages)):
+                chunk_text += pdf_reader.pages[j].extract_text()
+            chunks.append(chunk_text)
+    return chunks
 
 @retry_on_overload
 def kickoff_crew(crew):
@@ -70,7 +84,7 @@ def create_podcast_question_generator():
     return Agent(
         role="Podcast Question Generator",
         goal="Generate thought-provoking questions and discussion points for the Idea Sandbox podcast",
-        backstory="You are an expert at crafting engaging questions that spark critical thinking and curiosity. Your questions aim to explore ideas that can lead to societal progress and personal fulfillment, with a focus on scalability to vast populations like India.",
+        backstory="You are an expert at crafting engaging questions that spark critical thinking and curiosity. Your questions aim to explore ideas that can lead to societal progress and personal fulfillment, with a focus on scalability to vast populations.",
         verbose=True,
         allow_delegation=False,
         llm=llm,
@@ -101,9 +115,9 @@ def summarize_research_task(summarizer_agent, content):
         expected_output="A list of concise, bullet-point style salient points that capture the essence of the research, preceded by the study title, and including any relevant additional information from internet searches."
     )
 
-def generate_podcast_questions_task(question_generator, content, podcast_description):
+def generate_podcast_questions_task(question_generator, content, podcast_description, guest_name, guest_expertise):
     return Task(
-        description=f"""Based on the following research summary and the Idea Sandbox podcast description, generate a list of thought-provoking questions and discussion points for the podcast interview with Amber Case. Focus on ideas that can be scaled to vast populations like India, and approach the topics from critical thinking and curiosity perspectives. Use the Internet Search tool to find additional relevant information, interesting facts, or current events that could enhance the discussion.
+        description=f"""Based on the following research summary and the Idea Sandbox podcast description, generate a list of thought-provoking questions and discussion points for the podcast interview with {guest_name}, an expert in {guest_expertise}. Focus on ideas that can be scaled to vast populations, and approach the topics from critical thinking and curiosity perspectives. Use the Internet Search tool to find additional relevant information, interesting facts, or current events that could enhance the discussion.
 
         Research summary:
         {content}
@@ -118,59 +132,75 @@ def generate_podcast_questions_task(question_generator, content, podcast_descrip
         4. Encourage critical thinking and curiosity
         5. Align with the podcast's mission of exploring ideas beyond legislative solutions
         6. Incorporate interesting facts or current events found through internet searches
+        7. Specifically relate to {guest_name}'s expertise in {guest_expertise}
 
         Provide a diverse range of questions without any limit on the number. Include brief explanations or context for questions that draw from additional internet research.""",
-                agent=question_generator,
-                expected_output="A list of thought-provoking questions and discussion points for the Idea Sandbox podcast interview with Amber Case, including additional context from internet searches."
+        agent=question_generator,
+        expected_output=f"A list of thought-provoking questions and discussion points for the Idea Sandbox podcast interview with {guest_name}, including additional context from internet searches."
     )
 
-def main(input_file_path, output_file_path, podcast_description):
+def main(input_file_path, output_file_path, podcast_description, guest_name, guest_expertise):
     reader_agent = create_reader_agent()
     summarizer_agent = create_summarizer_agent()
     question_generator = create_podcast_question_generator()
 
-    # Step 1: Read and analyze the document
-    read_task = read_document_task(reader_agent, input_file_path)
-    read_crew = Crew(
-        agents=[reader_agent],
-        tasks=[read_task],
-        verbose=2,
-        process=Process.sequential
-    )
-    document_content = kickoff_crew(read_crew)
+    # Chunk the PDF
+    chunks = chunk_pdf(input_file_path)
 
-    # Step 2: Summarize the research content
-    summarize_task = summarize_research_task(summarizer_agent, document_content)
-    summarize_crew = Crew(
-        agents=[summarizer_agent],
-        tasks=[summarize_task],
-        verbose=2,
-        process=Process.sequential
-    )
-    research_summary = kickoff_crew(summarize_crew)
+    all_summaries = []
+    all_questions = []
 
-    # Step 3: Generate podcast questions and discussion points
-    question_task = generate_podcast_questions_task(question_generator, research_summary, podcast_description)
-    question_crew = Crew(
-        agents=[question_generator],
-        tasks=[question_task],
-        verbose=2,
-        process=Process.sequential
-    )
-    podcast_questions = kickoff_crew(question_crew)
+    for i, chunk in enumerate(chunks):
+        print(f"Processing chunk {i+1} of {len(chunks)}")
 
-    # Write the research summary and podcast questions to a file
-    with open(output_file_path, 'a') as f:
-        f.write("\n\n--- New Research Paper ---\n\n")
-        f.write(research_summary)
-        f.write("\n\n--- Podcast Questions and Discussion Points ---\n\n")
-        f.write(podcast_questions)
+        # Step 1: Read and analyze the document chunk
+        read_task = Task(
+            description=f"Analyze the following research paper chunk and extract key information including methodologies, findings, and recommendations. If necessary, use the Internet Search tool to gather additional context or information:\n\n{chunk}",
+            agent=reader_agent,
+            expected_output="A comprehensive summary of the key elements of this chunk of the research paper, including methodology, findings, and recommendations, along with any relevant additional information from internet searches."
+        )
+        read_crew = Crew(
+            agents=[reader_agent],
+            tasks=[read_task],
+            verbose=2,
+            process=Process.sequential
+        )
+        document_content = kickoff_crew(read_crew)
 
-    print(f"Research summary and podcast questions have been written to {output_file_path}")
+        # Step 2: Summarize the research content
+        summarize_task = summarize_research_task(summarizer_agent, document_content)
+        summarize_crew = Crew(
+            agents=[summarizer_agent],
+            tasks=[summarize_task],
+            verbose=2,
+            process=Process.sequential
+        )
+        research_summary = kickoff_crew(summarize_crew)
+        all_summaries.append(research_summary)
+
+        # Step 3: Generate podcast questions and discussion points
+        question_task = generate_podcast_questions_task(question_generator, research_summary, podcast_description, guest_name, guest_expertise)
+        question_crew = Crew(
+            agents=[question_generator],
+            tasks=[question_task],
+            verbose=2,
+            process=Process.sequential
+        )
+        podcast_questions = kickoff_crew(question_crew)
+        all_questions.append(podcast_questions)
+
+        # Write the chunk's summary and questions to the file
+        with open(output_file_path, 'a') as f:
+            f.write(f"\n\n--- Chunk {i+1} Summary ---\n\n")
+            f.write(research_summary)
+            f.write(f"\n\n--- Chunk {i+1} Questions ---\n\n")
+            f.write(podcast_questions)
+
+    print(f"All chunk summaries and questions have been written to {output_file_path}")
 
 if __name__ == "__main__":
-    input_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Amber Case/Calm Technology Amber Case Book - Part 2.pdf"
-    output_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Amber Case/CalmTechBasedQuestions_Part2.txt"
+    input_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Oron Catts/oronCattsFullBook.pdf"
+    output_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Oron Catts/oronCattsQuestions.txt"
     podcast_description = """
     A Sandbox Approach To Harvesting/Distilling Great Ideas
     Welcome to the Idea Sandbox podcast, where we dive into the power of ideas and the belief that they are the foundation of all societal progress and personal fulfillment. In a world increasingly focused on legislative solutions, we explore a different path—one where the spread of enlightened ideas can shape our value system and inspire change far beyond what laws alone can achieve.
@@ -181,4 +211,6 @@ if __name__ == "__main__":
     
     Join us as we explore the limitless possibilities that come from thinking critically, living intentionally, and fostering a culture that values ideas as the catalysts for authentic, sustainable progress. Together, let's create a future that is not only imagined but actively built on the foundation of ideas that enlighten, empower, and connect us all.
     """
-    main(input_file, output_file, podcast_description)
+    guest_name = "Oron Catts"  # Replace with actual guest name
+    guest_expertise = "Biological Arts, Tissue Engineering, and Critical Exploration of Biotechnology's Cultural Impact"  # Replace with actual guest expertise
+    main(input_file, output_file, podcast_description, guest_name, guest_expertise)
