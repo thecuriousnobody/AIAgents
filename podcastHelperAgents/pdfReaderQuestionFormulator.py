@@ -199,8 +199,8 @@ def main(input_file_path, output_file_path, podcast_description, guest_name, gue
     print(f"All chunk summaries and questions have been written to {output_file_path}")
 
 if __name__ == "__main__":
-    input_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Oron Catts/oronCattsFullBook.pdf"
-    output_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Oron Catts/oronCattsQuestions.txt"
+    input_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Oron Catts/ionat_zurr-phd-final.pdf"
+    output_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Oron Catts/pHDThesisBasedQuestions.txt"
     podcast_description = """
     A Sandbox Approach To Harvesting/Distilling Great Ideas
     Welcome to the Idea Sandbox podcast, where we dive into the power of ideas and the belief that they are the foundation of all societal progress and personal fulfillment. In a world increasingly focused on legislative solutions, we explore a different path—one where the spread of enlightened ideas can shape our value system and inspire change far beyond what laws alone can achieve.
