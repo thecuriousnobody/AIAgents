@@ -50,9 +50,9 @@ class PDFChatbot:
         for attempt in range(max_retries):
             try:
                 response = self.client.messages.create(
-                    model="claude-3-sonnet-20240229",
+                    model="claude-3-5-sonnet-20240620",
                     max_tokens=1000,
-                    temperature=0.0,
+                    temperature=0.9,
                     system=self.system_prompt,
                     messages=self.conversation_history[-5:]  # Only send the last 5 messages
                 )
@@ -96,10 +96,10 @@ class PDFChatbot:
 def main():
     print("Available microphones:")
     VoiceRecognition.list_microphones()
-    mic_index = input("Enter the index of the microphone you want to use (or press Enter for default): ")
+    # mic_index = input("Enter the index of the microphone you want to use (or press Enter for default): ")
     mic_index = 1
     # pdf_path = input("Enter the path to your PDF file: ")
-    pdf_path = '/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Oron Catts/ionat_zurr-phd-final.pdf'
+    pdf_path = '/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Oron Catts/oronCattsFullBookV2.pdf'
     chatbot = PDFChatbot(pdf_path)
     
     if mic_index:
