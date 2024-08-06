@@ -17,3 +17,18 @@ image_processing_env/
 .DS_Store
 .idea/
 __pycache__/
+
+# macOS
+.DS_Store
+._*
+
+# Python
+__pycache__/
+*.pyc
+
+# IDE
+.idea/
+
+# Miscellaneous
+=*
+
