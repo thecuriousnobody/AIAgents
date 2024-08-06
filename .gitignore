@@ -2,3 +2,7 @@ config.py
 tavilyExperimentation.py
 tavilyFeeder.py
 podcastPersonalities.txt
+._*
+.DS_Store
+.idea/
+__pycache__/
