@@ -8,26 +8,53 @@ import json
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from langchain_anthropic import ChatAnthropic
 from langchain_community.tools import DuckDuckGoSearchRun
+from duckduckgo_search import DDGS
+# from langchain.utilities import SerpAPIWrapper
 import config
 import os
 import re
+import time
+import random
+from googleCustomSearch import google_custom_search
+from langchain.tools import Tool
+
+from crewai_tools.tools import SerperDevTool
+from langchain.tools import Tool
 
 os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
+os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
 
-search_tool = DuckDuckGoSearchRun()
+def search_wrapper(query: str) -> str:
+    """Perform a Google search and return the results."""
+    results = google_custom_search(query)
+    return "\n".join([f"Title: {r['title']}\nSnippet: {r['snippet']}\nLink: {r['link']}\n" for r in results])
+
+
+search_tool = Tool(
+    name="Google Search",
+    func=search_wrapper,
+    description="Useful for when you need to search for information on the internet."
+)
+
+llm_GROQ= ChatOpenAI(
+    openai_api_base = "https://api.groq.com/openai/v1",
+    openai_api_key =  os.getenv("GROQ_API_KEY"),
+    model_name = "gemma2-9b-it"
+)
+
 
 ClaudeSonnet = ChatAnthropic(
     model="claude-3-5-sonnet-20240620"
 )
+# search_tool = DuckDuckGoSearchRun()
 
 def parse_podcast_personalities(file_path='/Volumes/Samsung/GIT_Repos/AIAgents/podcastPersonalityFinder/podcastPersonalities.txt'):
- 
     with open(file_path, 'r') as file:
         content = file.read()
 
     client = anthropic.Anthropic(api_key=config.ANTHROPIC_API_KEY)
-    model = "claude-3-haiku-20240307"
+    model = "claude-3-5-sonnet-20240620"
 
     system_message = """You are an AI assistant skilled at extracting structured information from text.
     Your task is to parse information about podcast personalities, extracting their name, title, and a brief description of their work."""
@@ -96,7 +123,7 @@ for person in personalities:
         llm = ChatOpenAI(
             openai_api_base="https://api.groq.com/openai/v1",
             openai_api_key=os.getenv("GROQ_API_KEY"),
-            model_name="llama3-70b-8192"
+            model_name="gemma2-9b-it"
         )
 
 
@@ -145,7 +172,7 @@ for person in personalities:
             verbose=True,
             allow_delegation=False,
             llm=ClaudeSonnet,
-            tools=[search_tool],  
+            tools=[search_tool],
         
         )
 

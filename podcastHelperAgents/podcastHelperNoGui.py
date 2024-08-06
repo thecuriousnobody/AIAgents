@@ -170,7 +170,7 @@ def main(guest_name, profession):
 
     # Write the generated content to a file
     try:
-        with open("/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/podcastPrep.txt", "w") as file:
+        with open("/Users/rajeevkumar/Documents/TISB Stuff/guestPrep/Marina Debris/podcastPrepMarina.txt", "w") as file:
             file.write(result)
         print("Output successfully written to podcastPrep.txt")
     except IOError as e:
