@@ -22,11 +22,14 @@ def transcribe_audio(audio_path):
         return None
 
 # Example usage
-video_path = "/Volumes/Samsung/digitalArtifacts/podcastRawFootage/Podcast with Dr. Kiran Garimella (2024-07-16 15_00 GMT-5).mp4"  # Replace with your video file path
-audio_path = "/Volumes/Samsung/digitalArtifacts/podcastRawFootage/Kiran_extracted_audio.wav"
+video_path = "/Volumes/Samsung/digitalArtifacts/podcastRawFootage/Conversation with Amber Case on The Idea Sandbox (2024-08-02 14_04 GMT-5).mp4"  # Replace with your video file path
+audio_path = "/Volumes/Samsung/digitalArtifacts/podcastRawFootage/Amber_extracted_audio.wav"
 
 # Extract audio from video
 extract_audio(video_path, audio_path)
+output_dir = "/Volumes/Samsung/digitalArtifacts/podcastRawFootage"
+output_file = "transcription_Amber.txt"
+full_output_path = os.path.join(output_dir, output_file)
 
 # Transcribe the extracted audio
 if os.path.exists(audio_path):
@@ -36,7 +39,7 @@ if os.path.exists(audio_path):
         print(transcription)
 
         # Save transcription to a file
-        with open("transcription.txt", "w") as f:
+        with open(full_output_path, "w") as f:
             f.write(transcription)
         print("Transcription saved to transcription.txt")
     else:
