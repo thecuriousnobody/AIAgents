@@ -3,8 +3,8 @@ from langchain_anthropic import ChatAnthropic
 from langchain_community.tools import DuckDuckGoSearchRun
 import os
 import sys
-import config
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import config
 from langchain.tools import Tool
 
 # Set up environment variables
