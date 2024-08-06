@@ -8,11 +8,18 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 from langchain_anthropic import ChatAnthropic
+from langchain_groq import ChatGroq
 
-
+os.environ["OPENAI_API_KEY"] = config.OPENAI_API_KEY
+os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
+os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
 
 llm = ChatAnthropic(
     model="claude-3-5-sonnet-20240620"
+)
+llmGROQ = ChatGroq(
+    api_key=os.getenv(config.GROQ_API_KEY),
+    model="gemma2-9b-it"  # or another model available on Groq
 )
 
 from crewai import Agent, Task, Crew, Process
@@ -34,7 +41,7 @@ def create_podcast_prep_crew(guest_name):
         backstory=f"You are an expert in online research with a keen eye for detail. Your specialty is finding and collating information about {guest_name} from diverse sources including social media, news articles, academic publications, and interviews.",
         verbose=True,
         allow_delegation=False,
-        llm=llm,
+        llm=llmGROQ,
         tools=[search_tool]
     )
 
@@ -44,7 +51,7 @@ def create_podcast_prep_crew(guest_name):
         backstory="You are a master of synthesis, capable of taking large amounts of information and extracting the most important and interesting aspects. You have a talent for organizing information in a way that tells a compelling story.",
         verbose=True,
         allow_delegation=False,
-        llm=llm
+        llm=llmGROQ
     )
 
     question_formulation_agent = Agent(
@@ -53,7 +60,7 @@ def create_podcast_prep_crew(guest_name):
         backstory="You are an expert interviewer with a deep understanding of The Idea Sandbox podcast's ethos. You craft questions that not only explore the guest's expertise but also challenge them to think in new ways and relate their work to broader societal issues.",
         verbose=True,
         allow_delegation=False,
-        llm=llm
+        llm=llmGROQ
     )
 
     # Define the tasks
@@ -84,7 +91,7 @@ def create_podcast_prep_crew(guest_name):
     )
 
 # Usage
-guest_name = "Marina Debris"
+guest_name = "Amber Case"
 crew = create_podcast_prep_crew(guest_name)
 result = crew.kickoff()
 

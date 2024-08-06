@@ -18,7 +18,7 @@ os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
 
 llmGROQ = ChatGroq(
     api_key=os.getenv(config.GROQ_API_KEY),
-    model="llama-3.1-70b-versatile"  # or another model available on Groq
+    model="gemma2-9b-it"  # or another model available on Groq
 )
 
 # Initialize tools and models
@@ -187,5 +187,5 @@ if __name__ == "__main__":
     # output_file = input("Enter the path for the output file: ")
     guest_name = "Amber Case"
     guest_designation = "cyborg anthropologist / She studies how humans’ relationship with information is changing the way cultures think, act, and understand their worlds"
-    output_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Amber Case/Amber Case.txt"
+    output_file = "/Users/rajeevkumar/Documents/TISB Stuff/guestPrep/podcastPrepDocuments/Amber Case/Amber Case Personality Analyzed.txt"
     main(guest_name, guest_designation, output_file)

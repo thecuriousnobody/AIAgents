@@ -63,15 +63,34 @@ if __name__ == '__main__':
         tools=[search_tool]
     )
 
-    generate_niche_topics = Task(
-        description=f"Generate specific niche topics related to art, science, technology, social engineering, activism, unique cultures, and traditions that have the potential to make for engaging podcast conversations.",
-        agent=niche_generator,
-        expected_output="A list of specific niche topics related to art, science, technology, social engineering, activism, unique cultures, and traditions that are not commonly discussed but have the potential to provide interesting insights and perspectives.",
 
-    )
+    def create_niche_topic_task(niche_generator, categories, additional_criteria=None):
+        categories_str = ", ".join(categories)
+
+        description = f"Generate specific niche topics related to {categories_str}"
+        if additional_criteria:
+            description += f" that {additional_criteria}"
+        description += " that have the potential to make for engaging podcast conversations."
+
+        expected_output = f"A list of specific niche topics related to {categories_str}"
+        if additional_criteria:
+            expected_output += f" that {additional_criteria}"
+        expected_output += " that are not commonly discussed but have the potential to provide interesting insights and perspectives."
+
+        return Task(
+            description=description,
+            agent=niche_generator,
+            expected_output=expected_output,
+        )
+
+    # categories = ["art", "science", "technology", "social engineering", "activism", "unique cultures", "traditions"]
+    categories = ["cleanliness in India"]
+    additional_criteria = "challenge conventional thinking and inspire creative problem-solving"
+
+    generate_niche_topics = create_niche_topic_task(niche_generator, categories, additional_criteria)
 
     find_potential_guests = Task(
-        description=f"Find individuals or groups working on the generated niche topics who have a low social media presence but are doing interesting and impactful work in their respective fields. Especially working on pursuits in 3rd world countries",
+        description=f"Find individuals or groups working on the generated niche topics who have a low social media presence but are doing interesting and impactful work in their respective fields",
         agent=guest_finder,
         expected_output="A list of potential guests for the podcast, including their names, affiliations, and a brief description of their work related to the generated niche topics.",
     )
