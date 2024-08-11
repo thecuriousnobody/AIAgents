@@ -1,6 +1,8 @@
 from crewai import Agent, Task, Crew, Process
+from crewai_tools import Tool
 from langchain_openai import ChatOpenAI
 from langchain_anthropic import ChatAnthropic
+from langchain_community.utilities import SerpAPIWrapper
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -11,11 +13,50 @@ os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 
 ClaudeSonnet = ChatAnthropic(model="claude-3-5-sonnet-20240620")
 
+# Initialize SerpAPIWrapper with the API key
+
+from crewai import Agent, Task, Crew, Process
+from langchain_openai import ChatOpenAI
+from langchain_anthropic import ChatAnthropic
+from langchain_community.utilities import SerpAPIWrapper
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import config
+
+os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
+os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
+
+ClaudeSonnet = ChatAnthropic(model="claude-3-5-sonnet-20240620")
+
+search_wrapper = SerpAPIWrapper(
+    serpapi_api_key=config.SERPAPI_API_KEY,
+    params={
+        "engine": "google",
+        "google_domain": "google.com",
+        "gl": "us",
+        "hl": "en",
+        "num": 10,
+        "tbm": "",
+        "safe": "active",
+        "device": "desktop",
+        "output": "json",
+        "no_cache": False
+    }
+)
+
+# Create a custom tool using the SerpAPIWrapper
+search_tool = Tool(
+    name="Search",
+    func=search_wrapper.run,
+    description="Useful for searching the internet to find information on people, topics, or current events."
+)
+
 def create_agents_and_tasks(niche_topic):
     topic_analyzer = Agent(
         role="Topic Analyzer",
         goal=f"Analyze the provided niche topic and identify key aspects, related fields, and potential perspectives for discussion.",
-        backstory=f"You are an expert at breaking down complex topics and identifying various angles for in-depth discussion. Your analysis helps guide the search for suitable podcast guests.",
+        backstory="You are an expert at breaking down complex topics and identifying various angles for in-depth discussion.",
         verbose=True,
         allow_delegation=False,
         llm=ClaudeSonnet
@@ -23,67 +64,42 @@ def create_agents_and_tasks(niche_topic):
 
     expert_finder = Agent(
         role="Expert Finder",
-        goal=f"Identify a diverse range of potential guests related to the analyzed topic, including both high-profile individuals and those doing important work with lower public visibility.",
-        backstory=f"You have a vast knowledge of people working across various disciplines, from renowned experts to lesser-known but impactful individuals. Your job is to find a mix of guests who can provide unique and valuable insights on the topic, regardless of their public profile.",
+        goal=f"Identify a diverse range of potential guests related to the analyzed topic.",
+        backstory="You have vast knowledge of people working across various disciplines, with a focus on both well-known experts and lesser-known but impactful individuals.",
         verbose=True,
         allow_delegation=False,
-        llm=ClaudeSonnet
+        llm=ClaudeSonnet,
+        tools=[search_tool]
     )
 
     contact_researcher = Agent(
         role="Contact Information Researcher",
-        goal=f"Find contact information or points of contact for the identified potential guests, regardless of their public profile.",
-        backstory=f"You are skilled at finding contact information for individuals across various sectors. Your role is to provide the podcast host with ways to reach out to potential guests, whether they are high-profile experts or lesser-known individuals doing important work.",
+        goal=f"Find contact information for the identified potential guests.",
+        backstory="You are skilled at finding contact information for individuals across various sectors.",
         verbose=True,
         allow_delegation=False,
-        llm=ClaudeSonnet
+        llm=ClaudeSonnet,
+        tools=[search_tool]
     )
 
-
     analyze_topic_task = Task(
-        description=f"Analyze the following niche topic in depth: '{niche_topic}'. Identify key aspects, related fields, historical context, current relevance, and potential perspectives for discussion. Consider various angles that could provide a comprehensive understanding of the topic.",
+        description=f"Analyze the following niche topic in depth: '{niche_topic}'. Identify key aspects, related fields, historical context, current relevance, and potential perspectives for discussion.",
         agent=topic_analyzer,
         expected_output="A detailed analysis of the niche topic, including key aspects, related fields, historical context, current relevance, and potential perspectives for discussion."
     )
 
     find_experts_task = Task(
-        description=f"""Based on the analysis of the niche topic '{niche_topic}', identify a diverse range of potential guests who could provide valuable insights as podcast guests. Include:
-
-        1. High-profile experts (e.g., renowned academics, established professionals, public figures)
-        2. Mid-level professionals and academics doing important work in the field
-        3. Up-and-coming researchers or practitioners
-        4. Individuals from NGOs, grassroots organizations, or community initiatives
-        5. People with direct, personal experience related to the topic
-        6. Voices that might offer unconventional or underrepresented perspectives
-
-        Aim for a balance between different types of guests. Don't limit the number of potential guests; provide as many relevant individuals as you can find. For each potential guest, briefly explain their relevance to the topic and what unique perspective they might offer.""",
+        description=f"Based on the analysis of the niche topic '{niche_topic}', identify a diverse range of potential guests who could provide valuable insights as podcast guests.",
         agent=expert_finder,
-        expected_output="""A comprehensive list of potential podcast guests, including:
-        1. Their names and roles/affiliations
-        2. A brief description of their work or experience related to the topic
-        3. Why they would be a valuable guest (their unique perspective or contribution)
-        4. Their approximate level of public profile (high, medium, low)
-        
-        The list should include a mix of high-profile experts and lesser-known individuals doing important work in the field."""
+        expected_output="A list of potential podcast guests, including their names, roles/affiliations, relevance to the topic, and unique perspectives they could offer.",
+        context=[analyze_topic_task]
     )
 
     research_contacts_task = Task(
-        description=f"""For the identified potential guests, research and provide their contact information or suggest ways to reach them. This may include:
-
-        1. Professional email addresses
-        2. Social media profiles (LinkedIn, Twitter, etc.)
-        3. Contact information for their affiliated organizations
-        4. Personal or professional websites
-        5. Agents or representatives (for high-profile individuals)
-        6. Suggestions for intermediaries who might facilitate an introduction
-
-        If direct contact information is not publicly available, provide alternative suggestions for how the host might reach out or connect with the individual.""",
+        description=f"For the identified potential guests, research and provide their contact information or suggest ways to reach them.",
         agent=contact_researcher,
-        expected_output="""For each potential guest:
-        1. Any available contact information
-        2. Suggestions for reaching out if direct contact info is not available
-        3. Notes on the best approach for contacting each individual (e.g., through their organization, via social media, etc.)
-        4. Any relevant etiquette or cultural considerations for reaching out to these individuals"""
+        expected_output="Contact information or suggested methods of reaching out for each identified potential guest, including professional email addresses, social media profiles, or affiliated organization contacts.",
+        context=[find_experts_task]
     )
 
     return [topic_analyzer, expert_finder, contact_researcher], [analyze_topic_task, find_experts_task, research_contacts_task]
@@ -94,7 +110,7 @@ def run_guest_finder(niche_topic):
     crew = Crew(
         agents=agents,
         tasks=tasks,
-        verbose=2,
+        verbose=True,
         process=Process.sequential
     )
 
@@ -108,8 +124,16 @@ if __name__ == '__main__':
     print("\nGuest Finder Results:")
     print(result)
 
-    # Write the generated content to a file
-    file_name = f"potential_guests_{niche_topic.replace(' ', '_')}.txt"
+    # Define the folder path
+    folder_path = "/Users/rajeevkumar/Documents/TISB/pitchEmails"
+    
+    # Create the folder if it doesn't exist
+    os.makedirs(folder_path, exist_ok=True)
+
+    # Define the file name with the full path
+    file_name = os.path.join(folder_path, f"potential_guests_{niche_topic.replace(' ', '_')}.txt")
+
+    # Write the generated content to the file
     try:
         with open(file_name, "w") as file:
             file.write(result)

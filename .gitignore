@@ -2,6 +2,8 @@ config.py
 tavilyExperimentation.py
 tavilyFeeder.py
 podcastPersonalities.txt
+crewAIAgentsvenv
+
 <<<<<<< HEAD
 ._*
 .DS_Store
@@ -32,3 +34,4 @@ __pycache__/
 # Miscellaneous
 =*
 
+/
