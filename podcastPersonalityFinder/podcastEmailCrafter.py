@@ -17,6 +17,8 @@ import time
 import random
 from googleCustomSearch import google_custom_search
 from langchain.tools import Tool
+from langchain_community.utilities import SerpAPIWrapper
+
 
 from crewai_tools.tools import SerperDevTool
 from langchain.tools import Tool
@@ -25,16 +27,11 @@ os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
 
-def search_wrapper(query: str) -> str:
-    """Perform a Google search and return the results."""
-    results = google_custom_search(query)
-    return "\n".join([f"Title: {r['title']}\nSnippet: {r['snippet']}\nLink: {r['link']}\n" for r in results])
-
-
+search = SerpAPIWrapper()
 search_tool = Tool(
-    name="Google Search",
-    func=search_wrapper,
-    description="Useful for when you need to search for information on the internet."
+    name="Internet Search",
+    func=search.run,
+    description="Useful for when you need to answer questions about current events or general knowledge. You should ask targeted questions."
 )
 
 llm_GROQ= ChatOpenAI(
@@ -47,9 +44,19 @@ llm_GROQ= ChatOpenAI(
 ClaudeSonnet = ChatAnthropic(
     model="claude-3-5-sonnet-20240620"
 )
-# search_tool = DuckDuckGoSearchRun()
 
-def parse_podcast_personalities(file_path='/Volumes/Samsung/GIT_Repos/AIAgents/podcastPersonalityFinder/podcastPersonalities.txt'):
+def get_user_input_path():
+    while True:
+        user_path = input("Enter the full path to your podcast personalities file: ").strip()
+        if os.path.isfile(user_path):
+            return user_path
+        else:
+            print(f"The file '{user_path}' does not exist. Please enter a valid file path.")
+
+def parse_podcast_personalities(file_path=None):
+    if file_path is None:
+        file_path = get_user_input_path()
+    
     with open(file_path, 'r') as file:
         content = file.read()
 
@@ -321,3 +328,6 @@ for person in personalities:
 
     write_guest_email_to_file(output, guest_name)
 
+
+if __name__ == "__main__":
+    parse_podcast_personalities()

@@ -1,15 +1,29 @@
 from crewai import Agent, Task, Crew, Process
+from crewai_tools import Tool
 from langchain_openai import ChatOpenAI
 from langchain_anthropic import ChatAnthropic
+from langchain_community.utilities import SerpAPIWrapper
+
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 
+
 os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
+os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
+
 
 ClaudeSonnet = ChatAnthropic(model="claude-3-5-sonnet-20240620")
+
+
+search = SerpAPIWrapper()
+search_tool = Tool(
+    name="Internet Search",
+    func=search.run,
+    description="Useful for when you need to answer questions about current events or general knowledge. You should ask targeted questions."
+)
 
 def create_agents_and_tasks(niche_topic):
     topic_analyzer = Agent(
@@ -27,7 +41,8 @@ def create_agents_and_tasks(niche_topic):
         backstory=f"You have a vast knowledge of people working across various disciplines, from renowned experts to lesser-known but impactful individuals. Your job is to find a mix of guests who can provide unique and valuable insights on the topic, regardless of their public profile.",
         verbose=True,
         allow_delegation=False,
-        llm=ClaudeSonnet
+        llm=ClaudeSonnet,
+        tools = [search_tool]
     )
 
     contact_researcher = Agent(
@@ -36,7 +51,8 @@ def create_agents_and_tasks(niche_topic):
         backstory=f"You are skilled at finding contact information for individuals across various sectors. Your role is to provide the podcast host with ways to reach out to potential guests, whether they are high-profile experts or lesser-known individuals doing important work.",
         verbose=True,
         allow_delegation=False,
-        llm=ClaudeSonnet
+        llm=ClaudeSonnet,
+        tools = [search_tool]
     )
 
 
@@ -64,7 +80,8 @@ def create_agents_and_tasks(niche_topic):
         3. Why they would be a valuable guest (their unique perspective or contribution)
         4. Their approximate level of public profile (high, medium, low)
         
-        The list should include a mix of high-profile experts and lesser-known individuals doing important work in the field."""
+        The list should include a mix of high-profile experts and lesser-known individuals doing important work in the field.""",
+        context=[analyze_topic_task]
     )
 
     research_contacts_task = Task(
@@ -83,7 +100,8 @@ def create_agents_and_tasks(niche_topic):
         1. Any available contact information
         2. Suggestions for reaching out if direct contact info is not available
         3. Notes on the best approach for contacting each individual (e.g., through their organization, via social media, etc.)
-        4. Any relevant etiquette or cultural considerations for reaching out to these individuals"""
+        4. Any relevant etiquette or cultural considerations for reaching out to these individuals""",
+        context=[find_experts_task]
     )
 
     return [topic_analyzer, expert_finder, contact_researcher], [analyze_topic_task, find_experts_task, research_contacts_task]
@@ -109,9 +127,12 @@ if __name__ == '__main__':
     print(result)
 
     # Write the generated content to a file
+    directory = "/Users/rajeevkumar/Documents/TISB/guestLeads"
     file_name = f"potential_guests_{niche_topic.replace(' ', '_')}.txt"
+    full_path = os.path.join(directory, file_name)  
+    
     try:
-        with open(file_name, "w") as file:
+        with open(full_path, "w") as file:
             file.write(result)
         print(f"\nResults saved to {file_name}")
     except IOError as e:
