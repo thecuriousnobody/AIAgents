@@ -209,7 +209,7 @@ for person in personalities:
             8. Their potential unique perspective or contribution to the podcast
             9. Relevant social media profiles or personal websites
             10. Any previous podcast or media appearances
-            11    12. Methods used to search for contact information and their results
+            11. Methods used to search for contact information and their results
 
             The information should be well-organized, accurate, and directly relevant to crafting a personalized invitation and preparing for a potential podcast conversation. If an email address is not found, provide a clear explanation of the best alternative method to contact the guest."""
         )
@@ -283,7 +283,8 @@ for person in personalities:
             - Tailored to the specific guest, incorporating details from the info gatherer's research
             - Aligned with the podcast's mission of harvesting ideas, fostering enlightened beliefs, and promoting societal progress through thought
             - Use "I" instead of "we" to emphasize the solo nature of the podcast
-            - Include the host's exact name, email, and phone number as provided"""
+            - Include the host's exact name, email, and phone number as provided""",
+            context = [gather_guest_info]
         )
 
         crew = Crew(
