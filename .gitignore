@@ -2,3 +2,33 @@ config.py
 tavilyExperimentation.py
 tavilyFeeder.py
 podcastPersonalities.txt
+<<<<<<< HEAD
+._*
+.DS_Store
+.idea/
+__pycache__/
+=======
+new_env/
+venv/
+image_processing_env/
+
+>>>>>>> cleaned_macbook_work
+._*
+.DS_Store
+.idea/
+__pycache__/
+
+# macOS
+.DS_Store
+._*
+
+# Python
+__pycache__/
+*.pyc
+
+# IDE
+.idea/
+
+# Miscellaneous
+=*
+
