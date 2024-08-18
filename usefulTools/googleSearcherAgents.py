@@ -5,8 +5,8 @@ from crewai_tools import Tool
 from langchain_openai import ChatOpenAI
 from langchain_anthropic import ChatAnthropic
 from langchain_community.utilities import SerpAPIWrapper
-from serpapi import GoogleSearch
 import datetime
+from serpapi import GoogleSearch
 
 # Add the parent directory to sys.path to import config
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -20,7 +20,14 @@ os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
 # Initialize AI models
 ClaudeSonnet = ChatAnthropic(model="claude-3-5-sonnet-20240620")
 
-# Set up search tools
+# Set up search tool
+search = SerpAPIWrapper()
+search_tool = Tool(
+    name="Internet Search",
+    func=search.run,
+    description="Useful for finding current data and information on various topics."
+)
+
 def web_search(query):
     search = SerpAPIWrapper()
     return search.run(query)
@@ -60,9 +67,10 @@ web_search_tool = Tool(
 
 youtube_tool = Tool(
     name="YouTube Search",
-    func=lambda q: parse_youtube_results(youtube_search(q)),
+    func=lambda query: parse_youtube_results(youtube_search(query)),
     description="Useful for searching YouTube for video content related to the topic. Returns parsed results including title, link, channel info, views, and publish date."
 )
+
 
 # Define agents
 query_refiner = Agent(
@@ -94,38 +102,45 @@ organizer = Agent(
 )
 
 # Define tasks
-refine_query_task = Task(
-    description="Take the user's raw text and distill it into focused, effective search queries for both web and YouTube searches.",
-    agent=query_refiner,
-    expected_output="Two clear, concise search queries: one for web search and one for YouTube search, both capturing the essence of the user's request.",
-    context=None
-)
+def refine_query_task(topic):
+    return Task(
+        description=f"Take the user's topic '{topic}' and distill it into focused, effective search queries for both web and YouTube searches.",
+        agent=query_refiner,
+        expected_output="Two clear, concise search queries: one for web search and one for YouTube search, both capturing the essence of the user's topic.",
+    )
 
-research_task = Task(
-    description="Use the refined queries to conduct comprehensive searches using both web and YouTube sources. Gather the most vital information on the topic, including relevant video content.",
-    agent=researcher,
-    expected_output="A comprehensive collection of the most relevant information from both web and video sources, including key points, links, and parsed YouTube video data.",
-    context=["refine_query_task"]
-)
+def research_task():
+    return Task(
+        description="Use the refined queries to conduct comprehensive searches using both web and YouTube sources. Gather the most vital information on the topic, including relevant video content.",
+        agent=researcher,
+        expected_output="A comprehensive collection of the most relevant information from both web and video sources, including key points, links, and parsed YouTube video data.",
+    )
 
-organize_info_task = Task(
-    description="Take the research results from both web and video sources and organize them into a structured format. Integrate web-based information with relevant video content, ensuring clear attribution and easy navigation between different types of sources.",
-    agent=organizer,
-    expected_output="A well-organized document with key information from both web and video sources, including parsed YouTube data. The document should have clear sections for textual and video content, with easy-to-follow links and a coherent narrative that integrates both types of information.",
-    context=["research_task"]
-)
-
-# Create crew
-research_crew = Crew(
-    agents=[query_refiner, researcher, organizer],
-    tasks=[refine_query_task, research_task, organize_info_task],
-    verbose=2,
-    process=Process.sequential
-)
+def organize_info_task():
+    return Task(
+        description="Take the research results from both web and video sources and organize them into a structured format. Integrate web-based information with relevant video content, ensuring clear attribution and easy navigation between different types of sources.",
+        agent=organizer,
+        expected_output="A well-organized document with key information from both web and video sources, including parsed YouTube data. The document should have clear sections for textual and video content, with easy-to-follow links and a coherent narrative that integrates both types of information.",
+    )
 
 # Function to run the research process
 def conduct_research(topic):
     print(f"Starting research on topic: {topic}")
+    
+    # Create tasks with the specific topic
+    task1 = refine_query_task(topic)
+    task2 = research_task()
+    task3 = organize_info_task()
+    
+    # Create crew with the topic-specific tasks
+    research_crew = Crew(
+        agents=[query_refiner, researcher, organizer],
+        tasks=[task1, task2, task3],
+        verbose=2,
+        process=Process.sequential
+    )
+    
+    # Run the crew with the topic as input
     result = research_crew.kickoff(inputs={"topic": topic})
     return result
 
