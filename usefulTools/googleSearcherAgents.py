@@ -7,6 +7,8 @@ from langchain_anthropic import ChatAnthropic
 from langchain_community.utilities import SerpAPIWrapper
 import datetime
 from serpapi import GoogleSearch
+from search_tools import search_tool, youtube_tool
+
 
 # Add the parent directory to sys.path to import config
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -19,57 +21,6 @@ os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
 
 # Initialize AI models
 ClaudeSonnet = ChatAnthropic(model="claude-3-5-sonnet-20240620")
-
-# Set up search tool
-search = SerpAPIWrapper()
-search_tool = Tool(
-    name="Internet Search",
-    func=search.run,
-    description="Useful for finding current data and information on various topics."
-)
-
-def web_search(query):
-    search = SerpAPIWrapper()
-    return search.run(query)
-
-def youtube_search(query):
-    params = {
-        "engine": "youtube",
-        "search_query": query,
-        "api_key": os.environ["SERPAPI_API_KEY"]
-    }
-    search = GoogleSearch(params)
-    return search.get_dict()
-
-def parse_youtube_results(json_data):
-    parsed_results = []
-    video_results = json_data.get("video_results", [])
-    
-    for video in video_results:
-        channel = video.get("channel", {})
-        parsed_video = {
-            "title": video.get("title"),
-            "link": video.get("link"),
-            "channel_name": channel.get("name"),
-            "channel_link": channel.get("link"),
-            "views": video.get("views"),
-            "published_date": video.get("published_date")
-        }
-        parsed_results.append(parsed_video)
-    
-    return parsed_results
-
-web_search_tool = Tool(
-    name="Web Search",
-    func=web_search,
-    description="Useful for finding general information on various topics from the web."
-)
-
-youtube_tool = Tool(
-    name="YouTube Search",
-    func=lambda query: parse_youtube_results(youtube_search(query)),
-    description="Useful for searching YouTube for video content related to the topic. Returns parsed results including title, link, channel info, views, and publish date."
-)
 
 
 # Define agents
@@ -88,7 +39,7 @@ researcher = Agent(
     backstory="You are a skilled researcher with a knack for finding the most relevant and important information on any topic, using both web and video sources. You can effectively use parsed YouTube data to enhance your research.",
     verbose=True,
     allow_delegation=False,
-    tools=[web_search_tool, youtube_tool],
+    tools=[search_tool, youtube_tool],
     llm=ClaudeSonnet
 )
 
@@ -102,25 +53,27 @@ organizer = Agent(
 )
 
 # Define tasks
-def refine_query_task(topic):
+def refine_query_task_routine(topic):
     return Task(
         description=f"Take the user's topic '{topic}' and distill it into focused, effective search queries for both web and YouTube searches.",
         agent=query_refiner,
         expected_output="Two clear, concise search queries: one for web search and one for YouTube search, both capturing the essence of the user's topic.",
     )
 
-def research_task():
+def research_task_routine(refine_query_task):
     return Task(
         description="Use the refined queries to conduct comprehensive searches using both web and YouTube sources. Gather the most vital information on the topic, including relevant video content.",
         agent=researcher,
         expected_output="A comprehensive collection of the most relevant information from both web and video sources, including key points, links, and parsed YouTube video data.",
+        context = [refine_query_task]
     )
 
-def organize_info_task():
+def organize_info_task_routine(research_task):
     return Task(
         description="Take the research results from both web and video sources and organize them into a structured format. Integrate web-based information with relevant video content, ensuring clear attribution and easy navigation between different types of sources.",
         agent=organizer,
         expected_output="A well-organized document with key information from both web and video sources, including parsed YouTube data. The document should have clear sections for textual and video content, with easy-to-follow links and a coherent narrative that integrates both types of information.",
+        context = [research_task]
     )
 
 # Function to run the research process
@@ -128,15 +81,15 @@ def conduct_research(topic):
     print(f"Starting research on topic: {topic}")
     
     # Create tasks with the specific topic
-    task1 = refine_query_task(topic)
-    task2 = research_task()
-    task3 = organize_info_task()
+    refine_query_task = refine_query_task_routine(topic)
+    research_task = research_task_routine(refine_query_task)
+    organize_info_task = organize_info_task_routine(research_task)
     
     # Create crew with the topic-specific tasks
     research_crew = Crew(
         agents=[query_refiner, researcher, organizer],
-        tasks=[task1, task2, task3],
-        verbose=2,
+        tasks=[refine_query_task, research_task, organize_info_task],
+        verbose=True,
         process=Process.sequential
     )
     
