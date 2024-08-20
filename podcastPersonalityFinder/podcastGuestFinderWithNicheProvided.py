@@ -8,6 +8,7 @@ import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
+from usefulTools.search_tools import search_tool, youtube_tool
 
 
 os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
