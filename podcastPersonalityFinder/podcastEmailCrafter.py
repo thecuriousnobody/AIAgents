@@ -101,6 +101,7 @@ def parse_podcast_personalities(file_path=None):
 
 
 personalities = parse_podcast_personalities()
+subject_matter = input("Enter the subject matter for the podcast or type NONE to skip: ")
 
 for person in personalities:
     guest_name = person['name']
@@ -229,6 +230,9 @@ for person in personalities:
             - Title: {guest_title}
             - Work Summary: {guest_work_summary}
 
+            Subject Matter:
+            - Topic: {subject_matter}  # This can be a specific topic or "None" if not applicable
+
             The output should be structured as follows:
             1. Guest's email address (ONLY if found during info gathering)[blank line] (ONLY if email was found)
             2. A blank line
@@ -240,15 +244,17 @@ for person in personalities:
             1. Address the guest by name and title
             2. Introduce the host as an individual and the podcast as his personal project
             3. Highlight the guest's work and its relevance to the podcast's mission
-            4. Clearly invite the guest to participate
-            5. Include the host's contact information (email, website, and phone number)
-            6. Close with enthusiasm for a potential conversation
+            4. If a specific subject matter is provided, subtly weave it into the email content, showing how the guest's expertise or perspective could contribute to a discussion on this topic
+            5. Clearly invite the guest to participate
+            6. Include the host's contact information (email, website, and phone number)
+            7. Close with enthusiasm for a potential conversation
 
             Key points to remember:
             - Use "I" instead of "we" throughout the email to emphasize this is a solo effort
             - Convey the personal passion and individual commitment of the host
             - Highlight that this is an independent podcast driven by one person's mission
             - Emphasize the unique, intimate nature of the conversation that comes from a one-on-one dialogue
+            - If a subject matter is specified, integrate it naturally into the email without making it the sole focus
 
             Ensure the email is warm, personal, 250-350 words long, and avoids clichés and overly formal language.
             Use the exact host information provided, do not invent or alter any details.
@@ -264,6 +270,7 @@ for person in personalities:
             - A warm, personal greeting addressing the guest by name and title
             - A brief introduction of the host as an individual and the podcast as his personal project
             - A paragraph highlighting the guest's work and its relevance to the podcast's themes
+            - If applicable, a subtle integration of the specified subject matter, connecting it to the guest's expertise or potential contribution
             - An explanation of why the guest's perspective would be valuable to the podcast audience
             - A clear invitation to participate in the podcast
             - A brief description of the podcast format and what to expect
@@ -276,6 +283,7 @@ for person in personalities:
             - Written in a warm, authentic tone that reflects the host's personal passion for ideas
             - Free of clichés and overly formal language
             - Tailored to the specific guest, incorporating details from the info gatherer's research
+            - If a subject matter is provided, it should be naturally woven into the content without overshadowing the guest's own work and expertise
             - Aligned with the podcast's mission of harvesting ideas, fostering enlightened beliefs, and promoting societal progress through thought
             - Use "I" instead of "we" to emphasize the solo nature of the podcast
             - Include the host's exact name, email, and phone number as provided""",
