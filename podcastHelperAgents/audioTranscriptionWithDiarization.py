@@ -7,12 +7,11 @@ import sys
 import os
 from tqdm import tqdm
 import re
-
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 
 # Audio file path
-sample = "/Volumes/Samsung/digitalArtifacts/podcastRawFootage/shortClipAudioExtractionV2 - HD 720p_extracted_audio.wav"
+sample = input("Please enter the path to your audio file: ")
 
 def transcribe_audio(filename):
     print("Loading Whisper model...")
@@ -35,9 +34,6 @@ def transcribe_audio(filename):
     
     print("Transcription completed.")
     return {"segments": segments}
-
-
-
 
 # Get audio info
 audio_info = torchaudio.info(sample)
@@ -90,26 +86,48 @@ for segment in transcription_result["segments"]:
 
 # Write combined output to file
 output_dir = os.path.dirname(sample)
-output_file = os.path.join(output_dir, "transcription_diarization_outputV3.txt")
+base_name = os.path.splitext(os.path.basename(sample))[0]
+output_file = os.path.join(output_dir, f"transcription_diarization_output_{base_name}.txt")
+
+# with open(output_file, "w") as f:
+#     f.write(f"Original audio file: {sample}\n")
+#     f.write(f"Processed duration: {duration_seconds:.2f} seconds\n")
+#     f.write(f"Sample rate: {sample_rate} Hz\n\n")
+#     for chunk in combined_results:
+#         f.write(f"[{chunk['start']:.2f}s - {chunk['end']:.2f}s] Speaker {chunk['speaker']}: {chunk['text']}\n")
+
+def format_time(seconds):
+    minutes = int(seconds // 60)
+    remaining_seconds = seconds % 60
+    return f"{minutes:02d}:{remaining_seconds:05.2f}"
 
 with open(output_file, "w") as f:
     f.write(f"Original audio file: {sample}\n")
-    f.write(f"Processed duration: {duration_seconds:.2f} seconds\n")
+    f.write(f"Processed duration: {format_time(duration_seconds)}\n")
     f.write(f"Sample rate: {sample_rate} Hz\n\n")
     for chunk in combined_results:
-        f.write(f"[{chunk['start']:.2f}s - {chunk['end']:.2f}s] Speaker {chunk['speaker']}: {chunk['text']}\n")
+        start_time = format_time(chunk['start'])
+        end_time = format_time(chunk['end'])
+        f.write(f"[{start_time} - {end_time}] {chunk['speaker']}: {chunk['text']}\n")
 
 print(f"\nTranscription with diarization completed. Output saved to: {output_file}")
 
 
+
+# Input and output file paths
+consolidated_output_file = os.path.join(output_dir, f"consolidated_transcription_diarization_output_{base_name}.txt")
+
+import re
+
 def parse_line(line):
-    match = re.match(r'\[(\d+\.\d+)s - (\d+\.\d+)s\] Speaker (\w+): (.+)', line)
+    match = re.match(r'\[(\d{2}:\d{2}\.\d{2}) - (\d{2}:\d{2}\.\d{2})\] (SPEAKER_\d+): (.+)', line)
     if match:
+        start_time, end_time, speaker, text = match.groups()
         return {
-            'start': float(match.group(1)),
-            'end': float(match.group(2)),
-            'speaker': match.group(3),
-            'text': match.group(4)
+            'start': start_time,
+            'end': end_time,
+            'speaker': speaker,
+            'text': text.strip()
         }
     return None
 
@@ -121,11 +139,9 @@ def consolidate_speaker_segments(segments):
         if current_segment is None:
             current_segment = segment
         elif segment['speaker'] == current_segment['speaker']:
-            # Merge with the current segment
             current_segment['end'] = segment['end']
             current_segment['text'] += ' ' + segment['text']
         else:
-            # New speaker, add the current segment to consolidated list and start a new one
             consolidated.append(current_segment)
             current_segment = segment
 
@@ -134,14 +150,10 @@ def consolidate_speaker_segments(segments):
 
     return consolidated
 
-# Input and output file paths
-input_file = output_file  # Use the path of the file we just created
-consolidated_output_file = os.path.join(output_dir, "consolidated_transcription_diarization_outputV3.txt")
-
 # Read and parse the input file
 segments = []
 header_lines = []
-with open(input_file, 'r') as f:
+with open(output_file, 'r') as f:
     for line in f:
         if line.startswith('['):
             segment = parse_line(line.strip())
@@ -150,8 +162,13 @@ with open(input_file, 'r') as f:
         else:
             header_lines.append(line)
 
+print(f"Number of segments read: {len(segments)}")
+print(f"Number of header lines: {len(header_lines)}")
+
 # Consolidate the segments
 consolidated_segments = consolidate_speaker_segments(segments)
+
+print(f"Number of consolidated segments: {len(consolidated_segments)}")
 
 # Write the consolidated output
 with open(consolidated_output_file, 'w') as f:
@@ -161,6 +178,6 @@ with open(consolidated_output_file, 'w') as f:
 
     # Write the consolidated segments
     for segment in consolidated_segments:
-        f.write(f"[{segment['start']:.2f}s - {segment['end']:.2f}s] Speaker {segment['speaker']}: {segment['text']}\n\n")
+        f.write(f"[{segment['start']} - {segment['end']}] {segment['speaker']}: {segment['text']}\n\n")
 
-print(f"Consolidated output saved to: {consolidated_output_file}")
+print(f"Consolidated output written to: {consolidated_output_file}")
