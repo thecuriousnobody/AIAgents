@@ -89,13 +89,6 @@ output_dir = os.path.dirname(sample)
 base_name = os.path.splitext(os.path.basename(sample))[0]
 output_file = os.path.join(output_dir, f"transcription_diarization_output_{base_name}.txt")
 
-# with open(output_file, "w") as f:
-#     f.write(f"Original audio file: {sample}\n")
-#     f.write(f"Processed duration: {duration_seconds:.2f} seconds\n")
-#     f.write(f"Sample rate: {sample_rate} Hz\n\n")
-#     for chunk in combined_results:
-#         f.write(f"[{chunk['start']:.2f}s - {chunk['end']:.2f}s] Speaker {chunk['speaker']}: {chunk['text']}\n")
-
 def format_time(seconds):
     minutes = int(seconds // 60)
     remaining_seconds = seconds % 60

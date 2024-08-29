@@ -18,14 +18,6 @@ os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
 
 ClaudeSonnet = ChatAnthropic(model="claude-3-5-sonnet-20240620")
 
-
-search = SerpAPIWrapper()
-search_tool = Tool(
-    name="Internet Search",
-    func=search.run,
-    description="Useful for when you need to answer questions about current events or general knowledge. You should ask targeted questions."
-)
-
 def create_agents_and_tasks(niche_topic):
     topic_analyzer = Agent(
         role="Topic Analyzer",
