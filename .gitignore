@@ -37,3 +37,11 @@ experimentalCode
 crewai_latest_env
 
 temp_mono.wav
+temp_audio_chunk.wav
+new_env/
+*.so
+*.dylib
+new_env/
+*.so
+*.dylib
+temp_audio_chunk.wav
