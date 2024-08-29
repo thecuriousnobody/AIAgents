@@ -45,3 +45,4 @@ new_env/
 *.so
 *.dylib
 temp_audio_chunk.wav
+temp_audio_chunk.wav
