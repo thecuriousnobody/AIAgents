@@ -10,6 +10,9 @@ crewAIAgentsvenv
 __pycache__/
 new_env/
 venv/
+*.pyc
+__pycache__/
+*.so
 image_processing_env/
 
 ._*
