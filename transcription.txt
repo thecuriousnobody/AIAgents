@@ -1,1 +1,1711 @@
- Let's see. See. Let's see. For some reason your mic shows it's muted. Let's see. Okay. Okay. I can hear you now. Cool. Can I refer to you as Dr. Garimella? Yeah. Yeah. Okay. Thanks, good on for doing this. I'm so looking forward to doing this. Just give me one second here. Let me see if I could swap so that way I'm not looking so far away from you. I'm recording by the way, just letting you know. Let's see. Tiled. See. Spotlight. Spotlight. Spotlight. Spotlight. Spotlight. Spotlight. Spotlight. Spotlight. Spotlight. Okay. I guess if you don't care, I don't care. Is it okay if I'm looking sort of like that? Because you're. I was trying to swap. I was trying to swap the video out here and. First of all, thank you for doing this, kid. I was very close to my heart and I will. I will not put you through introducing yourself and think of that because I'll do all the post production and all add all this stuff and I'm. I'm actually planning this to be a little bit different than my usual podcast where I. Usually we'll just start with the conversation or give a little bit of preamble in this case. I think I want to kind of. You know, add some context and detail before we actually actually show the conversation and maybe. I want to add some parts of the conversation to kind of emphasize certain points. So, yeah, I won't put you through that. So if you don't mind, can I get right into it? Sure. Okay. First of all, how did you get into this field of research, kid? Like, so you know, WhatsApp University, if you don't mind me using that word. I guess I'll stick to WhatsApp University today or WhatsApp today, not Twitter so much. We can talk about Twitter too. What motivated you to get into this research? What brought you to this space? Yeah, yeah. So, you know, I have a background in computer science. I'm a PhD in computer science and you know, I was doing a lot of work on. Studying things like, you know, political polarization in the US. The usual stuff like with the Twitter data that everyone was drawing. And this was back in 2017, 2018 when you know, these like ideas of like misinformation. Here in the US, especially, we're just picking up like, you know, okay, misinformation research has been done for a long while. But, you know, especially after, you know, Trump and Brexit and all of these like in the US, like academic interest in misinformation as a topic, like really skyrocketed. There's a lot of this being a lot of interest in this space. And that was when like, you know, one of the summers I was in India. And I think it was the summer of 2017 when you know, there was suddenly a spade of incidents of like offline violence, like you know, rumors about childhood napping killing people like real violence and lynching things like that. Like and this was just in a very short duration around like 30 to 40 people got killed and many, many people were injured. So, this is in various parts of India all across India. And the root cause of this was just one rumor about one video about, you know, your children are being kidnapped by strangers coming to your village. Be careful. Right. So that was the rumor that is spreading and anyone who entered a village just was, you know, attacked and this really spread like wildfire. And that, you know, really got me thinking about like looking at WhatsApp. Okay, obviously there's very little work on WhatsApp. Primarily there's that bias because you know, it's not really that widely used here in the US. And like most academia really just looks at Twitter, which is much more easier to get data from and things like that. And so there were two up to real reasons. So one is just a selfish reason that you know, this is a new platform like new data, new interesting insights. So that was one. The other is just, you know, this sort of like, you know, online information leading to offline consequences. That's a really new idea. I can back there. I'm talking about seven years ago, even like just just to give you some context like even until recently, like you know, until the Jan Six, you know, thing happened. Like people would not really care about misinformation as as an offline consequence, right? Like so people would say, yeah, okay, what what if like people in a small amount of people consume misinformation? Like it's just an online phenomena, but online consumption leading to offline activity. I mean, this has happened in India and in many, many places in the global south quite a bit. But you know, in the US, like, you know, many big academics, like really you did not consider this as a big threat until, you know, this. This, this, this, Jan Six, 2020, what happened? So, yeah, but you know, these were the two of the reasons why I got into this around 2018 or so. Yeah, I mean, I, my, I also want to add to the conversation. I've seen very personal effect of this. Kid, on is that, you know, I've seen my parents relationship between themselves. For example, appearance relationship with their friend circle, my, my very close friends. And if they're ever going to watch this, they might, I might get some hate, but. But, but it's a real thing, right? Like where, you know, religious polarization, religious messaging. In like, like one of the things you said 82% one of the research, I went through all of your papers and some of the statistics were like mind blowing where even after being. They get re-shared and things like that and. And even a relative circle, you know, my, my cousins and my uncles and so forth. And it goes on to this very day, right? Like it's happening today. Information that's just manufactured to rouse your emotions, manufactured to get you to vote one versus the other way and so on. So this is very personal to me is, I guess, my point. And I guess I want to dive right into it. Like what can be done about this kid on. So you've laid out a bunch of research stuff, practically speaking. Can you kind of walk through, you know, let's say, you know, from a technical perspective, let's start with that. You know, let's say some entrepreneurs want to do a startup or a technology or plug in or some kind of software. What can I mean, of course, I'll put links to the papers and stuff like what can be done from a high from a 30,000 foot view. Yeah. Okay. So maybe I'll just give you some context of like why this is a very difficult problem, particularly for WhatsApp, right? Like our platform like WhatsApp and the reason is enter an encryption. So this is enter an encryption on WhatsApp because of which so what what that means is just simplify. If I send you a message, if I sent you a message on Facebook, you know, if I sent you a picture of a cat, Facebook will know, okay, you know, a center message to be and it's a picture of a cat, right? But on WhatsApp or other encrypted platforms into an encrypted platforms, you know, if I send you a picture, Facebook or WhatsApp just knows that I sent you a picture, but they don't know what is in it. It could just be a cat picture or it could be a hate video, right? Like so you don't know what is the content of the information that is spreading on the platform. So that is a huge problem in moderating any sort of content. So on Facebook, for instance, the Facebook platform, you have a lot of moderators who can, you know, or content is flagged and then the moderators look at that and say, okay, this is hate speech, this information. This is whatever false information and they can down-track it, take it down, label it like they have a bunch of strategies to work with that on WhatsApp. There's no such infrastructure. Firstly, okay, there's two sides of it. So one is, is this necessary? Like, yes, right? Like there's this enter and encryption provides privacy where nobody is able to look at any of your personal conversations. So that is, you know, a solid point on WhatsApp's behalf that, you know, they're saying, okay, you know, we don't want to look at your content. We don't want to do any sort of personal moderation. Okay, so that's one end of the spectrum. The other end of the spectrum is the cases of examples that I told you, right? So we knew that this particular video was causing riots in all these villages across India. Hundreds of people are being injured, but WhatsApp cannot do anything or does not want to do anything about it. Because, you know, these sorts of really opposing ends of the spectrum. Okay, so this is the problem. Now, what can be done about this? So, you know, obviously, you know, we all agree that, you know, encryption privacy is a good thing. We don't want to break encryption. You know, for instance, certain governments, like the Indian government, the UK government, Australia government, they have cases where they're saying, you know, you know, what's happening is being misused for child sexual exploitation. Right? Like so you have to break encryption in these cases. It's usually, you know, if you break encryption, you're giving like a pass, right? So encryption is a box. If once opened, you can give access to anything. You just, you cannot just say, I'll only give you access to, you know, CSAM content. You, it's a, it's a, it's a, you once you open it, you, you're breaking encryption forever. So that's the problem. So what can be done? So there's a multiple way. So one is what the platform can do in terms of the levers that the platform has in. Designing solutions. And what's up has done a decent enough job here. Like for instance, they introduced friction in reducing the spread of information. Right? Like so, you know, one thing you can do is, you know, if a piece of content has been forwarded many times, like, you know, forwarded a certain number of times will introduce friction to make sure that this is not, you know, massively forwarded over and over again. Right? And what they've done is they said, okay, you know, you can only forward to five people at a time. And if the content has been forwarded more than five hops from the original sender, then you cannot forward it more than one person at a time. Right? Like so that, you know, it does not really fully solve the problem, but it introduces friction. And we have some word that shows that this really slows down the spread of the information. Like by an order of magnitude, like so you know, if it would take, you know, 100 hours previously to spread some information, now take 1000 hours. So that's a really significant amount of change of time. Like how long it takes for information to spread. Right? And that's a very good level. But the problem is like, especially given how invested actors are like various actors like political parties, for instance, are in this game. Right? Like so, you know, especially, you know, there's this research on my research, but also some other word by the Washington Post, for instance, in India that shows that just one political party in India has like a hundred thousand people in one state working on social media activity. Most of it is just what's that? Right? So if you have a hundred thousand people just sitting and forwarding content or creating content and forwarding content, they can just keep doing it right. And so one at a time, there's nothing stopping it from stopping them from doing this and they can eventually, you know, spread their information. So it's not a complete solution, but it is one solution. Like so this sort of forwarding limits are a good solution to a majority of us. And like 99.99% of WhatsApp is not people from political parties. It's people like you and me who are using it normally. We don't have any malicious intent to spread this rumor, particularly like a lot of people just spread it out of concern, you know, like the same with the child kidnapping rumor and people just shared it out of concern that, you know, any child must be protected. Right? So, so you know, it does work to a large extent, but it is not a solution for certain types. Like so if there's propaganda or disinformation or hate speech kind of thing, which a certain political party or an invested actor wants to spread, that is not going to solve this problem. Okay. So that's the top down solution. There's very limited top down or what the platform can do. So that's one thing that WhatsApp has done very well. That's good. The other is in terms of more bottom up solutions, which is what the users can do. Right? Like so the what the users can themselves do. And one solution there that again WhatsApp has experimented quite a bit and invested and spent a lot of money on is just digital literacy. Right? Like so to help people know. And I think you know this podcast one example is spreading example like awareness and digital literacy. What's app has taken like you know full page ads and newspapers saying you know you have follow these rules don't don't you know if it's arouses your emotions like it's most likely to be false. You know those are simple tricks to make sure that people don't forward you know misinformation rumors of hate speech kind of content. But it's not I mean they have advertised it during the elections and they they're done right like so they don't want to do too much. Like I mean it's not it's not cheap but it's also not a long term solution. The other thing that they're doing is developed these things called tip lines. I don't know if you've heard of these. So these are just hotline numbers. These are like WhatsApp numbers that a lot of fact checking agencies in India have. And if you get any misinformation. Let's say I get it in Telugu. I can forward it to a Telugu tip line that's run by a specific fact checking organization. But one thing that the reality of these again there's a lot of money that's being spent on these to maintain these tip lines to build technology to make sure that these tip lines work and pay for the fact checking efforts that go into this. But the truth is just the scale at which these tip lines operate is very very very small like so again for a like WhatsApp is so big. So just in India over 50 billion messages are sent every day. Just just that's the scale of WhatsApp and you know I was working with some tip line like the that was run during the last election like 2019 election. And the scale was like around a hundred thousand messages that we got to that tip line in three months right. During the election period in three months you got a hundred thousand messages. Just looking at those messages. Okay, might look like a lot hundred thousand. But if you look at the overall scale. People are getting. Yeah, talking about you know trillions of messages over the three months period. And you you're fact checking or the amount of messages you got for fact checking or like you know, other tasks. It just does not scale well and most likely the people who consume misinformation people like my mom or my my family. They don't know of this right like they don't know of any questions of the tip line or they don't even know that okay. You know this could be misinformation. Let me ask this fact checking tip line or whatever right. So it just does not scale. And so okay, so I told you like these two examples like one is a top down friction. Okay, that works to certain extent. The other is bottom up like digital literacy kind of thing that also you know works to some extent it does not work fully. What else have we trying now like you know we are we are trying other solutions like variance of these digital literacy kind of like that help in. Scaling up these you know, awareness and understanding of people like so for instance you can. One thing we realize in our research is a lot of the misinformation like around 40% of it can be very easily debunked like so these are just old misinformation that has already been fact checked. That is just reshared and res spreading right like so this child getting rumour. It started 10 years ago even if today if you open WhatsApp it will be really spreading widely right like I just don't know that this is already been debunked. And so if you can provide tools that enable the connection of okay this video or this image has already been fact checked easily. It can be make that happen like so whatever tools you can provide to enable users to connect fact check content to misinformation information that people receive. I think that's an easy solution like that where you're not giving the burden to the user but you have some sort of technology that enables the sort of matching between fact check content and content that people receive. I think that's an easy solution that you know okay users can quickly say oh yeah okay this seems to have been fact checked here and this is a fact check. So you know that that could be a solution so we're trying out solutions like that but yeah skip these is not easy so easy interactors. Yeah so can you speak a little bit about that is it on your phone I know one of the papers you mentioned that in a kind of a localized fact checking database you have on your phone it can sort of you know be filter out messages or at least flag it for you. Is that what you're referring to? Yeah so that's one way of operationalizing it and implementing it you know so yeah the solution that we proposed there is you know it's a it's a it's a instead of having like you can have a small database on your phone of hashes of you know images videos and text that was already fact checked. You don't even have to have all the videos and images you can just compress them and represent them as hashes this is very very small it could be you know one megabyte for like you know hundreds of thousands of images and videos of a one that can fit on your phone and you can do very efficiently check like okay is this you know if I get an image like is this image in this database or not this can be done on the device you've shown you know that this works very efficiently. And you can detect a lot of misinformation that's where the 82% number comes from so you could prevent a lot of the spread of the information just by making sure you do this. So one thing we realized after we wrote that paper is okay this is technically possible but this is practically a very like contention like there's a lot of debate and contention especially from the privacy advocates on this. So so the issue there like so the discussion came out after Apple introduced or was trying to introduce some of these kinds of same kind of tools which like they work on device but this can your gallery for child sex abuse material and then if there's some match then they reported to the authorities kind of thing and there was a lot of discussion Apple actually backtrack like not doing it and the discussion there was again this sort of privacy versus criminality right okay maybe they're not going to be a lot of people. Maybe there's 0.001% of all the population is has this sort of content like you know child sex abuse content but now you're scanning everyone's phone and matching it with your database so how do we guarantee that you know you don't inject some sort of like content that you know maybe in India or in some other country that's an authoritarian country they'll ask you to inject some sort of benign video like I don't know Trump getting shot or like Biden's. They don't want anyone to see and they will be able to then track okay you know all these people have this on their phone right like so how do you make sure that this database that you're creating centrally that you're then shipping to the phones is full proof like so that is very hard problem like and how do you ensure that it never it will never ever have anything other than you know these sorts of child sex abuse material or whatever right like so you could be easily misused. So there's there's that sort of thing so it's technically feasible to do this but it's not practical and you know also also you know if for instance windows or Microsoft is scanning your computer all the time for what upon you have or what other stuff you have that's not that's not a world we want to live in right so that's the kind of argument that was made by all these privacy advocates and I really believe that yeah that may not be the best solution for that that we should think of as a solution. Yeah so I guess what I'm hearing is that this is an ongoing challenge and we just have to from a technical perspective we just have to keep trying our best and designing better algorithms and better ways to educate people and it's really no airtight solution at the end of the day. Yeah yeah yeah I mean this is an ongoing area of research right now we're working on some other variants of that like where you know if you can again like this is a very practical like where like I said like a lot of misinformation is very easy to debunk but many people may not have the tools to do it but you know if you think of you know your local network like so maybe my mom does not have the capability to debunk all the misinformation that she gets but you know I'm in her network and I have the tools to just reverse image search or Google. Google search specific set of keywords right and she will trust me more than she will trust some random fact checker right similarly take any network is very good chance that you know someone in the network is capable of doing these some some some some some some some very local basic tasks that enable like fact checking right so we are we're now trying to deploy some of those in a way like if you can recruit people in a network and try to get some sort of information on what they're receiving and can you correct this sort of misinformation. Locally without having to send it to some sort of central factor or overwhelming the resources and all of that kind of thing but yeah this is an open problem there's no clear solution that works and scales right now but yeah there's a lot of work going in this case yeah. Yeah so I think the follow up to that is the second part of it I was my question was okay so on one hand you've got technical solutions you've got research R&D folks like yourself are working on that but from a social cultural perspective so you know a lot of times I look at the messages being forwarded to me it's just confirmation bias right like this there was already a pre existing kind of belief or notion about a certain group of people you received content it looks legitimate to you and it's like see I told you this is actually going on so to me it's like the old the you know sort of the this also amplifies this right like you can't that's a harder problem to fix how do you fix you know where people are more diligent about looking at their data are diligent about this stuff because I mean what's happened digital proliferation is a relatively new thing in India right like and then we've got a mass illiteracy that's that problem compounding on all of this so it's like the have you ever thought about these kind of social cultural issues and how we tackle that yeah yeah so so yeah how are these things that I mentioned to you are like the solutions are only for people who you know are willing to listen and get it right like and again like we have data that proves to what extent like these are feasible and you know again like if you talk about misinformation particularly a lot of it like it let's say you know 80% of it is benign misinformation just you know okay drink drink hot water and you'll cure your throat or whatever or you know whatever this child is being kidnapped sure killer maybe maybe I'm part of maybe I'm part of what's our groups where there's just blatant hate stuff right yeah yeah you know and it's it's pretty incessant like I open up my watch up in the morning when I wake up there's the first sort of thing I do catch up with all the stuff that has happened in India and it's it's a queue of literally 40-50 messages of just like that like 80 I mean like you said 80% of it is just you know just read me thrown at you right like and it's like these are educated people these are people to who went to college got a degree or in business or whatever I T and all of these things it's it's not a in my opinion at least in my personal experience anecdotally speaking. I mean I have seen this manifesting in awful ways people breaking off ties relationships getting afraid and things like that. Yeah yeah yeah I mean personal experiences why my differ like my experience is similar like you know most of our misinformation I get is very clean like you know politically oriented politically motivated and those kinds of behaviors and beliefs are extremely hard to change right like so if you tell someone who's a ex party supporter to say you know you know your party whatever ideology or is wrong like that is not going to work is a very very hard thing to change and there are certain techniques that you know may change that long term and things like that but whatever solutions we are thinking of are only for this sort of more softer kind of misinformation which is not based on like you know where people have pre-made opinions and and again like you know at the scale of WhatsApp even solving that like maybe it's not 80% maybe 60% maybe it's 20% right like so it doesn't matter like even if you solve that 20% like you're you're really solving at WhatsApp for resolving at WhatsApp scale a large problem that's that's where how I think about it like definitely you know there's there's this again like a significant chunk of it where people have pre made their opinions and again like you said so much more system makes much more societal kind of issue where where again maybe the solutions do exist like where you know for some of these problems like the issue is just more for top down pushed like you know one individual person person like if they can come out and say you know this is not what we stand for or this is not see you can change mass opinion just based on one leader one guy one person one entity saying something right so those kinds of things or even sorry entropy but even like you know prioritizing critical thinking education in in primary school could be a pretty good solution yeah yeah I mean definitely I think that's that's something that has to be like yeah you know but that just ignores a lot of this sort of last generation like yeah your friends my friends my family your family kind of thing where there's still like you know these beliefs are so rampant and we see them quite often like those are yeah definitely hard to change yeah um the earlier I mentioned the political parties you know having these IT cells and things like that and I guess I mean these parties are very open about it they're very brazen about it right like they they have a IT cell you know headhound show who speaks in public and things like that various political parties have this stuff like is that I mean what is your opinion about that whole thing where you know these these IT cells are generating content to you know throw red meat at you to rouse up your emotions and so on um is it can if if legally we introduce something like well this is illegal is that too much of an overreach legal overreach or what is your opinion on that sort of thing yeah yeah so I mean one thing is there's no clear causal link between you know your social media presents and outcomes right and our political parties in India know that there is there is some non significant amount of uh uh uh effect for sure like but we saw in the recent election right like so I mean we have been doing this very very large scale WhatsApp data collection that we're monitoring thousands of WhatsApp groups most of them are just you know pro BJP content but you know the results don't really reflect that like and similarly you have hired like multiple instances of this like Karnataka references where they they really went in all in like with a lot of campaigns and that and so on again the result did not come to their benefit like so when you're thinking about like banning or any regulation or any of these kinds of things um yeah you don't really like we don't clearly have evidence that shows that yeah having this very popular IT cell that producer all of this content really makes uh makes a difference really okay so I I was thinking there's a fairly easy I mean earlier you mentioned that example where this one video circulated and there was riots and there was the the outcomes are pretty negative I mean you could probably draw some kind of conclusions from that right similar conclusions it's very hard to say like this caused this like because you know electorally like you know there's all these rallies happening and much so what people consume is not just social media especially in a country like India social media still you know okay the people are on social media but not just on social media right you still have like TV you still have offline sources you have a bunch of other sources it's very hard and again like you know you can see the results right like so in UP like where we have data from like most of the viral information like most of the content that is forwarded many times from WhatsApp significantly tilted towards pro BJP but you know that also like more like 50 50 right like so it doesn't necessarily mean and and and I talked to you know some of these parties like people SP or Congress and their strategy was that you know social media is too expensive, too hard to maintain especially at scale like so you can have an IT cell but if you have to constantly keep creating content and constantly create content that engages people that's a very big expense okay they would rather spend that on offline campaigning door to door reaching out to people you know spend giving money to people whatever like your other modes that pay more bang for the park right and it's not completely clear that you know this pace off maybe it does in the long term right like and that's what we were talking about maybe over the 15 years since social media has existed like the strategies and the kinds of content and narratives that this one party have created they don't you know if I have some ups and downs here and there but that sort of narrative might really you know is this now a reality in India and you know no longer like that 15 years ago you could not have said some things but now you can say those things much more openly because you know maybe social media conversations have normalized some of these that you know it's people feel okay to say some of these right like so those are the long term trends might exist but short term electoral gains are not like may not I don't think it's very clear that you know it really has an effect yeah I mean to that point like the overt and window could be shifted constantly right like by if you're constantly bombarding kind of one kind of information to your constituents you could clearly shifted I mean it's not a direct cause and effect sort of thing but over the period of time like you said and that's what I'm observing anyway because I you know pre 2015 I think is worth mentioning that most of my friends I would speak to were like kind of a moderate spectrum of beliefs you know it's like okay Hindus Muslims Christians whatever all of this stuff was sort of you know accepted as part of Indian life this was just you know we're a multicultural society blah blah but then as you've seen in 10 as I've seen in 10 years since 2015 it's pretty clear that the overt and window are shifted like it's it's even though the facts don't you know reflect that on the ground the attitudes have changed you know it's like the moment something happens you just lunch to this one conclusion that this must this group must have you know done this or that anyway I think we agree on that I guess I here's a personal question for you kid and you you've studied in India you did your I guess your PhD in Finland in Europe and then you did a postdoc in MIT and things like that so all your you kind of spend a lot of time in all of these three continents what have you seen from a societal perspective from a cultural perspective that makes certain groups of people susceptible to misinformation yeah yeah that's very interesting like so I mean there is there is research that like talks about like the types of people who are susceptible to misinformation or to conspiracy theories and narratives and things like that so I mean it depends on the on the context and the types of narratives and things like that like but I think overall like especially you know there's not really a lot of work in the Indian context even though you know it's such a huge and important population like it's not not much I think some of my work in this space some some other political centers are doing some work in this space but not not a lot in the US like even recently there's some very high profile like you know large scale studies that show that you know most misinformation consumers are older people who are on the right and I offer you know have a certain type of belief system and this is in the US or in general in the US this is all okay but my assumption is my again that's where I was coming to like so all these groupings have a certain common phenomena one is okay lack of digital literacy like like so the older generations may not have had as much exposure like it's a new shock to them coming on to this medium as as you know someone who's a bit more younger who's a much more digital native who's seen some of these like you have suddenly again this is one of the reasons why it's a big problem in India is because you know of that sudden introduction of social media a lot of that digital literacy narratives that you know we you and me have come through 15 years ago with the email scams and now a lot of people are going through that phase you know again it might settle down down the line you know maybe five 10 years down the line that people are in Accolated to some of these very obvious types of misinformation but again you will try to threat my damage emerge so that's one the older folks the other was more republican and this is where like most of the impact for misinformation is our beliefs and misinformation are far because of top down narratives right like so whatever you know your party or your leaders you know that sort of thing that the tone is set there and the beliefs propagate down like so and again in the US like one of the biggest pervers of conspiracies misinformation narratives any of is mostly on the right I mean obviously they exist on the left but it's a really yeah significantly more on the on the right and this has been not just one paper across multiple platforms across multiple studies this is consistently found that you know it's the same on the right it's much more it's the same in India again like you know there's only one party that is that is a source of a lot of the misinformation narratives and so on so it's it's I we don't have clear evidence in India but I assume like it's going to be similar or trends like you know certain types of demographics are much more susceptible and there's reasons for that yeah I wonder what what it is about being right leaning that makes it susceptible to misinformation okay so now we're in the co-haul for a of you know AI getting in solving a bunch of problems I use it a lot for my work I see a lot of potential to solve a lot of problems where human intervention in the past was required now you have the sort of artificial synthetic intelligence that could discern certain things for us I guess what is what work have you done or are you doing work on that space and where do you see long-term that helping us out in this misinformation landscape yeah yeah so I mean definitely I think you know AI as a solution is definitely that that's something that you know we are exploring we're not there yet especially for you know a context like like in India a context like WhatsApp which are which have you know the following charges one is it's a conversation right like so it's you need to understand the context and the context is very very dependent on like you know the context of the group like so if you and your friends are in a group you could call someone something insulting but if it's the culture of the group and it's an internal joke then it's not hate speech versus if I am in a public forum and I call someone something so you know you the context is very very it's very context dependent that depends on who else is in that group and your offline connections to them and there's no AI that can really ingest that or get that information right so that's that's one like especially in a chat context it's very hard to detect and understand context the other problem with you know platform like WhatsApp is again we have data for this over 50% of the content is non-textual again if you see your WhatsApp you will have the same kind of belief like a lot of it is not just text it's you know videos images audio emojis you know that sort of thing which is not the same as your Twitter so your Facebook you know that's sort of thing they're mostly sexual conversation again the tech and AI for text is much much more advanced than what it is for these sorts of multi-model setups right like especially if it's images that go along with the text or video that goes along with the text and both of these combined actually form them its information rather than one of so that kind of thing again we don't have it right now might exist in like a few years down the line but the third problem here so the first is context the second is multi-model the third is multi-lingual so not context again it's Hindi or other low resource languages where you know it does not work as well as it works in English again people are working on solutions for this might be better you know three five years down the line but not today yeah I mean to the point of context I use a lot of agentic infrastructure I use career AI you know I spin up agents for all sorts of things and when I use it even on a one-on-one chat or even within the agentic infrastructure it seems to hold context really well I guess my two senses that the intelligence is at the level of group of research assistants I sometimes I'll say you know I'll spin up a bunch of agents and say I want you to you know come up with a script for a podcast I'm I'm you know this these are the parameters this is the person blah blah blah and I mean I use the cloud 3.5 sonnet which is really good right I'm sure you've heard of it or use it and these agents I use I I mean they are on par or exceed human kind of cognizance the ability to understand nuance the ability to sort of contextualize certain pieces of data and I guess my two senses that I I see I'm a huge I'm a huge AI a fan because it helps me spin up these research assistants for a variety of things I do you know artwork blogging and podcasting all of these things it helps me in every little context and it also understands that sort of contextual knowledge so anyway you you you won this award which is let me let me read it out here the uh dynamic glance distinguished young research award can you speak to that yeah yeah I mean it's an award that's given every year at this uh conference on web and social media it's one of the premier conferences on uh social computing or your computing for social good kind of purposes and yeah it's a it's a very prestigious award congratulations man yeah fantastic yeah yeah sorry sorry I didn't mean to cut you off I mean yeah so it's it's it's a it's a far work done in this space on like yeah how do you use you know computing technology for social good purposes like you know trying to you know yeah use the AI for instance of solving some of these societal problems like misinformation I think my work specifically in the global South arena like you know countries like India and Brazil I think that's that's what actually helped me get that oh wow and I guess looking forward um I guess what would be your advice like you know people want to get into this space I mean I'm looking at WhatsApp echo chambers or you know that you reference by the way can you can you can you describe in very kind of plain English terms what is it what is an echo chamber so yeah an echo chamber is a phenomena where okay if you think of a physical echo chamber that's where the term comes from an echo chamber a physical echo chamber is place where you hear an echo right like so you speak something and you hear you're in a chamber where you just hear your own voice over and over so that's an echo chamber in the context of social media it's a place it's a metaphorical place where you're surrounded by people who produce ideas that are just agreeing and similar to yours right and this more and more often keeps happening on social media not just on WhatsApp but you know on other platforms and the reason why bring in WhatsApp and other platforms is a part in so on other platforms like Facebook or Twitter and so on uh it's the algorithms that are doing this right like so there's more and more you know you choose to interact and engage with certain types of content and the algorithm really say oh yeah Kiran likes this type of content let me show more of this so we get more engagement and that creates these sorts of echo chambers where you may not necessarily choose to engage a certain type of content but if you open my YouTube feed now it's all a certain type of content and that's an echo chamber that these algorithms are trying are creating and there's there's a lot of like uh uh the awareness within the social media platforms about this and trying they're trying to you know diversify your feeds and all of that uh there's a lot of effort in there but uh you know if you take WhatsApp there's no algorithms right it's all personal choices and there's a lot of like uh uh echo chamber behavior where okay the groups you join the people you interact with they're very limited and and this has to do with like again your source of cognitive dissonance and the the the term that you mentioned earlier so I if I have the choice I don't want to go and deliberately spend the limited time that I have like uh spending you know things on things that are dissonant to me and I feel uncomfortable and it spends my brain cycles or whatever I would just want to enjoy my you know things that I agree with and I don't have to put a lot of mental effort in so that's that's the reason why these things happen. Okay so if I have to interpret what you just said it's we becomes susceptible to echo chambers because we don't want to use a lot of cognitive resources it's much easier to consume something that gives us easy answers something that is just kind of fast food for the brain so to speak and I guess what is your I guess your recommendation or your um how do we inoculate ourselves to be a little more critical thinking about this how do we at a personal level how do we take responsibility from a personal perspective. Yeah I mean before we go there like one thing to set the context is okay obviously this sort of echo chamber behavior is not dangerous in all context right. I click if I'm watching cricket all the time and it's only cricket that's being recommended that's good like I mean it's not like you know somehow I expect Facebook or YouTube to show me more of and or goal for something I'm not interested in that I don't want to do so this echo chamber behavior is only dangerous when it comes to large scale political content right like where you know society itself is never in a position to deliberate and discuss with others and they're not consuming information from the other side right like and so it's only for political content specific types of political content that this type of deliberation is important and necessary and and so that's the area of concern but overall if you think of how much politics people consume it's not that much like so you know you again like the studies that show maybe you know 5 to 10 percent of the information that people consume on average again you and me might be outliers so again like so certain people might be outliers but most on average like most people don't consume all their time consuming politics or news like it's it's a small amount like 5 to 10 not negligent like a small amount but not negligible right like so okay so given that like okay how do we inoculate ourselves like one thing is again like you have to give it to the platforms like I was just talking to someone from one of these platforms and to a certain extent like they really over corrected in a sense like to the fact that you know this is happening on for political stuff I mean there's been research that was done like there's this other term called the filter bubble which is about like the same thing you know algorithms filtering out content that create a bubble for you where you're only seeing content that agrees and a lot of these platforms the big ones specifically you know Facebook Google they're really aware of this problem and they do have these factors that ensure that you know people get diverse viewpoints at least from the algorithmic perspective but again like there's this two parts to this like one is the user choices like what we choose to consume and what we are interacting with and the other is what the algorithm is recommending to us the platforms can can what with the algorithmic part of it making sure it's diverse but you know it's also up to the users to choose you know what what they want to consume and obviously you know it's it's not an easy thing you know it's not a one-shot that fits all like you just being aware of the fact that you're in an echo chamber like off you're choosing I think is I get that's a literacy point there like a lot of people may not just even be aware of the fact that you are in this chamber where you're not getting other viewpoints right again it happens to all of us very like so you know whenever we see surprises in like I don't know I thought Trump was doing really bad during the last cycle but he got like 75 million votes I again in my echo chamber nobody told me that you know okay Trump had like 75 million people who were supporting him and that's that's a certain type of echo chamber maybe that's that's not a great example but anyway so you know just being aware of the fact that of and cognizant of where you get your information from and trying to be cognizant of that I think is is already quite quite good yeah it's also requires you to spend some energy like you were mentioning earlier it's the owner is back on you to you know be more responsible citizen but you know that I also like thinking about this whole conceptual echo chamber right like it's a it's a relatively I mean I learned it only I don't know 10 years ago or something like that which goes to show it's not a widely circulated term in the vernacular right we normalize echo chambers it's it's it's it's it's all it's very normalized at least in my parent's circle who are in their 70s 60s and 70s I mean if for them it's like what do you mean echo chamber this is this is the gospel I'm going to listen to this new source or whatever it is that's going to you know explain to me what I already know and they're going to confirm my biases and so on and yeah go ahead sorry sorry yeah sorry like I think on that point like you know echo chambers are they the existence right it's not like you know this is a new phenomena that social media is created you know like you were saying we're trying to have two channels to watch and I of course I watch the channel that that is why viewpoints and I also like offline echo chambers obviously my friends are going to be people who have similar belief systems means have similar political views as me so so so that's sort of thing already existed like I think this sort of mass scale you know platform induced echo chambers are those are the like difficult things and I think it's even a better thing that you know we're at a stage where on social media or in the digital world we have much more choices now so yeah just being aware of and you know having the exercise having to exercise that you know saying okay you know I've consumed this much from this particular source let me just try to diversify just that knowledge I think is enough like I think that's that will really help in mitigating a lot of these issues yeah and I guess I get I'll ask you a personal question so illiteracy is a big problem India last time I checked the statistics it was something like close to 70% was the literacy rate in India something like that so nearly a third of India is you know illiterate unable to read and things like that they're watching they're probably consuming videos or pictures or what what have you I mean that is a mountain mountain of a problem by itself right and you're talking about digital literacy and stuff like that like that's a far milestone what are the I mean I guess how does this kind of rank in terms of like how do we do we prioritize just basic literacy to begin with and the other problem is in India we've got this kind of multilingual landscape right like and so you know you could you could be bombarded in various languages and how do you you know how do you translate these things in various languages it's a very compounding kind of a problem in India I mean I'm sure you thought about this yeah yeah yeah so so I mean again like when you think you got this problem over a long time so there's the last generation right like so that okay that we cannot really you know fix or educate at scale so a lot of the digital literacy or literacy initiatives like if you again stratify literacy by age group maybe younger education is much doing much better I mean there's so much money being spent on all these you know national education mission and so on so I think on the younger side it's close to 90% or so the literacy rate like below 18 so I and but obviously you know you're spending a lot of money on that but they're not really learning a lot so the quality of education that people get is really really low so obviously yeah focusing on literacy and improving the schooling system especially government schooling the public infrastructure schooling that's that's a huge huge task for India that needs to be fixed like but if you can incorporate these sorts of issues off like okay digital literacy I think you know I've done a spent a significant amount of my life in Finland Finland does it so well like they are one of the world leaders in doing this sort of literacy and they have now like they quickly embrace technology and you know now they're really trying to teach kids how to type instead of writing in cursive you know things like that they I think they really move very fast and do things in a certain way I mean probably it'll take a decade or so for a country like India to catch up but you know yeah we need to have policy that ensures that these things are taught from like your childhood like you know from your primary school so that again it's you cannot really separate now literacy and digital literacy because once these kids are at a certain level in school they're already gonna start using technology and so that's a become a part of life now so you cannot really escape that so you know it should be definitely tutorial and curriculum so schools yeah okay I guess my last question to you then or maybe my last question I know your time is is premium how much do you work with like these big big name companies in Silicon Valley and other companies that you know create these tools like you you're directly interacting with these people I guess what is your experience with that with working with that how open are they because they also have to you know balance business interest versus you know mass adoption of these of these platforms and so on like can you speak to that a little bit yeah yeah so again like you know my views on this are slightly I'm very very sympathetic to the platforms and the way they need to make decisions really yeah I'm very very pro platforms you don't think they're the villains no absolutely I really have a belief that you know this belief that they are somehow the villains who lead people to echo chambers or leading to teens getting you know whatever like that's a very misconceived belief like I mean especially running businesses at this scale requires a lot of decisions right like where you cannot optimize for one set of people and there's always going to be these sorts of edge cases where those kinds of things happen but overall I think they're very responsible and try to be responsible again I this belief is not like very you know I widespread like but my personal belief is that there are a lot of people you know in a lot of these companies that do genuinely care and it's not it's not binary like you cannot say okay they're maximizing profit so that's why people are seeing this it for it does not work that way obviously I mean there's so much so many dimensions here they have to somehow work with like you know regulatory pressures they would work with bureaucratic pressures they have to work with I know authoritarian garnish pressure is so in different parameters that they have to balance and it comes to you know when you know obviously can they do better yeah they can do better like are they trying their best like maybe they're not trying their best but are they really trying to really make things worse definitely not like and my personal interaction with a lot of people in these companies really gives me the hope that it's not just that binary thing where they're engaging they're they're they're profit like maximizing profits so they're they're ignoring a lot of this I think it's much more in the middle like okay so they have the levers over the algorithm right and like so what I'm hearing you're saying is that they have levers of the algorithm they are good actors they're doing their best to kind of balance all of these things but you know what you see in like other podcasts or conspiracy theorists or you know people who have an axe to grind with these social media companies is that oh they're they're tuned the algorithm up to just throw red meat at you is the is the notion right that that is absolutely false like again it is false it's absolutely false like it's probably false that you know you I mean again like this is a it's a regulatory problem for them right like they really are knowingly doing this or tuning to somehow cause harm they're going to jail right and they they really are careful about so you don't think they're finding loopholes which are just you know ethically wrong but legally acceptable again like I mean there might be specific cases where specific teams have had features may be tested in a way where you know maybe they like chose a specific thing that optimized for profits rather than social very specific cases but generally speaking like this notion that social media guides have a dial in the algorithm and they're tuning it it doesn't work that way I mean there's no one algorithm there's no one tune that you can do and again like I said any balance you do like to to to reduce certain type of harm will harm other types of people right like so there's no one steady state where this is beneficial for all of them and it's also not just the algorithm there's a lot of human choices that are involved in this right right a lot of people themselves are bad actors are deliberately or not like so you're choosing to consume certain type of content or certain type of you know engage in certain type of activity or post certain types of so there's there's a lot of this that they have to balance and it's very very very difficult if not impossible to find this fine balance where everything is all you know sunny and nice right like so that's impossible so yeah I think that's a very wrong notion that you know somehow there's evil guys who are trying to maximize profit if might happen I'm not saying it's not happening but it's not like I don't know it happens in one percent of the cases it's not the majority okay okay well that opens my eyes up a little bit I mean I had this very cynical view that you know it's a profit maximizing machine these Googles and Facebooks of the world you know they don't they don't care they as long as you know they can straddle the line of being legal legally acceptable they're going to take that line and ethical ethics could go out the window what I'm hearing you're saying is that they absolutely try to you know be on the ethical side of these questions or these they can amoreally you know gray area you know kind of areas where they they don't they're not bad actors they're trying their best but I think I think then the the takeaway I see personally is that it's a multi-pronged effort like we have to societally also engage ourselves to educate ourselves to read ourselves of misinformation biases and so on we have to attack this from like you know critical thinking perspective like how do we teach our kids to not fall for certain kind of narratives and so on at the same time we tune up all the levers on the technical side that's that's the only we're going to tackle this is there's no one-size-fits-all solution there's no magic bullet here yeah yeah it's as much self-correction as it is you know you're evil platform that is responsible for a lot of these right like so you know there's there's equal responsibility in in this and definitely again like you know maybe there was a time when you know everything was more fast and break things and they realized that's not the way that is I mean that's going to get them to jail so they don't want to do it anymore maybe it was that way back back in the day but it's changing yeah really things are not like that anymore like so it's much much more thought through especially at these big platforms and the big platforms are the one that really have have the most impact if they're extremely careful yeah yeah I speak into which really quick can you speak about that rwc score I found that very interesting how you could recommend certain kinds of content to people with opposing views and stuff can you talk to that yeah yeah so basically the idea there yeah it's exactly like a solution to the question that you had about how do people get out of their echo chambers right like and one of the findings that we had was obviously you know if you are you know just polarization is on a spectrum like so if you are an extreme right person you wouldn't want to be recommended something on the extreme left and you know you want you might want to be on the on the center right if you are on the center maybe it's okay for you to see something more on the extreme on the other side just to broaden your your perspectives and so on so we kind of operationalize this mathematically as a you know users as a network connections between users and then the flow of information as a random walk on that network basically it's a it's random walks are really really powerful it they exist all over you know networks in nature like for instance the Google page rank is basically just a random walk on a network that that gives you this sort of like if you do a random walk on a network if you end up in certain pages those pages are going to be ranked higher so that's kind of the the the property of this random walk so basically we do something like that and then we recommend people based on this sort of random walk and that has certain properties and saying that these are usually you know well-known trusted popular people from the other side with a certain type of opinions so you know if you recommend those sorts of people they're more likely to be engaging to the other side and more likely for you to be open to suggestions from the other side so that's what we find with this time okay well Kiran you're doing a great service to humanity as I see it keep doing what you're doing man I appreciate your time and your knowledge and let me know however I could be of future use to you I will absolutely try my best to amplify your voice however I can I won't spread misinformation I'll be as diligent as possible to help digital literacy I guess so thank you very much cheers yeah thanks so much yeah yeah talk to you later bye bye
+[49.20s - 53.31s] for sure lashing wow
+[54.30s - 56.10s] her much ma
+[123.84s - 124.62s] oh
+[153.93s - 156.09s] ah
+[161.37s - 161.97s] or
+[165.03s - 168.12s] flophouse her ah
+[169.38s - 171.03s] ah
+[173.25s - 174.21s] um
+[177.48s - 180.06s] or other
+[181.62s - 182.94s] flash
+[184.29s - 185.79s] i'm sure the humphrey
+[186.24s - 186.96s] eyelash
+[189.30s - 193.35s] ashton amaya shot ah
+[195.27s - 195.66s] shh
+[196.86s - 198.78s] sure sure
+[200.40s - 203.25s] come show us around
+[208.08s - 209.55s] raw finished
+[212.79s - 213.99s] e
+[217.08s - 217.65s] each
+[261.15s - 263.85s] ash oh ca
+[265.89s - 268.62s] i shall pass shirtless
+[270.06s - 272.19s] um yeah i thought
+[273.69s - 278.73s] scottish food now the star shape wow
+[280.11s - 282.06s] ah session three
+[284.67s - 285.99s] ah ha
+[287.52s - 289.08s] shy raptors
+[290.88s - 293.13s] ah the
+[294.99s - 300.51s] ah pato our genre show from
+[306.03s - 306.96s] ashton's
+[309.33s - 316.65s] shop then ash huffing bow her ash ra
+[319.77s - 321.66s] oh hell stir
+[322.80s - 326.94s] awful have a horrible style ash pasha
+[328.20s - 330.06s] yeah thomas
+[332.28s - 338.94s] oh action action and awesome wow
+[339.84s - 342.21s] a food from
+[343.80s - 348.45s] ah shemesh and blue ocean my often
+[349.89s - 353.70s] fabs shah shah launch a
+[356.55s - 357.45s] try
+[359.25s - 359.76s] a cat
+[361.14s - 362.64s] show us
+[362.91s - 364.11s] oh man
+[366.03s - 367.71s] cover wang
+[367.95s - 368.43s] la
+[369.69s - 373.65s] smoke ah
+[375.18s - 376.38s] the chevrolet
+[378.09s - 380.04s] esh five washer
+[381.36s - 382.08s] show
+[383.40s - 389.97s] a rupture and shaw have hubble allows law
+[391.32s - 392.22s] ah
+[393.60s - 398.94s] yeah hashish lush up on a rush oh lucha
+[401.58s - 405.63s] la la la la la
+[409.11s - 411.21s] la la la
+[412.35s - 413.52s] aw shucks look
+[414.72s - 415.77s] bash bosh
+[417.30s - 423.30s] rule mortuary shape was all heavy room
+[423.93s - 427.14s] shoes my shoes
+[428.37s - 434.94s] ooh ooh ooh still smoke
+[436.32s - 436.71s] oh
+[438.39s - 439.29s] wash
+[440.76s - 441.51s] stress
+[442.56s - 442.98s] ooh
+[444.12s - 445.20s] ooh
+[446.40s - 446.82s] ooh
+[447.96s - 449.19s] vicious dog
+[450.84s - 452.88s] the sherman
+[456.60s - 457.38s] oh
+[458.40s - 459.00s] dash
+[461.07s - 463.86s] is mesh outside my home
+[464.94s - 466.29s] wash squash
+[467.64s - 476.94s] watrous roadmap cognition for national russia good thing a woman for the
+[478.86s - 481.86s] special move or pull
+[482.58s - 486.12s] match two
+[487.44s - 487.86s] lush
+[489.78s - 490.32s] oh
+[491.52s - 494.41s] shop shop for national paper
+[496.65s - 497.88s] mash further
+[499.50s - 502.65s] robinson's removal from christians
+[504.57s - 505.80s] businessman
+[507.15s - 509.16s] d shed national
+[510.24s - 510.66s] ooh
+[512.82s - 514.41s] wish a savior
+[517.05s - 517.53s] the
+[519.43s - 525.48s] shady as shit shoes this more
+[526.83s - 530.91s] speak the truth
+[533.67s - 534.42s] happy
+[536.43s - 537.27s] the
+[539.04s - 543.00s] some vicious dress
+[546.70s - 548.34s] the coppers
+[549.36s - 549.84s] ego
+[554.43s - 554.88s] more
+[556.46s - 557.10s] sure
+[559.32s - 560.10s] spiritual
+[561.12s - 562.87s] location blue
+[564.48s - 565.89s] asian nationals
+[567.96s - 568.50s] duh
+[569.52s - 569.94s] the
+[571.11s - 572.40s] oh boy
+[575.22s - 579.84s] ooh capital rush from house clipart
+[581.34s - 584.04s] my hasn't shut off office
+[585.39s - 586.86s] i this for
+[589.29s - 589.80s] yeah
+[592.05s - 594.93s] just nurse her bro
+[596.16s - 597.35s] shh shh
+[601.80s - 603.15s] whoa whoa
+[604.99s - 605.29s] yeah
+[608.87s - 609.43s] there
+[611.23s - 612.04s] the chew
+[615.85s - 617.29s] yeah yeah chew
+[618.52s - 619.06s] creepy
+[624.43s - 624.76s] wow
+[625.96s - 626.65s] true
+[628.33s - 632.92s] lush ah a mishra
+[635.59s - 637.00s] house workshop
+[638.98s - 643.72s] watch your show as attachment yeah
+[645.36s - 646.87s] high cliff
+[647.47s - 648.37s] a
+[650.62s - 653.11s] yes the actress sasha
+[653.47s - 656.26s] russia russia
+[659.74s - 666.46s] ah trashcan and church shoeshine vegas
+[668.65s - 669.28s] dress
+[670.75s - 672.13s] share this map
+[673.75s - 676.18s] nah passion
+[677.86s - 679.90s] snap flu shot rationing
+[681.16s - 690.13s] shanghai yeah kind of backed down and said there for the southern recipe
+[692.14s - 695.44s] hush hush fire shed for passion
+[697.00s - 697.57s] passion
+[698.59s - 699.82s] your day
+[700.66s - 702.73s] jaw shot show
+[703.90s - 706.27s] hopa my cat
+[709.87s - 713.44s] kappa i sets the lash eyelash
+[714.91s - 716.20s] ur smile
+[717.70s - 725.81s] collection one sha sha sha hey how was your snap happy ash
+[727.45s - 729.31s] kansai mashups the lash
+[730.27s - 733.81s] fashionable maps aboard the ball now
+[736.03s - 736.72s] shapes
+[738.13s - 739.18s] the saddle
+[740.56s - 742.39s] she hurt my eye
+[742.75s - 743.26s] yeah
+[744.43s - 746.47s] national movement share
+[747.85s - 748.51s] a bath
+[749.83s - 750.46s] oh
+[751.63s - 752.20s] nashville
+[754.56s - 757.18s] match her i had her
+[758.35s - 759.94s] pressure shelter
+[761.23s - 761.53s] yeah
+[762.67s - 763.99s] what a show
+[765.07s - 774.13s] the job sucks for our quota to the back her jaw
+[775.57s - 779.17s] yeah yeah ashley
+[784.79s - 791.59s] ah yeah yeah for each of ya
+[792.61s - 795.01s] ah shah
+[796.84s - 800.08s] bush a full of sh
+[801.13s - 801.49s] huh
+[802.03s - 810.94s] i love sham the ah sh off a hopper clown shows flash off the
+[812.59s - 815.35s] raw hopper all sasha
+[817.15s - 818.53s] yes yeah
+[819.79s - 826.60s] plunge ah stop stop stop that so much of aha
+[828.82s - 837.70s] ah ah ah chuck white fang la ra
+[839.80s - 842.17s] oh aha cash or shah
+[843.37s - 845.14s] ash rush huh
+[846.61s - 847.48s] ah
+[850.36s - 852.40s] yeah yeah shah
+[853.42s - 855.43s] a brush-on yeah
+[855.67s - 864.91s] russia rock opera shang sugar astrup a structure la la la la
+[866.41s - 868.00s] runoff ah
+[869.26s - 869.80s] ouch
+[870.46s - 873.94s] la haw functional ah
+[876.64s - 877.54s] ah
+[878.92s - 884.86s] sure that left the persians asian food
+[887.29s - 887.77s] shh
+[889.15s - 890.53s] ah wow
+[891.07s - 892.93s] archer ah
+[894.31s - 896.56s] amphora of hush
+[897.79s - 899.20s] asa huh
+[901.27s - 904.27s] oh how change
+[905.98s - 906.37s] huh
+[907.54s - 907.90s] huh
+[910.06s - 912.52s] yeah russians out allowed
+[913.63s - 914.14s] sure
+[915.31s - 918.28s] shop blusher my ashleigh
+[919.81s - 924.07s] ah ah ah ah shy
+[925.57s - 927.64s] oh wow that yeah
+[929.68s - 930.28s] look
+[931.42s - 934.42s] at the chicago show
+[936.01s - 937.93s] oh wow
+[938.68s - 940.33s] lasher stuff
+[941.50s - 943.81s] oh flash fire huh
+[944.92s - 948.40s] ah come on it's your show
+[949.75s - 952.33s] how much shah
+[953.56s - 957.82s] as the prosper as much for ah
+[960.43s - 962.92s] chashu lush
+[964.54s - 967.18s] stir up your overhaul
+[968.47s - 970.48s] sure ashraf flaw
+[973.03s - 973.51s] hi
+[974.89s - 983.65s] i'll will show the proper strength yeah ah yeah
+[984.67s - 986.38s] operation for owl
+[988.36s - 988.93s] oh
+[990.16s - 996.52s] i just ship for patch yeah shush
+[997.75s - 998.59s] ashoka
+[1001.59s - 1003.63s] at her house her virtue
+[1007.02s - 1007.74s] richie
+[1008.91s - 1009.51s] the
+[1010.77s - 1011.43s] bash
+[1013.95s - 1018.96s] sure ash ash i have a richer
+[1021.27s - 1022.59s] survey yet yep
+[1023.70s - 1031.77s] astra shaper slash fashion assertion calabash i have flashed it
+[1033.12s - 1037.26s] sasha oh the backhouse sash
+[1038.01s - 1043.53s] oh man oh the national message for
+[1045.03s - 1046.35s] actual support
+[1047.94s - 1053.73s] yeh champ yeah i popped up out of pocket
+[1054.11s - 1054.81s] six
+[1055.98s - 1062.43s] station my backhoe faster richie hush voice
+[1063.15s - 1064.41s] draper utah
+[1066.15s - 1068.67s] look up the crash
+[1070.16s - 1072.93s] oh yeah i hat
+[1073.95s - 1077.94s] i'm actually a yeti thought huh
+[1079.92s - 1082.11s] after masha bush for hours
+[1084.09s - 1087.06s] oh as a higher expert me
+[1088.59s - 1091.14s] walking on my shoulders
+[1092.85s - 1096.60s] sasha sasha shes ashford thirty
+[1097.71s - 1098.67s] and the whole
+[1099.87s - 1101.25s] fear of
+[1103.80s - 1107.25s] some of the small bit
+[1107.31s - 1107.94s] happiness
+[1108.99s - 1112.86s] the child parishes match by shut the
+[1114.75s - 1119.10s] shah her walls as it shuts lashing
+[1120.75s - 1122.67s] the eagle backup
+[1123.36s - 1127.65s] apa either purchase for ashton
+[1129.90s - 1133.86s] wretched shetlands or for more
+[1135.18s - 1140.85s] kish hi ash ash to the shirtless severe nash
+[1142.56s - 1144.45s] shh shh shh shh
+[1145.98s - 1146.76s] house
+[1147.87s - 1149.07s] her ashes
+[1150.27s - 1152.88s] national to watch shy
+[1154.74s - 1155.31s] i have
+[1157.17s - 1162.18s] small person passionate the ash
+[1163.23s - 1169.20s] a share happy wow that's all
+[1172.38s - 1178.29s] haha yeah for now yeah short promotion
+[1180.36s - 1188.26s] the bitch is back home waiting for ash akasha
+[1190.29s - 1191.76s] yeah true
+[1192.99s - 1193.74s] yay
+[1195.00s - 1198.15s] ash gripper canova homeless
+[1199.71s - 1203.01s] chuck e asher kershaw
+[1206.01s - 1210.54s] oh yeah let's not cover ya
+[1211.73s - 1213.05s] oh there you
+[1216.89s - 1221.84s] so since ah yes turkish coffee
+[1222.20s - 1222.80s] discussion
+[1224.00s - 1224.42s] me
+[1226.43s - 1229.81s] oval boy nash hey hey
+[1232.82s - 1235.19s] ah ha ha
+[1236.99s - 1239.93s] if you have a backup copy
+[1241.37s - 1245.72s] i hope a certain day the loofah aptos
+[1246.89s - 1248.87s] a mother shy a
+[1250.10s - 1253.97s] and half clash ash ashoka abu
+[1255.32s - 1258.56s] the chirp of shy sir
+[1259.28s - 1268.76s] the shah shah her natural passion shy hit the backhand caption ash fashions huh
+[1269.99s - 1281.27s] shah ma backing up ham oh come on apple birch shy catch my lasso the next election
+[1282.41s - 1283.43s] purchase from
+[1284.78s - 1285.56s] russia
+[1286.79s - 1287.75s] prussia
+[1290.24s - 1294.17s] purchase to the national seashore
+[1295.82s - 1300.23s] oh i much otto show actually
+[1302.21s - 1306.41s] backing up shop flaw or ish issue
+[1307.61s - 1309.71s] the show
+[1313.22s - 1313.70s] hey
+[1315.80s - 1321.89s] so rehash the ah yeah athletic
+[1324.65s - 1325.70s] shirts
+[1326.96s - 1328.34s] shit reported
+[1330.56s - 1331.04s] yeah
+[1332.66s - 1335.48s] a hedge the champions
+[1336.68s - 1344.57s] ashes of her paw at shh shh paths ios suck huh
+[1346.40s - 1350.33s] i ashamed us out of that
+[1350.58s - 1355.49s] show oh yes oh ye shall ask
+[1356.69s - 1359.84s] shuster has to ya
+[1362.21s - 1365.15s] sleep on a sofa in a box
+[1367.76s - 1371.54s] ah sasha at the whole ashes
+[1372.74s - 1373.10s] oh
+[1374.33s - 1375.47s] passing ya
+[1376.64s - 1377.06s] yeah
+[1378.65s - 1389.87s] nah nothing about the shadow can i say yeah a safe happy couple
+[1391.43s - 1399.53s] desperate or his passing up yes yes it's actually a shamble
+[1401.51s - 1403.22s] thirty up here
+[1403.82s - 1407.15s] yeah shadow of the shadow
+[1408.20s - 1409.61s] oh shit
+[1411.32s - 1412.49s] lasher
+[1414.11s - 1418.91s] yeah i my socks i shaved yeah
+[1419.94s - 1426.89s] cherish fear ash ash ash ash air
+[1430.07s - 1435.89s] daddy has her her asher sackville ah oh
+[1437.12s - 1443.54s] wash the crash hawkish fur save up for my fall
+[1445.16s - 1449.84s] pasierb of chastain purchase alma shut us out
+[1452.12s - 1453.41s] try out there
+[1454.49s - 1458.03s] a patch of national spy
+[1459.05s - 1461.66s] nothing beats of that either
+[1462.89s - 1465.65s] a mass backlash fashion
+[1468.02s - 1471.26s] stay strong us
+[1472.61s - 1480.41s] asher alpha rapper passion shines oh ash ah
+[1482.24s - 1484.32s] her last fashion
+[1487.13s - 1487.76s] the
+[1489.11s - 1491.90s] schaffel the assurance that there walk
+[1492.89s - 1498.35s] this this national oh hi sir
+[1499.34s - 1500.36s] hush year
+[1502.49s - 1503.03s] oh
+[1505.16s - 1505.85s] persian
+[1507.38s - 1507.77s] yes
+[1509.57s - 1514.52s] lufkin shoe the shama house this was the astros
+[1516.53s - 1519.71s] so that's my head is hurting thirty
+[1520.73s - 1522.68s] shopping too
+[1524.87s - 1526.40s] up there too
+[1529.34s - 1530.90s] has around
+[1532.01s - 1539.48s] the upper as earthy shit out food for shaving ads
+[1540.41s - 1540.86s] yes
+[1542.57s - 1543.14s] nothing
+[1545.03s - 1557.75s] spot bow of the rational so that's where we'll put paktia her barrage smashing shut the sheriff so
+[1558.89s - 1559.37s] ouch
+[1560.57s - 1561.05s] betcha
+[1562.43s - 1565.73s] bachelor archive image capture
+[1567.38s - 1568.79s] back on the floor
+[1570.47s - 1572.12s] russia as ye che
+[1573.29s - 1573.68s] oh yeah
+[1574.80s - 1580.61s] said her boy passes up lock her up my garage huh
+[1582.62s - 1583.73s] oh clover
+[1584.99s - 1586.73s] the ah
+[1588.44s - 1591.80s] ashoka s national debt
+[1592.97s - 1593.12s] oh
+[1596.03s - 1603.17s] as far as the show at the shop after open
+[1603.56s - 1606.47s] yeah just show up
+[1607.88s - 1608.66s] that shirt
+[1610.16s - 1611.87s] for this couple
+[1613.97s - 1616.88s] shoo shoo this block
+[1617.96s - 1624.59s] st yeah the shah house of sharada show
+[1625.61s - 1631.07s] ashford or a shattered by her hatch foul
+[1632.33s - 1636.62s] natural shirt of our asheville
+[1637.16s - 1641.57s] yes spy voters they're assured
+[1643.88s - 1645.80s] shapiro h birthday
+[1648.69s - 1651.44s] the ball left to play
+[1654.14s - 1655.64s] oh dish yay
+[1656.81s - 1658.31s] the champers drew
+[1660.38s - 1660.77s] was
+[1662.69s - 1663.20s] a
+[1665.12s - 1665.72s] ash
+[1667.73s - 1668.87s] bertha bitch
+[1670.46s - 1672.50s] yeah alicia huh
+[1673.64s - 1676.01s] akasha yeah
+[1676.43s - 1678.11s] shush shush
+[1679.88s - 1688.43s] the shah had other ideas chair perhaps doctor at that last challenge
+[1689.70s - 1690.44s] yeah
+[1691.34s - 1696.80s] as trish her afshar fracture ha
+[1697.91s - 1698.48s] oh
+[1700.34s - 1705.29s] escort pass chapters from thirty
+[1707.48s - 1709.73s] ashleigh ashleigh huh
+[1710.69s - 1711.20s] the
+[1713.00s - 1717.11s] let's hope stack on the house yeah i heard
+[1718.25s - 1727.43s] gershon wires in ashford yes to the adolesc sure sure
+[1728.90s - 1731.09s] the high-fat excuse
+[1733.59s - 1736.10s] such a shutdown cracked ski
+[1738.50s - 1742.28s] vfc yeah a shot so far
+[1743.21s - 1746.06s] the actual match bash for you
+[1747.29s - 1750.74s] the children either
+[1752.63s - 1756.74s] actual shop ah the ah
+[1757.37s - 1759.20s] the actual ah
+[1759.86s - 1760.25s] yeah
+[1761.87s - 1767.18s] suggest a chair ashore hopper a solution
+[1773.72s - 1773.96s] there
+[1775.37s - 1775.76s] hash
+[1777.17s - 1780.59s] i've had sash left mouse
+[1783.26s - 1788.57s] dash jaw airstrip acknowledge the bush
+[1790.73s - 1798.41s] your chip nash the nerve itself and sasha outfall
+[1799.64s - 1800.84s] ah
+[1802.31s - 1805.13s] i shall supply and chow
+[1805.31s - 1805.88s] ah
+[1807.35s - 1812.69s] to apple at my butcher branch fashion
+[1815.08s - 1818.38s] moves on board
+[1819.58s - 1819.85s] yes
+[1824.65s - 1825.31s] maybe
+[1831.22s - 1834.28s] truck moves can both be
+[1835.54s - 1838.63s] a bachelor step was yeah
+[1840.55s - 1845.53s] the plaza itself chophouse version ash
+[1847.18s - 1850.24s] actually the finest dress sky
+[1851.53s - 1852.94s] tap nashik
+[1854.29s - 1859.84s] ash safa mash not show up
+[1861.40s - 1865.48s] richard a shoo bop sha dress
+[1866.50s - 1866.98s] a
+[1868.18s - 1869.53s] the saucepan
+[1870.82s - 1873.76s] sha hash of shy as pie
+[1875.05s - 1879.61s] most dress dress dress this sky of your chair
+[1881.34s - 1882.82s] oh oh
+[1884.26s - 1885.88s] shut up now
+[1891.94s - 1892.45s] this
+[1893.68s - 1894.61s] for cover
+[1895.30s - 1895.87s] auction
+[1898.09s - 1899.35s] escan is
+[1901.99s - 1902.59s] asia
+[1904.72s - 1905.98s] yeah up there
+[1907.72s - 1909.67s] tablo sha hash
+[1914.62s - 1915.34s] shh fresh
+[1916.90s - 1922.12s] just five days is ashoka that clever
+[1924.07s - 1926.98s] blockhouse haven't got any words
+[1931.81s - 1932.59s] ah
+[1934.12s - 1939.79s] oh try hijo versa the shy birch bow
+[1940.69s - 1948.28s] ah ha ha so choco the earth from
+[1951.37s - 1954.01s] say justice ditch
+[1957.25s - 1957.79s] yes
+[1959.47s - 1960.01s] the
+[1961.51s - 1965.35s] the national formation popping back
+[1965.62s - 1966.43s] the day
+[1967.60s - 1969.70s] oh yeah sorry
+[1971.59s - 1972.28s] huh
+[1972.82s - 1974.77s] oh hey ashram
+[1975.52s - 1976.69s] oh yeah hey
+[1979.99s - 1982.84s] happy ha ha
+[1984.10s - 1994.15s] ashton obama shops of ah ha yes ashutosh shopping at my watch that show alice erster
+[1996.16s - 1999.37s] show a passion
+[2000.84s - 2002.82s] ash to let her shower
+[2003.64s - 2006.15s] paper sack huh
+[2007.74s - 2009.18s] i saw that share
+[2010.32s - 2011.72s] very sharp yet
+[2012.51s - 2014.79s] my passion for shy
+[2016.80s - 2018.75s] yeah listen
+[2019.92s - 2023.76s] washer that chow essay yeah yeah
+[2025.17s - 2027.03s] the shoebox
+[2027.78s - 2031.77s] a whole bow about four years
+[2033.45s - 2038.07s] her father says ashutosh shah
+[2039.51s - 2039.81s] yeah
+[2041.97s - 2045.99s] the the the scrappy head
+[2047.01s - 2055.71s] ah ash oh sure eyes happy actual sessions
+[2057.12s - 2057.96s] ah yeah
+[2059.86s - 2064.71s] shot a shot for my share
+[2065.64s - 2068.40s] oh see ya apna shatter sack
+[2071.85s - 2072.27s] haha
+[2072.60s - 2079.83s] the crasher azure just ah yeah i shan't stop laughing
+[2080.34s - 2081.66s] yeah absolutely
+[2083.55s - 2084.24s] trish
+[2086.19s - 2089.04s] hash function as true
+[2089.85s - 2090.99s] oh older
+[2093.17s - 2097.38s] gurkha ash and a half
+[2097.44s - 2098.85s] asked oh
+[2099.06s - 2100.56s] higher ritchie
+[2103.38s - 2105.00s] ash far out yeah
+[2106.29s - 2110.58s] yeah it has a a shush
+[2112.26s - 2112.47s] a
+[2114.48s - 2115.71s] camco yeah
+[2116.94s - 2121.74s] kish happy action is
+[2123.15s - 2126.15s] ash ash ash
+[2127.41s - 2128.91s] alpine silk shop
+[2130.62s - 2131.31s] nah can't
+[2132.18s - 2136.32s] oh kopen actually yeah i got creation of the war
+[2137.46s - 2139.29s] happy versa
+[2141.42s - 2142.92s] search for
+[2144.54s - 2150.36s] a national sebastian sebastian no popular shah
+[2152.19s - 2153.30s] and sasha
+[2155.52s - 2156.12s] ah
+[2157.14s - 2159.09s] look at blah
+[2160.41s - 2162.93s] oh the whole section
+[2164.73s - 2166.02s] others show
+[2168.87s - 2169.56s] tractor
+[2170.94s - 2171.18s] yeah
+[2172.38s - 2172.95s] shah
+[2174.90s - 2181.11s] sasha who retire just come shah
+[2181.17s - 2183.18s] wow shouts
+[2183.93s - 2189.30s] open so i shot myself too so
+[2189.33s - 2194.31s] i pay a passion for some actual age and nationalism
+[2195.78s - 2196.32s] ah
+[2197.88s - 2198.60s] irish
+[2199.62s - 2201.54s] pastor shirt
+[2201.99s - 2203.01s] ashmore
+[2205.05s - 2205.74s] conditional
+[2206.97s - 2210.81s] i show ah cough up
+[2212.28s - 2212.79s] asher
+[2214.02s - 2215.04s] now see
+[2216.30s - 2218.43s] yeah popper amash
+[2221.13s - 2225.30s] dash for ha bosh
+[2226.50s - 2228.24s] i'll see ya actually
+[2230.07s - 2237.99s] ah some poor fashion show a flower shop our fly
+[2239.28s - 2243.60s] oh rich rich yea vows passion
+[2246.66s - 2248.10s] ah ah
+[2249.60s - 2251.64s] how shallow shah huh
+[2251.73s - 2254.43s] dare top of this ah
+[2256.11s - 2257.76s] sure show
+[2258.96s - 2261.09s] she is her man
+[2262.26s - 2262.74s] the
+[2266.04s - 2266.52s] a
+[2267.54s - 2267.84s] a
+[2269.22s - 2272.10s] call a play
+[2272.55s - 2275.13s] arthur ash yes see
+[2276.18s - 2281.58s] this ash ash is the ash ash ash
+[2282.54s - 2283.17s] asshole
+[2284.39s - 2286.23s] i haven't hit her
+[2287.76s - 2290.25s] irish about the ashokan hush
+[2291.33s - 2293.10s] i shall present
+[2293.91s - 2294.93s] hey flash
+[2296.19s - 2297.78s] dash yeah
+[2299.01s - 2300.69s] yeah about
+[2301.92s - 2303.21s] i accept
+[2303.69s - 2310.59s] patience passion my house and i have sat oh my sir
+[2311.49s - 2312.78s] ah
+[2313.80s - 2315.51s] is that a house
+[2316.86s - 2317.73s] tracker
+[2319.20s - 2325.17s] ash ash ash ash ash
+[2326.52s - 2327.24s] ashgabat
+[2328.35s - 2329.82s] bash her
+[2331.17s - 2333.57s] your style of fashion
+[2336.66s - 2338.85s] herbert muschamp the national dish
+[2340.02s - 2341.94s] admission open coach
+[2343.38s - 2344.19s] the cover
+[2346.17s - 2348.66s] the last show
+[2349.32s - 2354.36s] has their back hair or ash or
+[2356.58s - 2359.34s] i wash my hair
+[2361.80s - 2364.92s] the highest cat population there
+[2366.33s - 2368.85s] hashish la
+[2369.57s - 2374.91s] ah ah ah ah
+[2376.26s - 2376.74s] huh
+[2377.94s - 2379.80s] i see
+[2381.75s - 2390.72s] the actual smash after a shower or catching ash so sure the hair bow
+[2391.86s - 2394.50s] the aspiration kappa
+[2396.84s - 2404.40s] ah yes craft for a sugar crash a sham
+[2405.54s - 2406.68s] the smash
+[2407.91s - 2411.21s] i hear afresh the ashtray
+[2411.78s - 2412.20s] yeah
+[2413.22s - 2415.14s] the last yeah
+[2416.62s - 2421.60s] sometimes they do said bay
+[2422.89s - 2423.28s] poor
+[2424.57s - 2426.37s] didn't pass to te
+[2428.59s - 2430.69s] especially connection
+[2431.35s - 2433.78s] oh yeah
+[2435.07s - 2437.50s] especially oh yes
+[2438.85s - 2440.92s] had a lavish
+[2442.24s - 2445.78s] russia show the proper
+[2447.88s - 2448.99s] has gone
+[2450.58s - 2452.14s] yeah camshaft
+[2453.22s - 2453.67s] yes
+[2457.12s - 2460.63s] first shaper backer
+[2462.07s - 2464.11s] such a punish huh
+[2464.68s - 2466.27s] the bay ashtray
+[2467.47s - 2470.80s] let's see the passion
+[2472.28s - 2472.87s] gosh
+[2477.52s - 2478.06s] oh
+[2479.20s - 2481.48s] jack said chavez
+[2483.16s - 2484.48s] fur fan yeah
+[2486.64s - 2490.33s] oh so much out there
+[2491.20s - 2491.50s] four
+[2492.91s - 2494.20s] verse hotter
+[2494.71s - 2496.27s] shared service
+[2499.27s - 2502.51s] either a fake
+[2503.65s - 2504.22s] share
+[2507.34s - 2507.97s] cash
+[2509.56s - 2509.89s] yeah
+[2511.51s - 2513.46s] yeah you're shy
+[2515.80s - 2518.02s] the hotter the pie
+[2518.50s - 2518.95s] a
+[2520.30s - 2524.38s] her showhouse here black actually ohio
+[2525.04s - 2526.57s] like her ash
+[2527.17s - 2529.00s] bash cow
+[2530.35s - 2531.13s] shakhtar
+[2532.48s - 2538.78s] i have had a surge ah slot earth's shadow
+[2540.04s - 2540.55s] whore
+[2541.81s - 2542.17s] ah
+[2543.73s - 2544.48s] oh yeah
+[2545.50s - 2546.37s] either
+[2547.75s - 2549.76s] either either whoa
+[2550.90s - 2552.04s] oh yeah
+[2553.45s - 2554.75s] social trash trash
+[2556.52s - 2560.86s] ah the real hampshire
+[2562.76s - 2568.06s] ash ash past her show the actual much
+[2569.43s - 2572.14s] shed their blood patch all
+[2573.22s - 2574.15s] after her
+[2576.32s - 2576.82s] the show
+[2577.84s - 2579.37s] slash hash
+[2580.15s - 2585.76s] the vampires aka chef stray aw
+[2589.11s - 2589.87s] the the
+[2591.22s - 2592.18s] the hades
+[2593.56s - 2596.76s] disha disha yeah yeah
+[2599.14s - 2600.58s] this other girl
+[2602.20s - 2605.17s] oh okay yeah
+[2607.39s - 2608.29s] oh her
+[2609.46s - 2612.07s] her passion
+[2613.72s - 2617.05s] oh shit that versions of them
+[2618.49s - 2619.60s] ah sure
+[2620.74s - 2625.69s] shh shh shh other law
+[2628.69s - 2629.68s] how long
+[2630.82s - 2633.22s] shop for the plus
+[2633.82s - 2635.80s] out yourself huh
+[2638.38s - 2641.23s] wow ah strong shah
+[2641.92s - 2643.09s] aw
+[2644.26s - 2645.46s] oh lush
+[2651.49s - 2653.47s] our action huh
+[2654.25s - 2665.44s] ah yea your men pasha her young eyes for her walker also day at and ashampoo
+[2665.95s - 2666.61s] wow
+[2668.50s - 2669.46s] i can
+[2673.84s - 2676.99s] ah the shaft
+[2678.11s - 2679.42s] passion for nationally
+[2680.56s - 2681.49s] oh boy
+[2682.54s - 2682.99s] yeah
+[2685.15s - 2690.58s] oh okay yeah yeah attackers
+[2692.68s - 2694.18s] walk actual map
+[2695.59s - 2698.68s] as a of a
+[2699.76s - 2703.87s] earthy shots of national shock hatch girl
+[2705.58s - 2707.95s] whoa whoa whoa
+[2708.49s - 2714.91s] yes clue jewish either shabbat sher or esha
+[2716.38s - 2718.93s] i shall watch other camera huh
+[2720.37s - 2721.69s] hello trish
+[2724.13s - 2726.70s] shoe talk trouble
+[2727.93s - 2728.68s] chabahar
+[2734.08s - 2746.05s] troy shake your hand back for ash clapper if a church and share churches i hope
+[2747.70s - 2749.32s] pascha dish
+[2750.34s - 2761.56s] happy safe chuckling ashley thou very rare the airship i have ah come on call
+[2762.67s - 2769.48s] at war retract show chance rational you're camera shy wow
+[2770.59s - 2782.11s] cannot assure the national for my own ok the shah showed german santos or or the
+[2783.25s - 2784.06s] solution
+[2786.97s - 2787.96s] j
+[2788.98s - 2791.47s] take a cash
+[2793.03s - 2797.50s] watson scotch open
+[2799.39s - 2800.32s] forms
+[2802.57s - 2804.43s] ah show laugh
+[2805.90s - 2808.18s] streamer ah sh
+[2809.74s - 2825.10s] ah a shop girl of irish yeah haha lush sugar yeah after a shermer ha ha la sha her ah ah
+[2826.75s - 2830.50s] sherlock our show full la
+[2832.06s - 2837.22s] ah for sure harper for pushpa our show
+[2839.44s - 2846.04s] ah the hush hush bombs flew up a ma
+[2847.51s - 2859.54s] shush her for my rash opera ash real outlaw shah of the national harbor a shopper hopper
+[2860.95s - 2861.49s] shop
+[2862.72s - 2870.97s] ah ah sha sha sha la
+[2872.59s - 2873.28s] show
+[2874.69s - 2875.92s] ah sure
+[2877.74s - 2878.15s] ah
+[2880.03s - 2881.29s] shop ah
+[2895.93s - 2898.90s] shh shh shh shh
+[2901.33s - 2902.86s] ah cool
+[2904.18s - 2904.60s] actually
+[2906.07s - 2908.50s] assad as such
+[2910.93s - 2913.63s] popper you have a clue
+[2914.50s - 2917.05s] oh haha
+[2917.74s - 2919.12s] strove hush
+[2920.59s - 2921.91s] i'm not sure
+[2923.38s - 2925.54s] a four off
+[2928.87s - 2929.80s] wow that
+[2931.57s - 2933.04s] ah shh
+[2933.82s - 2936.61s] shah ash asked upward
+[2940.93s - 2941.35s] ash
+[2942.76s - 2944.53s] show archer
+[2945.70s - 2953.86s] i've had the see through mesh of shir ha ha ha ha ha oh oh yeah
+[2955.15s - 2959.11s] oh show show your foil
+[2961.87s - 2962.26s] trump
+[2964.00s - 2966.04s] oh and that session
+[2967.93s - 2971.71s] oh yes yeah happens
+[2975.28s - 2975.97s] russia
+[2977.14s - 2977.56s] huh
+[2981.10s - 2983.56s] again hit by her
+[2985.02s - 2988.87s] the backstab or tasha
+[2990.49s - 2995.08s] the handler has had better shot so bad for her
+[2996.79s - 2998.29s] heavy sir
+[2999.88s - 3004.11s] ma chao the shadow sap as
+[3005.31s - 3010.32s] shuffle wash and dress her the cat ran for nothing
+[3012.12s - 3014.94s] oh true wrong
+[3017.17s - 3017.68s] other one
+[3023.11s - 3023.98s] nah
+[3026.56s - 3027.97s] oh good manga
+[3030.34s - 3031.33s] model
+[3033.85s - 3034.78s] yeah
+[3037.15s - 3037.99s] ah
+[3039.22s - 3042.03s] huh stealth wow
+[3044.35s - 3049.33s] ah chops shall shock and awe
+[3050.62s - 3054.73s] check your rocker as a fluff shortlist
+[3055.66s - 3059.50s] cultural preferred the stuff ah
+[3059.50s - 3060.01s] much
+[3061.30s - 3064.42s] i chose this novel
+[3064.54s - 3068.86s] last year half of ambush ashraf hushed her ha
+[3069.34s - 3072.67s] la la sha la la hushed
+[3074.11s - 3077.68s] her cash match three an hour
+[3078.70s - 3079.36s] yeah yeah
+[3080.62s - 3085.03s] sure i'll have a party i help see
+[3088.44s - 3091.17s] wow i shall love
+[3092.38s - 3094.24s] a wash sash
+[3095.68s - 3097.54s] shush much
+[3098.74s - 3102.67s] ah the fashion the brush rach
+[3104.05s - 3104.77s] oh hush
+[3109.30s - 3112.35s] shop a fresh
+[3113.50s - 3115.93s] also large poppy
+[3117.10s - 3118.39s] hurts girl
+[3120.16s - 3121.60s] wow yeah
+[3125.80s - 3126.91s] really
+[3127.48s - 3128.32s] person
+[3130.30s - 3130.66s] yeah
+[3131.89s - 3135.52s] four thousand seven more
+[3137.14s - 3140.35s] this mesh of the word
+[3148.78s - 3149.92s] the upper wacker
+[3151.30s - 3158.86s] douche i have awesome house rats or true culture
+[3159.85s - 3161.20s] that's not good shape
+[3164.02s - 3167.44s] expo pass the to show
+[3168.60s - 3170.38s] whoa whoa whoa
+[3172.30s - 3175.36s] oh purpose
+[3176.98s - 3178.27s] yeah i have
+[3180.88s - 3181.66s] tounge
+[3182.86s - 3183.76s] oh shit
+[3184.30s - 3187.33s] back to back house
+[3188.59s - 3190.42s] oh accent yeah
+[3191.50s - 3193.09s] yeah chabahar
+[3194.17s - 3201.34s] is all the ass for showing your schiff our yourself
+[3203.17s - 3208.21s] i have the bash all over her
+[3209.26s - 3211.06s] nah ouch
+[3212.98s - 3213.73s] again
+[3215.11s - 3219.13s] scanners richer a shed
+[3220.92s - 3221.39s] yeah
+[3222.76s - 3227.05s] shop shop version i swampy portion actually
+[3230.23s - 3232.99s] has her show her abortion
+[3234.25s - 3236.41s] oh shit
+[3237.58s - 3238.96s] richard scott
+[3240.97s - 3241.39s] me
+[3242.20s - 3246.73s] oh hey it's debts now hey
+[3247.90s - 3250.96s] okay i thought ah
+[3251.05s - 3251.56s] ass
+[3252.79s - 3254.35s] okay nice
+[3255.01s - 3258.55s] nasa actual snap ah
+[3260.05s - 3262.39s] ma allo manage
+[3263.50s - 3269.83s] the church has a big portions to watch this group's ashore
+[3271.48s - 3272.74s] the hey
+[3276.28s - 3278.83s] this office is
+[3280.84s - 3284.02s] a shady past news
+[3285.40s - 3289.39s] ha fish beautiful day
+[3291.07s - 3292.48s] oh yeah
+[3293.29s - 3303.61s] that person back and forgave shah and they should both walk straight to ashes the
+[3305.11s - 3313.18s] i can try variation upon your dress pass for work oh j
+[3313.42s - 3314.62s] the person
+[3315.94s - 3319.15s] she said she urged me
+[3320.41s - 3321.55s] or girl
+[3322.12s - 3324.37s] i assure her pepper
+[3327.31s - 3330.28s] other pro partial copy
+[3331.75s - 3332.41s] powerful
+[3333.91s - 3334.72s] poor flush
+[3336.28s - 3336.88s] ah
+[3340.42s - 3341.83s] apply action
+[3345.88s - 3349.48s] which which you said your case
+[3353.02s - 3355.66s] de gris if
+[3356.71s - 3364.48s] show this russian horse's essence therefore also
+[3365.74s - 3366.37s] wow
+[3367.63s - 3367.96s] shh
+[3369.10s - 3371.17s] the cash marshall
+[3371.26s - 3372.34s] shah
+[3375.16s - 3375.82s] asap
+[3378.16s - 3380.05s] that's an option
+[3383.86s - 3385.24s] ah
+[3386.44s - 3389.74s] ah huh
+[3390.34s - 3392.23s] little girl wash
+[3394.09s - 3399.25s] ashley ashley ah ah ah yeah ash
+[3400.33s - 3402.43s] alas girl asha law
+[3403.84s - 3405.73s] la la la
+[3406.09s - 3410.44s] ah yeah ah yeah show
+[3412.09s - 3414.49s] ah
+[3415.66s - 3417.16s] option law
+[3417.76s - 3418.96s] ashleigh ah
+[3419.98s - 3421.90s] laugh blush
+[3422.59s - 3423.22s] stuff
+[3425.20s - 3425.47s] yeah
+[3427.69s - 3428.56s] ayesha
+[3429.91s - 3433.15s] i the shower or a bird
+[3434.59s - 3435.31s] oh
+[3436.63s - 3437.32s] ash
+[3439.09s - 3440.80s] her how the law
+[3444.52s - 3449.65s] true ah worship you
+[3452.86s - 3453.43s] ah
+[3455.59s - 3456.04s] shah
+[3457.90s - 3460.09s] ah after us
+[3462.10s - 3462.79s] our ship
+[3464.83s - 3471.01s] oh i shall congratulate the door watch lee wax
+[3473.65s - 3475.42s] ah sure
+[3477.16s - 3478.72s] oh shea
+[3480.70s - 3485.02s] the thing is ash a o
+[3485.02s - 3487.93s] no vision
+[3489.19s - 3490.30s] the plan
+[3491.53s - 3494.53s] shh the hammer our province
+[3496.75s - 3497.32s] sean
+[3500.41s - 3500.77s] poor
+[3503.86s - 3507.55s] the ash ash shade
+[3510.88s - 3511.99s] deal as
+[3513.67s - 3516.64s] the assets the whole
+[3518.35s - 3518.89s] sure
+[3521.05s - 3521.65s] two
+[3522.70s - 3529.87s] a rich richer from actual fun
+[3530.65s - 3531.58s] for your chance
+[3533.47s - 3537.31s] bush and waters from a tape a half
+[3539.59s - 3539.92s] yeah
+[3541.15s - 3541.81s] george
+[3545.02s - 3545.53s] seven
+[3546.76s - 3548.02s] oh death
+[3548.38s - 3552.10s] passion faith nations
+[3553.36s - 3555.16s] ah ha ha
+[3557.86s - 3558.58s] the bay
+[3562.87s - 3564.43s] fourth or fifth
+[3565.00s - 3565.99s] oh
+[3567.10s - 3568.66s] a small fracture
+[3570.64s - 3572.02s] bertha boy
+[3573.43s - 3575.14s] ah home
+[3576.22s - 3576.82s] tash
+[3577.90s - 3579.25s] the room
+[3579.52s - 3581.02s] a tie
+[3583.03s - 3585.85s] i hope asher
+[3588.94s - 3589.90s] sappy
+[3591.04s - 3594.19s] shah score
+[3595.72s - 3599.11s] ah bachelor bachelorette sash
+[3599.74s - 3600.49s] nah
+[3603.37s - 3603.94s] sure
+[3607.06s - 3608.80s] fall guy wow
+[3610.03s - 3611.41s] ah bachelor
+[3612.82s - 3613.27s] huh
+[3615.76s - 3622.60s] yeah i'm sure ah rush watch irish wow
+[3625.01s - 3625.43s] ma
+[3626.86s - 3627.97s] actually
+[3630.31s - 3631.00s] oh wow
+[3632.26s - 3632.89s] shocker
+[3635.20s - 3636.73s] ask a trial
+[3638.98s - 3640.99s] dish loose this
+[3643.18s - 3646.15s] ah
+[3647.92s - 3657.28s] maiden's open decks so look at her passion from my eyes couchman
+[3658.54s - 3660.01s] oh sure
+[3660.64s - 3661.57s] hashtag
+[3665.17s - 3667.24s] the answer for
+[3668.56s - 3670.06s] the restaurants
+[3671.74s - 3673.15s] chicago
+[3674.59s - 3677.80s] ah shy whoa it's natural
+[3679.03s - 3681.25s] the bad and foolishness
+[3682.36s - 3684.70s] oh good
+[3686.08s - 3686.77s] shadow
+[3689.19s - 3692.98s] i hope so
+[3694.57s - 3695.86s] yes i do
+[3697.54s - 3701.14s] russian edition for sega
+[3702.19s - 3704.99s] born for which you asked
+[3706.60s - 3710.17s] hazare have her gassed up to earth clue by her
+[3712.99s - 3716.11s] ha ha yeah max ask her faster
+[3717.82s - 3719.23s] ah ash
+[3721.48s - 3722.02s] oh
+[3723.79s - 3726.37s] this should the half board
+[3727.66s - 3731.28s] wow ash thing last
+[3732.67s - 3749.05s] bow slaughter how this for sure samba oh gosh spy by chefs for my i wash my shirts bagshaw rome hobo
+[3750.22s - 3752.29s] or say the kids too
+[3753.31s - 3754.30s] patient facts
+[3755.71s - 3757.72s] for our creation
+[3761.83s - 3764.53s] ditch far batch batch
+[3765.55s - 3769.90s] how big or small
+[3771.76s - 3772.31s] oh
+[3773.20s - 3773.98s] my child
+[3775.96s - 3779.74s] oh yeah yeah yeah
+[3780.67s - 3781.99s] oh yeah
+[3787.15s - 3788.53s] or a chore
+[3790.27s - 3791.17s] cow
+[3793.51s - 3796.36s] passion the passes
+[3797.47s - 3798.04s] this
+[3800.77s - 3801.43s] get four
+[3802.51s - 3802.90s] there
+[3803.95s - 3807.13s] wow yeah the faster mao shy shy
+[3808.81s - 3809.50s] shah
+[3810.70s - 3815.98s] a strong passion for our ball past
+[3816.67s - 3817.99s] yeah they're out
+[3820.27s - 3820.69s] oh yeah
+[3821.92s - 3823.36s] oh chips
+[3824.59s - 3827.53s] a the base of the brain
+[3827.71s - 3829.69s] half the eye
+[3830.83s - 3833.05s] the other day
+[3834.19s - 3835.60s] the yea
+[3839.05s - 3839.59s] ebay
+[3841.63s - 3842.68s] that's kind of awesome
+[3843.79s - 3849.37s] the poop sat sep fans the shadows shines
+[3850.06s - 3850.40s] thus
+[3851.53s - 3857.77s] this the alpha version of the national cash
+[3859.59s - 3870.25s] watch the follow car pasha shovel pass i sure arusha to me and plants won't catch up her ah
+[3872.32s - 3873.07s] i'm sure
+[3874.66s - 3878.44s] by the sra fire
+[3879.55s - 3881.92s] oh yeah ha holcim asthma
+[3884.61s - 3887.50s] ah ah yeah
+[3890.65s - 3897.73s] a housetop shop huh wow yeah ah how could a shop
+[3898.75s - 3899.26s] wow
+[3900.64s - 3903.31s] ah flaw for law huh
+[3903.58s - 3911.17s] oh punch trucker ranch up a half batch
+[3913.78s - 3917.05s] first fat shore ah
+[3918.37s - 3920.44s] power of the shah
+[3921.58s - 3924.19s] actually aperture law
+[3925.54s - 3927.88s] a lot of ah
+[3928.99s - 3929.83s] wow
+[3930.94s - 3931.54s] ah
+[3933.82s - 3937.24s] yeesh fracture looks back a lot
+[3938.71s - 3943.12s] aw fuck on his behalf shallow shock and awe
+[3945.25s - 3947.86s] bush has crushed us whatever
+[3948.94s - 3953.74s] stuff the chef ah shut off
+[3955.09s - 3959.65s] yes hush hush oh yeah for sure
+[3960.67s - 3961.00s] huh
+[3962.84s - 3969.40s] sha sha sha na szasz groff
+[3972.46s - 3977.08s] yeah i have a latch arch
+[3978.19s - 3979.75s] the search
+[3982.42s - 3983.89s] our offer
+[3985.48s - 3986.14s] oh
+[3987.67s - 3991.24s] ah ouch of harsh our shop
+[3992.65s - 3995.98s] back shut up and shot
+[3997.84s - 3998.44s] yeah
+[3999.94s - 4002.43s] bash bish ashton brushed off
+[4003.78s - 4007.65s] ah sure ah
+[4008.79s - 4013.98s] ah yeah yeah la la ah
+[4018.72s - 4022.44s] yeah i sha hash a person russian
+[4023.76s - 4025.41s] as our
+[4025.62s - 4034.98s] i'm sure ah oh ah oh ah ah ah ah from our work
+[4036.18s - 4038.04s] ah ah
+[4040.74s - 4053.28s] and actually i actually allow oh how out of shape ah eva got her porsche ah yeah
+[4055.35s - 4062.52s] ah shah photoshop to bushbuck page for bush out
+[4063.87s - 4068.91s] ah shah chicago shop emissions ha ha
+[4072.54s - 4074.49s] oh ashra
+[4076.41s - 4077.07s] two
+[4082.44s - 4083.01s] me
+[4083.07s - 4087.63s] spanish chef for a while
+[4087.96s - 4090.03s] to the shadow
+[4091.23s - 4096.12s] what happens now shop at the shop for wash
+[4097.89s - 4099.66s] the dutch chateau
+[4101.22s - 4111.24s] ocean will both show a hang up at berkshire a for passion offers more options
+[4115.14s - 4115.83s] okay
+[4118.15s - 4118.74s] squash
+[4121.84s - 4127.80s] baby won't come by after shabbat do social
+[4130.92s - 4132.36s] the national
+[4133.71s - 4134.04s] shh
+[4137.04s - 4138.60s] say that yeah
+[4139.62s - 4142.05s] said thirty four
+[4142.83s - 4146.40s] so the outcomes for people
+[4147.84s - 4151.14s] the horsebox evolution grounds
+[4154.41s - 4159.78s] birch couch for a show
+[4163.05s - 4170.01s] this shelter national for the account
+[4171.42s - 4173.01s] the
+[4174.03s - 4175.56s] the war
+[4177.66s - 4186.57s] the the the small circle burpees compassion stole them
+[4187.92s - 4190.52s] lush wow
+[4191.55s - 4192.12s] irish
+[4195.93s - 4197.43s] das besser
+[4199.14s - 4204.93s] yeah this or for that show them
+[4206.25s - 4209.19s] hong kong's oh mature
+[4210.72s - 4212.13s] the thing
+[4214.38s - 4215.34s] good pass
+[4216.75s - 4220.02s] ashton shared walk function
+[4221.07s - 4229.17s] patrick ashes or po fortress two how shall i say
+[4230.20s - 4232.33s] i'm good at this
+[4234.13s - 4234.82s] was
+[4236.33s - 4236.77s] shirt
+[4241.69s - 4242.20s] ashton
+[4243.70s - 4247.48s] shh shh shut the house
+[4247.51s - 4247.93s] sure
+[4250.54s - 4250.99s] your really
+[4256.78s - 4258.37s] yeah sherman
+[4259.09s - 4260.38s] the homelessness
+[4262.25s - 4262.93s] the
+[4265.60s - 4266.83s] the fish
+[4267.53s - 4268.81s] the pastor
+[4270.19s - 4270.52s] yeah
+[4271.84s - 4274.09s] two shots ocean
+[4275.38s - 4279.88s] stokes bay the name of proper after
+[4282.91s - 4283.33s] yeah
+[4284.83s - 4286.00s] a day
+[4287.56s - 4289.27s] for good
+[4290.64s - 4291.25s] yeah
+[4293.05s - 4293.59s] shaping
+[4294.76s - 4297.46s] a attached fashion show so asha
+[4298.15s - 4298.78s] wow
+[4299.86s - 4301.93s] option one the wash
+[4303.46s - 4307.57s] yes yeah yeah snitch
+[4308.32s - 4309.88s] the veil
+[4310.15s - 4311.95s] yes shirt yard
+[4316.36s - 4319.48s] ah yes factor
+[4323.23s - 4324.37s] yeah shop for
+[4326.08s - 4326.62s] ash
+[4327.64s - 4332.53s] russian national for national sphere occasions per day
+[4333.64s - 4338.11s] the financial yeah yeah
+[4340.48s - 4348.04s] at shower curtain down the last shot ah
+[4349.93s - 4353.02s] the tucker boy show
+[4353.68s - 4355.15s] ah
+[4356.20s - 4367.54s] wash wash coat your eyelashes smash shots or ash ash ash ash
+[4368.68s - 4372.01s] aw shit that ass
+[4374.77s - 4376.63s] shah that's ah
+[4376.84s - 4385.24s] her chekhov's a hamper yeah dishes purchase the taplow
+[4385.24s - 4387.42s] our crush depth
+[4389.26s - 4393.61s] look at the shore ash ashutosh shop huh
+[4394.81s - 4395.44s] sir
+[4396.13s - 4402.10s] or or shirt shy or blackish gusto
+[4403.57s - 4404.77s] shushannah
+[4407.14s - 4407.41s] yeah
+[4412.00s - 4414.19s] the turkish
+[4415.27s - 4420.13s] the shoe options the rationale for lash out
+[4421.60s - 4427.21s] so that's a change ah i have a bachelor
+[4428.68s - 4429.97s] yeah shy
+[4430.45s - 4434.26s] catch her by shabbir her catch
+[4435.70s - 4440.62s] sherpa to actually attach watch the session
+[4445.93s - 4446.98s] ah yeah
+[4448.12s - 4451.57s] raw shopper wow
+[4454.39s - 4455.80s] a shot of your own
+[4457.21s - 4457.96s] fashion
+[4460.69s - 4461.71s] the show
+[4463.24s - 4470.23s] oh he loves her wow
+[4471.82s - 4473.80s] true the chopper
+[4475.21s - 4475.69s] shower
+[4479.05s - 4479.68s] russia
+[4480.79s - 4481.42s] her
+[4482.89s - 4483.73s] sure
+[4485.32s - 4485.92s] wow
+[4487.78s - 4490.24s] bosh the shop raw
+[4491.47s - 4494.71s] ah shall rule of a harshaw
+[4495.88s - 4499.93s] i snapped up a shirt shop ash flush
+[4501.34s - 4502.48s] ash lush
+[4504.45s - 4508.23s] la la la oh la la
+[4508.93s - 4510.07s] ash fash
+[4511.72s - 4519.79s] la chateau ah show ash ah shop for lunch
+[4521.68s - 4523.69s] hey shoe
+[4526.18s - 4526.60s] or that
+[4527.89s - 4529.09s] that's okay
+[4530.49s - 4533.03s] ah ah
+[4534.28s - 4534.67s] bush
+[4536.53s - 4536.92s] shh
+[4538.93s - 4541.69s] passing her there show packer
+[4544.72s - 4545.47s] at birth
+[4546.61s - 4548.98s] her smash
+[4550.48s - 4552.52s] so yeah the
+[4554.80s - 4555.85s] sort of pascha
+[4557.08s - 4557.65s] a
+[4559.15s - 4570.31s] actual your chair mature sheer naturals were hash mature fashion culture
+[4571.60s - 4573.73s] a strapped for cash
+[4574.84s - 4575.95s] the action
+[4577.00s - 4577.39s] huh
+[4581.56s - 4589.30s] ashoka asher as la sai share group i care
+[4590.20s - 4595.15s] the shape types of alsace the filter
+[4597.25s - 4598.63s] ah che
+[4599.86s - 4608.89s] a chore patch were far faster than the deer paths over h again ship chatter
+[4609.97s - 4610.93s] ur pitches
+[4612.25s - 4613.51s] or soccer
+[4615.25s - 4617.86s] a basher yeah
+[4620.02s - 4622.90s] oh snap action
+[4624.52s - 4625.81s] oh wow
+[4626.93s - 4627.37s] couple
+[4628.90s - 4629.44s] sure
+[4631.32s - 4633.58s] for sure each stitch
+[4634.60s - 4643.90s] mustache chair for batch much fire the strobe to match
+[4644.92s - 4647.86s] lady paid me that day
+[4649.81s - 4651.46s] richie ash
+[4652.69s - 4653.23s] oh
+[4654.61s - 4659.20s] as the ash low sas pepper shah better
+[4660.79s - 4661.18s] there
+[4662.83s - 4670.66s] tasha which i opposed or heard some become the mascot
+[4672.49s - 4675.64s] medicine as directness boots
+[4677.44s - 4683.02s] hours my house after school
+[4683.08s - 4683.68s] virtual
+[4685.24s - 4689.23s] that has bird the sabbath her offside
+[4691.00s - 4695.86s] ha wow this structure was national
+[4699.43s - 4703.75s] small patch backslash yeah
+[4705.10s - 4709.03s] yeah yeah she's so good and
+[4710.20s - 4713.98s] the survey especially such
+[4715.00s - 4715.75s] cash
+[4717.61s - 4727.57s] patch hair issue in action glitter ash for dow sick mashup for national
+[4730.15s - 4730.60s] gay
+[4733.09s - 4734.95s] a heavy forte
+[4736.12s - 4737.44s] shop backers
+[4738.76s - 4741.31s] mourn her
+[4742.84s - 4746.44s] that coleman house sash
+[4748.15s - 4748.69s] shocker
+[4751.45s - 4751.72s] yeah
+[4752.98s - 4755.77s] show more passion
+[4757.72s - 4759.31s] oh yeah
+[4759.73s - 4762.52s] for pash wow
+[4764.20s - 4765.19s] lockers
+[4766.54s - 4766.96s] yeah
+[4768.34s - 4773.53s] i laugh at a rock i actually finish the dash
+[4775.63s - 4778.00s] bercow castle
+[4779.92s - 4780.28s] the
+[4783.37s - 4788.77s] ah a lot of ostrow shah
+[4789.91s - 4790.27s] huh
+[4790.87s - 4799.69s] for ouch wow last i rushed out by ash fuzhou from osh
+[4800.95s - 4801.79s] ah
+[4802.84s - 4814.36s] wow shah ah ah yeah huh ooh ah for for hot shower shikoku
+[4816.28s - 4819.70s] however ashfaq shah shah shah
+[4821.44s - 4823.42s] i'm shush
+[4824.20s - 4825.19s] never has
+[4826.48s - 4828.04s] ah aha
+[4828.04s - 4836.71s] ashutosh yeah shut up shah urge other bradshaw action shah
+[4839.57s - 4841.13s] oh hey
+[4841.28s - 4844.22s] brush up for the pastor
+[4846.86s - 4849.11s] rush off
+[4850.19s - 4851.30s] abortion
+[4853.97s - 4856.31s] ah allows
+[4857.36s - 4859.49s] the top of russia
+[4860.72s - 4862.70s] wow oh wow
+[4867.56s - 4872.60s] huh um die icon shroud asia
+[4875.63s - 4879.44s] oh ooh ooh shah
+[4883.19s - 4884.03s] ah
+[4885.32s - 4887.57s] spur change
+[4889.46s - 4893.39s] apple roster alert szabo
+[4894.11s - 4894.77s] false
+[4896.74s - 4897.86s] felicia
+[4899.42s - 4905.90s] ah ash glass shatters la sha
+[4908.42s - 4910.10s] ah higher
+[4911.87s - 4913.07s] ah
+[4914.24s - 4917.54s] ooh sigh yeah
+[4918.29s - 4925.22s] sheila shana asha hashish strange fool oh sasha
+[4926.24s - 4931.64s] oh look the ash ash ash
+[4933.65s - 4942.98s] hoekstra lotto patch on abolition mustache the charles homer masher
+[4945.65s - 4947.27s] our our
+[4949.34s - 4953.03s] yea sj lu ah
+[4956.33s - 4957.44s] la cache
+[4960.08s - 4960.94s] oh
+[4962.48s - 4963.86s] ah
+[4964.97s - 4965.90s] ah
+[4967.22s - 4970.61s] ashtanga the hell shall look ashfaq
+[4973.64s - 4976.73s] oh no your booth
+[4977.12s - 4979.37s] ooh ooh ooh
+[4981.92s - 4982.49s] shore
+[4984.74s - 4989.00s] h out o function show
+[4990.08s - 4993.26s] ooh schiff the pan warm
+[4994.91s - 4998.75s] and she shall be a mishmash
+[5001.12s - 5004.81s] research your
+[5006.46s - 5007.60s] much wow
+[5009.94s - 5011.29s] from shah
+[5014.44s - 5016.10s] ah sure her
+[5017.21s - 5018.01s] have
+[5020.02s - 5028.51s] nah motion sue sue sue who
+[5031.00s - 5032.08s] ash ash
+[5033.73s - 5034.48s] uhm
+[5035.68s - 5036.01s] a
+[5037.24s - 5039.73s] ooh to happen
+[5041.59s - 5042.76s] oh shit
+[5043.90s - 5045.70s] mishmash ooh
+[5046.77s - 5047.92s] yes to this
+[5053.02s - 5054.72s] she said
+[5054.88s - 5056.53s] passion so seattle
+[5058.75s - 5060.28s] national formation
+[5061.60s - 5063.28s] yeah saturday
+[5064.48s - 5066.67s] open so the
+[5068.62s - 5069.28s] smoking
+[5072.28s - 5073.03s] rich
+[5074.80s - 5075.73s] two
+[5080.08s - 5083.44s] the ah ah
+[5086.02s - 5086.77s] ashford
+[5088.71s - 5089.80s] two law
+[5094.30s - 5094.63s] ash
+[5095.71s - 5098.92s] rubaie oh flashback
+[5101.71s - 5102.16s] hello
+[5103.33s - 5104.17s] irish
+[5106.87s - 5107.62s] rupture
+[5109.03s - 5110.53s] arthur campbell
+[5112.48s - 5113.95s] our slash
+[5115.86s - 5118.33s] that guy cash poor
+[5120.73s - 5123.52s] ah us la russia
+[5125.56s - 5127.63s] russia accountable
+[5129.16s - 5133.90s] the whole show all the trapdoor hash
+[5135.04s - 5135.37s] a
+[5137.65s - 5141.49s] is this a matter of their nature
+[5142.78s - 5144.58s] for the birth
+[5145.60s - 5147.43s] i have burnished crash
+[5148.84s - 5149.68s] whoa
+[5151.12s - 5155.20s] cashback showed tao oh trouble
+[5157.00s - 5158.92s] oh yes
+[5160.66s - 5171.07s] jason krueger and the shoe shop new national pass rusher shelter pass
+[5172.36s - 5176.80s] shadow ball d eyes
+[5178.45s - 5181.60s] this guy chicken
+[5181.84s - 5182.50s] house
+[5184.66s - 5190.48s] this led low risk catch her verses
+[5192.13s - 5193.81s] retention richard
+[5195.28s - 5197.38s] the doctor
+[5198.97s - 5199.69s] azure
+[5202.15s - 5208.45s] yep careful notes in this recipe too fast
+[5210.28s - 5211.15s] two
+[5212.32s - 5214.27s] the match void
+[5216.25s - 5218.11s] ashra captures
+[5218.32s - 5219.46s] whoa
+[5220.48s - 5221.11s] this from
+[5221.92s - 5225.31s] oh sure sure
+[5227.98s - 5229.60s] and shy
+[5229.72s - 5230.50s] oh
+[5231.52s - 5233.41s] oops strappy open
+[5235.12s - 5237.64s] ashleigh y woo
+[5238.39s - 5240.10s] the deck crash
+[5240.58s - 5244.75s] she sat in a tracking shall never ashy shadow
+[5246.07s - 5246.73s] highest
+[5248.12s - 5251.23s] deputy waffen wow
+[5252.10s - 5253.18s] very true
+[5254.44s - 5254.95s] gap
+[5256.96s - 5259.12s] gretchen snapper hacker
+[5259.36s - 5261.64s] a very useful form
+[5264.22s - 5266.50s] who is this
+[5268.39s - 5269.60s] the the
+[5271.75s - 5274.17s] sakaguchi from outlaw
+[5275.23s - 5277.18s] passionate from outfall
+[5279.43s - 5280.39s] shamash
+[5283.24s - 5284.71s] as an elephant smoking
+[5288.52s - 5289.42s] richie
+[5290.80s - 5291.26s] her
+[5292.30s - 5293.05s] sir
+[5294.70s - 5296.11s] shh shh
+[5297.50s - 5299.89s] a birds too
+[5301.33s - 5304.84s] have the behalf of the group
+[5305.59s - 5307.66s] yeah mao was
+[5311.83s - 5312.94s] betcha shabu
+[5314.08s - 5318.91s] now for a stir i shall i
+[5321.28s - 5322.03s] dr nash
+[5324.88s - 5328.42s] see i hate the trash yeah
+[5329.44s - 5329.89s] ooh
+[5334.60s - 5336.61s] for two
+[5338.47s - 5342.04s] abu shah wore pants
+[5342.70s - 5343.51s] ashura
+[5345.73s - 5350.32s] it's the hatchback spare chapter for awhile
+[5351.52s - 5356.53s] retrace your mac draw the capsule yeah
+[5357.76s - 5358.09s] yeah
+[5361.48s - 5365.44s] for sure it's out of your passions
+[5368.08s - 5369.01s] our show
+[5370.69s - 5372.40s] for a pop
+[5373.03s - 5376.24s] shah arch law
+[5377.44s - 5380.59s] osha shop the habbush prakash
+[5383.32s - 5384.79s] wash shush
+[5385.87s - 5387.88s] i watch bradshaw
+[5389.29s - 5390.55s] sure ah
+[5390.91s - 5394.36s] sha sha sha sha sh sure ah
+[5395.98s - 5397.41s] hush our first
+[5398.56s - 5406.12s] lmao sure wish far ah the ash lho
+[5407.20s - 5411.67s] osho la hello
+[5413.77s - 5417.04s] oh ha ha ha oh shush
+[5418.03s - 5419.68s] ah oo
+[5420.61s - 5420.88s] a
+[5422.47s - 5423.76s] show law
+[5427.45s - 5431.95s] russia ever atlas version will offer brush
+[5433.12s - 5434.26s] lashkar of
+[5436.87s - 5437.35s] zero
+[5441.30s - 5449.03s] pull over for a hammer more more
+[5450.51s - 5450.84s] shh
+[5453.96s - 5457.83s] for richard krakow boy good wow
+[5458.04s - 5459.75s] sure haha yes
+[5461.25s - 5464.52s] ditch it for me
+[5465.18s - 5468.12s] they should porch and flash
+[5469.56s - 5471.78s] the bar is
+[5473.13s - 5476.46s] yours shall retire the passion
+[5477.75s - 5482.79s] russia ashoka hander behalf yeah
+[5483.87s - 5484.35s] rush
+[5485.91s - 5488.13s] a birch com
+[5489.23s - 5491.31s] ha ha
+[5493.08s - 5494.49s] who says sir
+[5495.93s - 5498.27s] since outlaw
+[5499.47s - 5503.91s] thou shalt i have ah ash fish after birth
+[5505.14s - 5508.08s] after iowa national murder
+[5509.31s - 5512.13s] a church yes no
+[5513.84s - 5515.82s] as possessor shit
+[5516.99s - 5517.47s] okay
+[5518.67s - 5519.78s] dash strap of
+[5521.43s - 5523.59s] a walker machete
+[5525.12s - 5525.69s] oh
+[5527.10s - 5527.70s] daesh
+[5528.51s - 5529.68s] this picture
+[5531.06s - 5540.96s] yea that is a extreme api cache a shared death is actually a
+[5542.22s - 5547.56s] i sure hope my bothers left after shah
+[5548.73s - 5552.36s] as for my head happy whole day
+[5554.16s - 5563.04s] i allow that i pass her shovel out of this
+[5564.72s - 5575.76s] happiest open home yeah guy how about the patch yeah shh shh shh water scuba
+[5578.10s - 5579.63s] the mcclatchy
+[5581.73s - 5582.90s] stay up there
+[5584.73s - 5585.33s] the
+[5588.15s - 5592.89s] so the chicago council
+[5594.18s - 5596.70s] harper shine a
+[5598.86s - 5599.19s] yep
+[5600.33s - 5608.19s] oh composed and have a pair to score to shape the year
+[5608.42s - 5609.27s] passport
+[5611.94s - 5614.28s] the shock machine
+[5616.24s - 5617.25s] hi
+[5619.35s - 5620.04s] ashok
+[5621.48s - 5622.29s] the slaw
+[5623.52s - 5625.14s] ashworth the hand
+[5626.40s - 5632.91s] set her straight up as i shall pass
+[5633.81s - 5634.29s] code
+[5635.52s - 5640.41s] our baby has been shot down
+[5642.18s - 5643.92s] and sat on her
+[5646.80s - 5650.43s] the car a bigger size wow
+[5651.15s - 5653.85s] chamfer ash atropine
+[5656.25s - 5658.39s] go to church
+[5659.67s - 5660.36s] those eyes
+[5662.64s - 5666.15s] ah five ash for me
+[5667.68s - 5670.17s] a head chef pass
+[5671.37s - 5672.21s] whoa
+[5673.23s - 5677.25s] the the goodness
+[5678.27s - 5681.45s] splash the cash out
+[5682.62s - 5689.97s] ah back again ashutosh clue go ashok lavasa zero
+[5690.99s - 5692.76s] snack platters
+[5694.44s - 5698.85s] yeah and that mergers be upheld
+[5701.40s - 5703.53s] wash water
+[5705.33s - 5705.75s] come
+[5707.91s - 5709.74s] the black bay
+[5711.04s - 5714.03s] the sat back and forth wash
+[5715.41s - 5717.06s] hell i certainly
+[5718.11s - 5723.76s] erf the show yeah yeah yeah yeah
+[5725.55s - 5728.49s] it's the aperture
+[5730.50s - 5732.03s] the shot
+[5732.87s - 5734.10s] out of shape
+[5735.96s - 5737.43s] the sacha
+[5738.99s - 5739.41s] where
+[5740.55s - 5743.52s] just bang your food sir
+[5745.47s - 5747.72s] nah whoa
+[5749.16s - 5750.30s] this happens
+[5753.69s - 5755.01s] oh you betcha
+[5755.55s - 5756.63s] butcher shop
+[5760.95s - 5761.43s] hush
+[5763.05s - 5763.77s] a slaw
+[5766.89s - 5768.99s] bash trump ah
+[5769.83s - 5770.28s] there
+[5773.91s - 5781.65s] her passion illnesses are factual i have shot glasses
+[5783.36s - 5783.90s] the
+[5785.16s - 5786.78s] ah ha
+[5788.04s - 5788.55s] oh
+[5791.04s - 5792.06s] shocker
+[5793.59s - 5794.10s] shit
+[5795.36s - 5796.20s] oops
+[5798.03s - 5800.67s] ah that that harbaugh
+[5802.41s - 5803.88s] attleboro ma
+[5804.30s - 5805.55s] oh patrick
+[5809.01s - 5809.97s] shut the hell up
+[5810.99s - 5816.15s] oh deaths deaths santa barbara is not a trapper
+[5817.23s - 5817.56s] the
+[5819.27s - 5821.01s] sure absolutely
+[5822.40s - 5826.20s] her dress by the fire sir
+[5827.55s - 5831.24s] is this the time
+[5831.63s - 5840.90s] out of rations for draft pick that the authors observe yeah yeah
+[5842.97s - 5845.70s] ah cho cho sh
+[5846.60s - 5852.99s] how are the sparks of ah ha ha porsche ah chow
+[5854.22s - 5856.35s] ah yes
+[5856.41s - 5856.68s] shh
+[5858.12s - 5859.44s] huh wow
+[5862.38s - 5864.45s] watch spurs vs russia
+[5865.47s - 5865.71s] huh
+[5866.59s - 5873.36s] ah ah ah i a harper for your shop tree
+[5874.65s - 5877.92s] hamble law actual show
+[5880.44s - 5881.43s] ah
+[5882.57s - 5883.86s] oh wow
+[5884.99s - 5886.05s] ah
+[5887.40s - 5888.78s] first to her
+[5890.53s - 5892.53s] la sur la
+[5893.55s - 5894.00s] huh
+[5894.66s - 5898.86s] ah ah la
+[5900.66s - 5901.33s] nah
+[5901.47s - 5904.53s] the top shop option rupture rush
+[5906.48s - 5908.43s] fashion shop
+[5909.87s - 5912.36s] sha sha sha sh
+[5913.89s - 5921.27s] ah fruit for our shot la ma chao shush shush
+[5921.87s - 5922.23s] english
+[5923.46s - 5930.00s] russia wash our show show lava ash touch her
+[5931.44s - 5933.12s] our ah
+[5933.45s - 5934.22s] sprocket
+[5935.31s - 5941.28s] oh ah shah sure
+[5943.74s - 5944.55s] ah
+[5945.69s - 5949.29s] ah actual show mucho
+[5950.19s - 5952.29s] happy birthday
+[5954.71s - 5957.27s] i can't desert passion
+[5958.38s - 5959.19s] oh okay
+[5960.96s - 5961.80s] i say
+[5965.88s - 5967.44s] oh half of the show
+[5968.91s - 5970.29s] oh true
+[5970.83s - 5971.58s] shoe
+[5973.47s - 5974.82s] it's okay
+[5978.39s - 5980.82s] that one again
+[5982.98s - 5988.14s] on this matter habit of sides
+[5990.66s - 5996.03s] whoo of chapare na perhaps stray whoops
+[5997.71s - 6002.81s] as a shape de civitan
+[6005.96s - 6009.41s] asher bursch sky
+[6010.70s - 6016.70s] ah let's see i struck a copy of
+[6017.90s - 6019.07s] asia day
+[6020.93s - 6022.22s] as f dance
+[6023.72s - 6023.99s] shh
+[6027.02s - 6031.19s] oh wow the staff why attrition oh
+[6032.30s - 6036.53s] ashton yeah beck's your choices boy
+[6037.76s - 6041.72s] dress to have ao is
+[6043.54s - 6048.01s] and so some holborn some see
+[6049.39s - 6051.04s] those containing
+[6051.22s - 6058.45s] this offset this shirt store rush for this
+[6062.11s - 6062.56s] rich rich
+[6070.96s - 6073.45s] ah ash
+[6074.68s - 6078.76s] ah how perfect the hampshire
+[6079.99s - 6081.43s] bachelor shy about
+[6083.29s - 6084.04s] shop
+[6085.06s - 6087.91s] i have a struggle staff membership yeah
+[6089.23s - 6094.15s] show up for shah shah oh shit
+[6094.84s - 6095.20s] ah
+[6096.37s - 6097.15s] true
+[6098.65s - 6101.44s] i feel from bosh
+[6102.76s - 6105.61s] ah haha oh wow
+[6106.45s - 6106.87s] ah
+[6109.45s - 6112.84s] a virtual at fullback actual power
+[6113.41s - 6116.71s] our treasure rah rah wow
+[6119.98s - 6124.57s] masha the pope
+[6125.86s - 6128.98s] black chose ah
+[6130.81s - 6132.82s] oh for shy chauffeur
+[6134.83s - 6137.35s] purchase slow flash
+[6139.42s - 6141.25s] yeah yeah
+[6141.70s - 6143.98s] shh shh shh pass
+[6145.09s - 6145.90s] wow
+[6147.52s - 6154.24s] overlap a lot oh ash ash bhatia apple shah
+[6155.56s - 6164.20s] a lot ah i i am i loved the ash of the ah
+[6164.74s - 6166.78s] wash up yeah
+[6166.90s - 6168.28s] the actual
+[6169.30s - 6171.85s] a lot of hatha pappu
+[6173.71s - 6175.12s] ashley ash
+[6176.56s - 6178.54s] wow hallo
+[6179.83s - 6188.23s] oh hush that ash ashley charge of the
+[6190.51s - 6191.08s] oh
+[6196.57s - 6199.27s] woo shea shea
+[6203.74s - 6205.00s] kurdish food
+[6206.50s - 6207.43s] a
+[6210.25s - 6210.55s] should
+[6215.29s - 6215.74s] huh
+[6216.82s - 6217.45s] bay
+[6218.50s - 6218.80s] a
+[6220.90s - 6221.77s] teacher
+[6223.03s - 6227.02s] time for action
+[6228.82s - 6229.51s] attache
+[6230.74s - 6231.13s] asia
+[6232.33s - 6233.26s] the asheville
+[6234.46s - 6236.92s] a shy boy oh
+[6239.65s - 6240.19s] ashley
+[6241.60s - 6245.23s] left over the show dexter
+[6248.68s - 6252.49s] i have a version of a national national church
+[6255.16s - 6262.93s] schervish pushed through the sack of shoe the actual shower
+[6264.10s - 6264.34s] yeah
+[6265.66s - 6266.32s] so
+[6268.57s - 6269.77s] shadow last
+[6271.90s - 6272.35s] ooh
+[6273.70s - 6274.15s] the
+[6276.13s - 6277.00s] your books
+[6278.41s - 6278.92s] satra
+[6282.61s - 6284.14s] ooh two
+[6285.46s - 6289.00s] severe repression axis
+[6292.12s - 6295.57s] this year hanson strolls for shotover
+[6298.21s - 6300.01s] search most piano
+[6300.73s - 6305.17s] just fish a higher hung of squish me
+[6307.09s - 6309.10s] the nashoba sasha
+[6310.87s - 6312.04s] ah see
+[6314.47s - 6315.13s] churches
+[6317.86s - 6319.48s] basham not shy
+[6322.12s - 6325.00s] the good shepherd cover
+[6327.10s - 6330.16s] somehow some business so
+[6333.13s - 6334.15s] yeah
+[6336.19s - 6338.35s] shirt for shy
+[6340.66s - 6343.93s] a black lab bash
+[6345.85s - 6346.75s] obey
+[6347.98s - 6352.84s] actual catch harpo batfish
+[6354.28s - 6356.47s] kershaw's patrone
+[6359.89s - 6363.79s] is the passivation a dancer
+[6364.93s - 6365.71s] wow
+[6367.63s - 6369.22s] her ass
+[6369.28s - 6370.63s] her shoes
+[6372.55s - 6375.25s] go for a help
+[6376.03s - 6377.17s] her goodness
+[6379.03s - 6381.10s] awesome thanks
+[6383.38s - 6384.01s] me
+[6385.66s - 6387.01s] her backers
+[6387.22s - 6389.89s] a mouthwash correction
+[6392.05s - 6402.76s] cowboy farmer shopper who are sha sha sha sha sh catch ah shelter hazards to the
+[6404.20s - 6404.77s] shore
+[6407.52s - 6408.15s] sure
+[6409.30s - 6412.54s] the business class boys shocker
+[6413.17s - 6419.08s] scappoose to shut backers for too long
+[6421.12s - 6421.63s] ah
+[6423.34s - 6423.67s] huh
+[6425.05s - 6429.88s] the ash offer ah ooh papa
+[6432.56s - 6434.35s] allow ssh
+[6435.01s - 6438.01s] ah szasz problem
+[6439.57s - 6441.40s] just our luck
+[6442.78s - 6443.05s] ah
+[6444.19s - 6445.21s] ah
+[6446.98s - 6450.25s] oh gosh huh
+[6451.81s - 6453.91s] clash shot
+[6455.14s - 6459.04s] how how ah ash
+[6461.05s - 6466.98s] ah ash ash ash ash that's right yeah
+[6467.62s - 6468.13s] huh
+[6469.30s - 6472.36s] ah rush hour traffic
+[6473.98s - 6477.34s] shh shh shh shh shh shh
+[6479.29s - 6484.75s] oh bosh ah ash or ash
+[6486.60s - 6487.99s] judge hello
+[6492.82s - 6495.70s] oh roadshow okay
+[6496.42s - 6497.65s] a
+[6499.12s - 6501.58s] russian national shmoop
+[6503.35s - 6504.22s] a
+[6505.54s - 6506.02s] yeah
+[6509.47s - 6510.19s] shepherd
+[6511.30s - 6515.74s] to the the voltage
+[6517.06s - 6518.31s] the ah
+[6518.98s - 6522.34s] oh my gosh wow
+[6523.93s - 6525.34s] oh
+[6528.01s - 6530.11s] wow oh
+[6533.17s - 6533.44s] right
+[6535.06s - 6535.42s] shh
+[6540.58s - 6545.98s] after her ash behalf oh shit
+[6547.33s - 6548.02s] two
+[6549.61s - 6554.98s] a popular trackball for actor
+[6555.91s - 6557.14s] the pals
+[6558.37s - 6560.92s] yeah walk back get shit
+[6561.94s - 6564.19s] she can show the halfback
+[6566.17s - 6567.85s] especially over
+[6569.14s - 6570.55s] esh da
+[6572.20s - 6573.07s] yasha
+[6573.94s - 6575.71s] that's ash ash mersch
+[6578.17s - 6583.03s] it was soooo good chanted pappy
+[6584.41s - 6587.20s] i ask you the session
+[6587.39s - 6592.39s] cash cash boost from that yea
+[6596.08s - 6596.92s] shh shh
+[6598.00s - 6598.42s] four
+[6599.65s - 6600.97s] fish rupee
+[6603.73s - 6604.09s] this
+[6608.50s - 6610.51s] yeah that's fine
+[6611.35s - 6611.89s] wow
+[6613.21s - 6615.37s] yeah yes my ass
+[6616.69s - 6617.35s] oh
+[6621.34s - 6622.57s] the astrid
+[6624.67s - 6624.97s] a
+[6626.44s - 6626.98s] oh
+[6628.18s - 6629.26s] which ball
+[6630.04s - 6630.79s] a chore
+[6633.16s - 6635.26s] berkshire with how
+[6636.37s - 6643.36s] the hackers action each map aggression shuttle this year walker
+[6645.53s - 6646.61s] sega
+[6647.75s - 6652.64s] super bourbon from sra behalf to shed all
+[6655.16s - 6656.45s] your back
+[6658.55s - 6660.02s] true passions
+[6661.85s - 6665.09s] our passion our walkman
+[6666.20s - 6666.71s] oh
+[6669.26s - 6670.07s] aha
+[6672.50s - 6674.66s] i saw the backers
+[6675.65s - 6676.25s] the bird
+[6678.56s - 6679.28s] kurdish
+[6681.65s - 6682.28s] ho whoa
+[6684.62s - 6686.54s] a better backer
+[6686.60s - 6689.06s] opa la
+[6690.14s - 6694.22s] petri dish bertram
+[6697.85s - 6698.48s] true
+[6701.51s - 6704.03s] lush as her clapper
+[6705.29s - 6706.43s] that person out
+[6709.19s - 6717.23s] skirt mash via cash wire ooh ah as her gesture
+[6719.99s - 6723.74s] bajra bow at earth
+[6725.24s - 6727.37s] chabahar paris action
+[6730.16s - 6731.48s] the ash
+[6732.83s - 6733.34s] shush
+[6737.84s - 6741.71s] ah show i have ever
+[6744.26s - 6745.76s] ah
+[6747.65s - 6750.17s] yeah we're from la
+[6750.86s - 6751.64s] szasz
+[6753.79s - 6759.20s] ah ah ah sh
+[6760.16s - 6761.45s] ally of us
+[6763.70s - 6766.04s] natural of ashutosh
+[6768.35s - 6768.80s] but
+[6770.84s - 6771.62s] shah
+[6772.73s - 6785.03s] the actual punch shot on our show our property other strict law ashraful of the irish that
+[6786.32s - 6788.09s] ah a
+[6789.38s - 6790.76s] hasta la
+[6792.77s - 6795.89s] ashutosh oh huh yeah
+[6797.93s - 6801.02s] the gay book is optional
+[6801.74s - 6804.92s] edge out ash foods
+[6806.75s - 6807.35s] food
+[6808.46s - 6809.78s] click here
+[6811.82s - 6812.33s] i
+[6814.76s - 6817.10s] the satu sir
+[6819.44s - 6821.57s] witness the outlaw pass
+[6823.85s - 6828.11s] oh yeah shah
+[6829.37s - 6831.23s] to save her
+[6832.46s - 6832.73s] a
+[6834.71s - 6836.69s] ah
+[6838.13s - 6838.85s] coffee
+[6840.68s - 6842.27s] hey love
+[6844.73s - 6846.89s] shh let her ash
+[6849.41s - 6851.78s] la la la
+[6852.95s - 6854.09s] sharp puppy
+[6854.78s - 6856.16s] hey look away
+[6857.27s - 6862.88s] special ash ash ash
+[6864.23s - 6865.28s] sanction of
+[6866.99s - 6873.11s] pascha five oh nah it's okay
+[6874.58s - 6875.12s] the
+[6876.62s - 6877.49s] scatter
+[6878.87s - 6880.28s] was a person
+[6880.46s - 6886.91s] a vast plaza ashes
+[6888.77s - 6894.89s] ah hush hush oh hey bob schieffer
+[6896.54s - 6897.62s] spurting
+[6905.21s - 6905.93s] lot rocco
+[6907.31s - 6910.40s] oh hey there
+[6911.90s - 6914.45s] i the pain
+[6915.74s - 6916.13s] a
+[6917.36s - 6918.50s] maker shack
+[6919.58s - 6921.80s] a shot a
+[6923.27s - 6924.38s] it do
+[6925.67s - 6928.28s] apa sherpa buffet
+[6929.42s - 6937.10s] a path of action as a straw stack
+[6938.81s - 6940.97s] brother sahil sir
+[6941.66s - 6943.13s] patch issue
+[6944.75s - 6945.50s] chris
+[6948.74s - 6951.08s] it's hybrid choices
+[6952.34s - 6952.76s] yeah
+[6955.73s - 6959.69s] all this happening change
+[6962.06s - 6962.63s] oh
+[6964.04s - 6964.91s] or well
+[6965.42s - 6967.13s] chow sang
+[6968.30s - 6973.25s] ohio sir a baptist or earthship of baptists
+[6976.10s - 6979.19s] sha sha
+[6980.63s - 6982.28s] chavez asia
+[6983.45s - 6984.68s] step off
+[6985.10s - 6985.82s] romans
+[6986.84s - 6988.46s] each fun
+[6989.33s - 6991.46s] as a small glitch
+[6992.72s - 6995.87s] a swam ash slam burnish
+[6998.57s - 7000.79s] the other shirt
+[7002.00s - 7006.07s] the actually checked bush
+[7007.21s - 7008.23s] so short
+[7010.30s - 7010.93s] glitch
+[7014.20s - 7016.06s] oh hey
+[7017.56s - 7018.28s] hours
+[7021.64s - 7024.76s] national auction that versa
+[7025.90s - 7028.63s] all her books for all
+[7030.19s - 7031.39s] nashville
+[7033.07s - 7039.10s] the attention left russia passage much work perform
+[7041.11s - 7042.67s] ah okay
+[7044.62s - 7051.28s] ah ha ah ah ah ah
+[7052.60s - 7053.77s] ah russia
+[7055.93s - 7056.77s] the ha
+[7058.66s - 7059.86s] shop fast books
+[7062.17s - 7067.60s] ah ah ah shh
+[7068.23s - 7071.50s] our charter of
+[7072.70s - 7076.30s] a half shop at the ah
+[7076.42s - 7077.74s] ah la
+[7079.72s - 7080.35s] bash up
+[7082.68s - 7088.71s] la sha sha ah actually ah
+[7090.28s - 7094.09s] oh ah sha sh
+[7095.65s - 7097.36s] the hosur sh
+[7098.11s - 7099.73s] oh la
+[7101.41s - 7103.84s] oh wow
+[7104.83s - 7119.92s] oh of ours raw ah ah ah ah ah ah ah ah ah ah
+[7122.71s - 7127.18s] ah la sha bush last ah
+[7127.90s - 7130.96s] capture the full
+[7132.37s - 7135.49s] wow love assure our show
+[7136.57s - 7140.11s] ah shows or shows
+[7141.67s - 7147.53s] oh furze of my shop for martial law shah shrew
+[7149.11s - 7151.75s] ah ashford
+[7153.73s - 7158.14s] ah dot com pushpa ah curl up
+[7159.58s - 7160.99s] touchstone
+[7162.73s - 7163.96s] two flusher
+[7165.10s - 7167.01s] oh sure
+[7168.13s - 7171.58s] a shopper at the ah
+[7173.44s - 7174.31s] shah
+[7175.57s - 7176.32s] ouch
+[7176.86s - 7178.00s] which i love
+[7179.62s - 7184.60s] shot of a szasz fluctuation of law
+[7185.48s - 7185.86s] oh
+[7188.14s - 7189.01s] i chose
+[7190.54s - 7193.30s] in a sense
+[7195.76s - 7196.30s] oof
+[7199.54s - 7203.20s] yes mercy scourge
+[7206.23s - 7206.99s] actually
+[7208.21s - 7210.13s] this scourge
+[7211.90s - 7215.59s] the national asthma
+[7217.54s - 7221.17s] oh my bad version
+[7223.87s - 7225.40s] this search
+[7229.75s - 7230.35s] ah
+[7231.58s - 7233.44s] whoosh rubber boots
+[7234.61s - 7237.07s] the draft should feel happy
+[7237.64s - 7239.95s] all my shit
+[7243.31s - 7244.06s] wow
+[7245.44s - 7246.55s] thompson book
+[7248.98s - 7249.85s] and she's dead
+[7251.14s - 7255.01s] to come off my smart ass too
+[7257.20s - 7258.13s] two virgin
+[7262.30s - 7263.47s] the sample
+[7264.61s - 7266.92s] ah atmos
+[7268.30s - 7272.44s] ah she had a rough wow
+[7273.13s - 7273.70s] ash
+[7275.68s - 7281.74s] szasz no buffer bar for style either
+[7283.24s - 7291.49s] shop conscious to pop the latter version hours and scope scoop
+[7292.87s - 7296.47s] rule rule shake shack or
+[7297.70s - 7298.42s] a tattoo
+[7299.89s - 7307.18s] shah how to fall to washing oh so happy
+[7312.22s - 7313.36s] litigious
+[7314.89s - 7316.48s] oh yes
+[7318.37s - 7319.96s] awesome yeah
+[7322.21s - 7331.63s] barossa hazardous backhoe much sir shadow blusher a one year
+[7332.98s - 7339.91s] our ship shining mask or i yeah wow yeah
+[7341.14s - 7343.27s] a shot glass
+[7343.54s - 7344.50s] oh shit
+[7346.18s - 7353.29s] catch and pass out she said yeah abstract shah true
+[7354.97s - 7362.26s] oh my passion for sure there is a passion as his birthday
+[7365.65s - 7369.22s] assess your action plan
+[7371.41s - 7374.80s] ah the slave sansa masha
+[7376.24s - 7376.60s] yeah
+[7377.74s - 7378.82s] for national
+[7380.11s - 7382.87s] i saw match every year
+[7384.88s - 7386.32s] fear not
+[7387.01s - 7387.40s] ash
+[7389.44s - 7394.84s] the api of acceleration can be bashful
+[7395.98s - 7398.29s] shukla of the year
+[7399.46s - 7402.31s] or or the book
+[7402.58s - 7404.23s] hampshire shoulders
+[7406.10s - 7408.01s] yeah waterfall
+[7408.76s - 7413.83s] a chump change the last bath i shoved her by her
+[7415.06s - 7415.66s] that's true
+[7417.13s - 7423.79s] the heard about this war the war the battle power oh shit yeah
+[7425.80s - 7426.52s] i have to
+[7429.07s - 7432.70s] the asher show over the year
+[7433.06s - 7436.42s] the headshot operator passionate sigh
+[7436.63s - 7442.60s] ha ha ha who's a fish trap
+[7443.92s - 7449.29s] the poppers shah shah adapters
+[7452.92s - 7456.39s] so la ha to back the assertion
+[7457.54s - 7458.53s] yeah backstop
+[7461.20s - 7463.66s] shah yeah casno
+[7465.39s - 7470.17s] by patient russian verbal smash therefore capture
+[7471.88s - 7472.09s] no
+[7473.44s - 7475.15s] oh wow
+[7476.26s - 7476.77s] huh
+[7477.67s - 7479.80s] how wow
+[7481.30s - 7491.29s] raj shah shah shah shah alam ah ha ah
+[7492.37s - 7494.89s] ah
+[7495.97s - 7501.13s] ah yes
+[7502.45s - 7507.64s] hothouse our actual ah
+[7508.87s - 7514.03s] proper bashful ah yes ah
+[7515.17s - 7517.81s] lush for passion for our home
+[7521.65s - 7524.14s] ah shh
+[7524.89s - 7528.68s] shh shh shh ahh
+[7530.02s - 7534.85s] not for shah ash shirt and a lot of trash
+[7536.29s - 7536.92s] sure
+[7538.37s - 7538.78s] oh
+[7539.62s - 7540.31s] haha
