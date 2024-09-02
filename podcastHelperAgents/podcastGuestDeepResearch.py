@@ -1,32 +1,19 @@
 from crewai import Agent, Task, Crew, Process
 from langchain_openai import ChatOpenAI
 from langchain.tools import Tool
-from langchain_community.tools import DuckDuckGoSearchRun
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
-from langchain_anthropic import ChatAnthropic
-
-
-
-llm = ChatAnthropic(
-    model="claude-3-5-sonnet-20240620"
-)
-
+from usefulTools.llm_repository import ClaudeOpus,ClaudeSonnet
+from usefulTools.search_tools import search_tool
 from crewai import Agent, Task, Crew, Process
-from langchain_anthropic import ChatAnthropic
-from langchain_community.tools import DuckDuckGoSearchRun
 from langchain.agents import Tool
+llm = ClaudeSonnet
 
 def create_podcast_prep_crew(guest_name):
     # Initialize tools and models
-    search_tool = DuckDuckGoSearchRun()
-    llm = ChatAnthropic(model="claude-3-5-sonnet-20240620")
-
-    search_tool = DuckDuckGoSearchRun()
-
     # Define the agents
     research_agent = Agent(
         role="Internet Research Specialist",

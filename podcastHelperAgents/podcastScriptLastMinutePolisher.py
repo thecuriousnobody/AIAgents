@@ -12,12 +12,12 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
+from usefulTools.llm_repository import ClaudeOpus,ClaudeSonnet
+from usefulTools.search_tools import search_tool
+
 
 # Initialize LLM and search tool
-llm = ChatAnthropic(
-    model="claude-3-5-sonnet-20240620"
-)
-search_tool = DuckDuckGoSearchRun()
+llm = ClaudeSonnet
 
 def read_pdf_from_file(file_path):
     with open(file_path, 'rb') as file:
