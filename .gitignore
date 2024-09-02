@@ -32,3 +32,5 @@ __pycache__/
 # Miscellaneous
 =*
 
+crewai_latest_env/
+experimentalCode/
