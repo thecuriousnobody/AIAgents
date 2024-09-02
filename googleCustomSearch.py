@@ -33,7 +33,7 @@ if __name__ == "__main__":
     API_KEY = config.GOOGLE_API_KEY
     CX = '16a98b7fb85c346d4'
     
-    query = "artificial intelligence"
+    query = "OLA Electric Scooter"
     search_results = google_custom_search(query, API_KEY, CX)
     
     for result in search_results:

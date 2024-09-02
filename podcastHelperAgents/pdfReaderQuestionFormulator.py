@@ -15,15 +15,15 @@ os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
 
 llm = ChatAnthropic(model="claude-3-5-sonnet-20240620")
-search_tool = DuckDuckGoSearchRun()
+# search_tool = DuckDuckGoSearchRun()
 
 # # Set up SerpAPI search
-# search = SerpAPIWrapper()
-# search_tool = Tool(
-#     name="Internet Search",
-#     func=search.run,
-#     description="Useful for when you need to answer questions about current events or general knowledge. You should ask targeted questions."
-# )
+search = SerpAPIWrapper()
+search_tool = Tool(
+    name="Internet Search",
+    func=search.run,
+    description="Useful for when you need to answer questions about current events or general knowledge. You should ask targeted questions."
+)
 
 def retry_on_overload(func, max_retries=5, initial_wait=1):
     def wrapper(*args, **kwargs):
@@ -211,6 +211,6 @@ if __name__ == "__main__":
     
     Join us as we explore the limitless possibilities that come from thinking critically, living intentionally, and fostering a culture that values ideas as the catalysts for authentic, sustainable progress. Together, let's create a future that is not only imagined but actively built on the foundation of ideas that enlighten, empower, and connect us all.
     """
-    guest_name = "Oron Catts"  # Replace with actual guest name
-    guest_expertise = "Biological Arts, Tissue Engineering, and Critical Exploration of Biotechnology's Cultural Impact"  # Replace with actual guest expertise
+    guest_name = "Kiran Garimella"  # Replace with actual guest name
+    guest_expertise = "Misinformation, Whatsapp"  # Replace with actual guest expertise
     main(input_file, output_file, podcast_description, guest_name, guest_expertise)

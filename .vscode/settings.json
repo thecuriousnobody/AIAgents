@@ -1,0 +1,5 @@
+{
+    "python.defaultInterpreterPath": "/Users/rajeevkumar/.pyenv/versions/crewAIAgentsvenv/bin/python",
+    "python.terminal.activateEnvironment": true,
+    "python.terminal.activateEnvInCurrentTerminal": true
+}

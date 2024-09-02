@@ -2,17 +2,16 @@ config.py
 tavilyExperimentation.py
 tavilyFeeder.py
 podcastPersonalities.txt
-<<<<<<< HEAD
+crewAIAgentsvenv
+
 ._*
 .DS_Store
 .idea/
 __pycache__/
-=======
 new_env/
 venv/
 image_processing_env/
 
->>>>>>> cleaned_macbook_work
 ._*
 .DS_Store
 .idea/
@@ -32,5 +31,26 @@ __pycache__/
 # Miscellaneous
 =*
 
+<<<<<<< HEAD
 crewai_latest_env/
 experimentalCode/
+=======
+<<<<<<< HEAD
+/
+=======
+
+experimentalCode
+crewai_latest_env
+
+temp_mono.wav
+temp_audio_chunk.wav
+new_env/
+*.so
+*.dylib
+new_env/
+*.so
+*.dylib
+temp_audio_chunk.wav
+temp_audio_chunk.wav
+>>>>>>> origin/macMiniAug2024_Development
+>>>>>>> macMiniAug2024_Development
