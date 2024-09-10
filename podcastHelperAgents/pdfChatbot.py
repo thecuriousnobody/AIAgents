@@ -99,7 +99,7 @@ def main():
     # mic_index = input("Enter the index of the microphone you want to use (or press Enter for default): ")
     mic_index = 1
     # pdf_path = input("Enter the path to your PDF file: ")
-    pdf_path = '/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Oron Catts/oronCattsFullBookV2.pdf'
+    pdf_path = '/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Oron Catts/TISSUES, CULTURES, ART IonatZurr.pdf'
     chatbot = PDFChatbot(pdf_path)
     
     if mic_index:

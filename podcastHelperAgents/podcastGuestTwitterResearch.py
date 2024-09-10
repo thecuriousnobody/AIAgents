@@ -4,12 +4,7 @@ from pprint import pprint
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 # Add the parent directory of 'usefulTools' to the Python path
-parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(parent_dir)
-
-import logging
 from pprint import pprint
-
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(parent_dir)
 import os
@@ -17,7 +12,7 @@ import sys
 from crewai import Agent, Task, Crew, Process
 from langchain_anthropic import ChatAnthropic
 from usefulTools.search_tools import google_twitter_tool
-
+from usefulTools.llm_repository import ClaudeSonnet
 # Add the parent directory to sys.path to import config
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
@@ -25,11 +20,6 @@ import config
 # Set up API keys
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
-
-# Initialize AI model
-ClaudeSonnet = ChatAnthropic(
-    model="claude-3-5-sonnet-20240620",
-    max_tokens = 8192)
 
 # Define agents
 tweet_collector = Agent(

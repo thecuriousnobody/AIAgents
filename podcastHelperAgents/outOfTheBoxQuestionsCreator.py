@@ -18,16 +18,15 @@ os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 os.environ["OPENAI_API_KEY"] = config.OPENAI_API_KEY
 
-search_tool = DuckDuckGoSearchRun()
+from usefulTools.search_tools import google_twitter_tool, search_tool
+from usefulTools.llm_repository import ClaudeSonnet
 
 llm = ChatOpenAI(
     openai_api_base="https://api.groq.com/openai/v1",
     openai_api_key=os.getenv("GROQ_API_KEY"),
     model_name="llama3-70b-8192"
 )
-ClaudeSonnet = ChatAnthropic(
-    model="claude-3-5-sonnet-20240620"
-)
+
 # crew_manager = ChatAnthropic(model="claude-3-5-sonnet-20240620", temperature=0, api_key=config.ANTHROPIC_API_KEY)
 crew_manager = ChatAnthropic(
     model="claude-3-5-sonnet-20240620",

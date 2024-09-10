@@ -5,6 +5,7 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 import datetime
+from usefulTools.search_tools import search_tool, youtube_tool
 
 # Set up environment variables
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY

@@ -8,7 +8,7 @@ import config
 
 os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
 import logging
-
+import requests
 SERPAPI_API_KEY = os.environ.get("SERPAPI_API_KEY")
 
 # Set up logging
@@ -23,6 +23,35 @@ search_tool = Tool(
     name="Internet Search",
     func=search.run,
     description="Useful for finding current data and information on various topics."
+)
+
+def search_api_search(query):
+    url = "https://www.searchapi.io/api/v1/search"
+    params = {
+        "engine": "google",
+        "q": query,
+        "api_key": config.SEARCH_API_KEY
+    }
+    response = requests.get(url, params=params)
+    return response.json()
+
+def run_search(query: str) -> str:
+    results = search_api_search(query)
+    
+    # Process and format the results
+    formatted_results = []
+    for item in results.get('organic_results', []):
+        formatted_results.append(f"Title: {item.get('title')}")
+        formatted_results.append(f"Link: {item.get('link')}")
+        formatted_results.append(f"Snippet: {item.get('snippet')}")
+        formatted_results.append("---")
+    
+    return "\n".join(formatted_results)
+
+search_api_tool = Tool(
+    name="Internet Search",
+    func=run_search,
+    description="Useful for finding current data and information on various topics using the SearchAPI."
 )
 
 def youtube_search(query):

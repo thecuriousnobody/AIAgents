@@ -147,41 +147,6 @@ def run_content_enhancer(blog_content):
     output = crew.kickoff()
     return output
 
-
-# if __name__ == '__main__':
-#     rough_draft_file = input("Enter the filename for your rough draft blog post: ")
-    
-#     try:
-#         with open(rough_draft_file, 'r') as file:
-#             blog_content = file.read()
-#     except FileNotFoundError:
-#         print(f"Error: The file '{rough_draft_file}' was not found.")
-#         sys.exit(1)
-#     except IOError as e:
-#         print(f"Error reading the file '{rough_draft_file}': {e}")
-#         sys.exit(1)
-
-#     result = run_content_enhancer(blog_content)
-    
-#     print("\nEnhanced Blog Post:")
-#     print(result)
-
-#     # Generate a unique filename based on the input file and current date/time
-#     base_name = os.path.splitext(os.path.basename(rough_draft_file))[0]
-#     file_name = f"enhanced_{base_name}_.txt"
-#     directory = "/Users/rajeevkumar/Documents/TISB/enhancedBlogs"
-#     full_path = os.path.join(directory, file_name)  
-    
-#     try:
-#         with open(full_path, "w") as file:
-#             file.write(result)
-#         print(f"\nEnhanced blog post saved to {file_name}")
-#     except IOError as e:
-#         print(f"An error occurred while writing to the file: {e}")
-#     except Exception as e:
-#         print(f"An unexpected error occurred: {e}")
-
-
 if __name__ == "__main__":
 
     rough_draft_file = input("Enter the filename for your rough draft blog post: ")

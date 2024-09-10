@@ -13,7 +13,6 @@ from langchain.agents import Tool
 llm = ClaudeSonnet
 
 def create_podcast_prep_crew(guest_name):
-    # Initialize tools and models
     # Define the agents
     research_agent = Agent(
         role="Internet Research Specialist",

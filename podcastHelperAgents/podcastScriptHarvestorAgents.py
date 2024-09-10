@@ -8,6 +8,8 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 from usefulTools.search_tools import search_tool, youtube_tool
+from usefulTools.llm_repository import ClaudeSonnet
+
 import logging
 import time
 
@@ -18,9 +20,6 @@ os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
 
-# ClaudeSonnet = ChatAnthropic(model="claude-3-opus-20240229")
-ClaudeSonnet = ChatAnthropic(model="claude-3-5-sonnet-20240620")
-# ClaudeSonnet = ChatAnthropic(model="claude-3-haiku-20240307")
 
 def anthropic_llm():
     return ChatAnthropic(

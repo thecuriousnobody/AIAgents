@@ -7,7 +7,7 @@ from langchain_anthropic import ChatAnthropic
 from langchain_community.utilities import SerpAPIWrapper
 import datetime
 from serpapi import GoogleSearch
-from search_tools import search_tool, youtube_tool
+from search_tools import search_tool, youtube_tool, search_api_tool
 
 
 # Add the parent directory to sys.path to import config
@@ -39,7 +39,7 @@ researcher = Agent(
     backstory="You are a skilled researcher with a knack for finding the most relevant and important information on any topic, using both web and video sources. You can effectively use parsed YouTube data to enhance your research.",
     verbose=True,
     allow_delegation=False,
-    tools=[search_tool, youtube_tool],
+    tools=[search_api_tool,youtube_tool],
     llm=ClaudeSonnet
 )
 

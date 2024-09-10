@@ -1,4 +1,10 @@
 from langchain_anthropic import ChatAnthropic
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import config
+
+os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 
 ClaudeSonnet = ChatAnthropic(
     model="claude-3-5-sonnet-20240620",

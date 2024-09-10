@@ -18,7 +18,7 @@ import random
 from googleCustomSearch import google_custom_search
 from langchain.tools import Tool
 from langchain_community.utilities import SerpAPIWrapper
-from usefulTools.search_tools import search_tool, youtube_tool
+from usefulTools.search_tools import search_tool, youtube_tool, search_api_tool
 
 
 from crewai_tools.tools import SerperDevTool
@@ -27,13 +27,6 @@ from langchain.tools import Tool
 os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
-
-
-llm_GROQ= ChatOpenAI(
-    openai_api_base = "https://api.groq.com/openai/v1",
-    openai_api_key =  os.getenv("GROQ_API_KEY"),
-    model_name = "gemma2-9b-it"
-)
 
 
 ClaudeSonnet = ChatAnthropic(
@@ -159,7 +152,7 @@ for person in personalities:
             llm=ClaudeSonnet,  # Placeholder for the actual language model
             max_iter=5,
             memory=True,
-            tools=[search_tool],  # Add any additional tools as needed
+            tools=[search_api_tool],  # Add any additional tools as needed
         )
 
         email_crafter = Agent(
@@ -175,7 +168,7 @@ for person in personalities:
             verbose=True,
             allow_delegation=False,
             llm=ClaudeSonnet,
-            tools=[search_tool],
+            tools=[search_api_tool],
         
         )
 

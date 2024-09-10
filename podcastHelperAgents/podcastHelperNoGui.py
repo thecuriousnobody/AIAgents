@@ -3,27 +3,16 @@ from langchain_openai import ChatOpenAI
 from langchain_anthropic import ChatAnthropic
 import sys
 import os
-from langchain_community.tools import DuckDuckGoSearchRun
+from usefulTools.search_tools import search_tool,youtube_tool
+from usefulTools.llm_repository import ClaudeSonnet 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 import os
-
 # Assuming you have a config.py file with your API keys
 import config
 
 os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 
-# Initialize tools and models
-search_tool = DuckDuckGoSearchRun()
-llm = ChatOpenAI(
-    openai_api_base="https://api.groq.com/openai/v1",
-    openai_api_key=os.getenv("GROQ_API_KEY"),
-    model_name="llama3-70b-8192"
-)
-ClaudeSonnet = ChatAnthropic(
-    model="claude-3-5-sonnet-20240620"
-)
 
 def create_research_agent(guest_name, profession):
     return Agent(
@@ -59,7 +48,7 @@ def create_research_agent(guest_name, profession):
         verbose=True,
         allow_delegation=False,
         llm=ClaudeSonnet,
-        tools=[search_tool]
+        tools=[search_tool, youtube_tool]
     )
 
 def create_question_formulation_agent():
@@ -144,7 +133,7 @@ def main(guest_name, profession):
     initial_question_task = Task(
         description="Formulate initial questions based on the research.",
         agent=question_agent,
-        expected_output="A list of 5-10 initial interview questions based on the research findings."
+        expected_output="A list of 20-30 initial interview questions based on the research findings."
     )
 
     research_refinement_task = Task(
@@ -156,7 +145,7 @@ def main(guest_name, profession):
     final_question_task = Task(
         description="Finalize the interview questions based on the refined research.",
         agent=question_agent,
-        expected_output="A final list of 10-15 well-crafted interview questions, incorporating insights from the refined research."
+        expected_output="A final list of 20-30 well-crafted interview questions, incorporating insights from the refined research."
     )
 
     crew = Crew(
@@ -170,7 +159,7 @@ def main(guest_name, profession):
 
     # Write the generated content to a file
     try:
-        with open("/Users/rajeevkumar/Documents/TISB Stuff/guestPrep/Marina Debris/podcastPrepMarina.txt", "w") as file:
+        with open("/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Oron Catts/podcastPrepOron.txt", "w") as file:
             file.write(result)
         print("Output successfully written to podcastPrep.txt")
     except IOError as e:

@@ -9,6 +9,8 @@ from langchain.agents import Tool
 import config
 from anthropic import APIStatusError
 import time
+from usefulTools.search_tools import search_tool, youtube_tool
+from usefulTools.llm_repository import ClaudeSonnet
 
 # Set up environment variables and API keys
 os.environ["OPENAI_API_KEY"] = config.OPENAI_API_KEY
@@ -16,18 +18,7 @@ os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
 
 # Initialize tools and models
-search_tool = DuckDuckGoSearchRun()
-llm = ChatAnthropic(model="claude-3-5-sonnet-20240620")
-llmGROQ = ChatGroq(
-    api_key=os.getenv(config.GROQ_API_KEY),
-    model="llama-3-1-70b-versatile"
-)
-
-search_tool_wrapped = Tool(
-    name="Internet Search",
-    func=search_tool.run,
-    description="Useful for finding up-to-date information and statistics on various topics. Input should be a search query."
-)
+llm = ClaudeSonnet
 
 
 def retry_on_overload(func, max_retries=5, initial_wait=1):
@@ -62,7 +53,7 @@ def create_idea_distiller_agent():
         backstory="You are an expert in understanding and clarifying complex ideas, capable of extracting the essence of an argument or theme.",
         verbose=True,
         allow_delegation=False,
-        llm=llmGROQ
+        llm=llm
     )
 
 
@@ -73,8 +64,8 @@ def create_data_researcher_agent():
         backstory="You are a skilled researcher with a talent for finding accurate and pertinent information from various online sources.",
         verbose=True,
         allow_delegation=False,
-        llm=llmGROQ,
-        tools=[search_tool_wrapped]
+        llm=llm,
+        tools=[search_tool]
     )
 
 
@@ -103,7 +94,7 @@ def research_data_task(agent, distilled_ideas):
         description=f"Research and gather relevant, up-to-date information and statistics related to the following theme and points:\n\n{distilled_ideas}\n\nProvide a comprehensive summary of your findings, including sources where appropriate.",
         agent=agent,
         expected_output="A detailed summary of relevant data and statistics, with sources, that either support or challenge the central theme.",
-        tools=[search_tool_wrapped],
+        tools=[search_tool],
         context=["distill_ideas_task"]
     )
 

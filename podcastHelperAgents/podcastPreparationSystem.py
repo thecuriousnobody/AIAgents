@@ -11,26 +11,16 @@ import config
 from anthropic import APIStatusError
 from langchain.agents import Tool
 import time
-
+from usefulTools.search_tools import google_twitter_tool,search_tool
+from usefulTools.llm_repository import ClaudeSonnet
 
 os.environ["OPENAI_API_KEY"] = config.OPENAI_API_KEY
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 
 # Initialize tools and models
-search_tool = DuckDuckGoSearchRun()
 
 
-
-
-llm = ChatAnthropic(
-    model="claude-3-5-sonnet-20240620"
-)
-
-search_tool_wrapped = Tool(
-    name="Internet Search",
-    func=search_tool.run,
-    description="Useful for when you need to answer questions about current events. Input should be a search query."
-)
+llm = ClaudeSonnet
 
 def retry_on_overload(func, max_retries=5, initial_wait=1):
     def wrapper(*args, **kwargs):
