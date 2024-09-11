@@ -8,22 +8,14 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 from anthropic import APIStatusError
-from langchain_community.tools import DuckDuckGoSearchRun
 import time
+from usefulTools.search_tools import search_tool, youtube_tool,search_api_tool
+from usefulTools.llm_repository import ClaudeSonnet
 
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
 
-llm = ChatAnthropic(model="claude-3-5-sonnet-20240620")
-# search_tool = DuckDuckGoSearchRun()
 
-# # Set up SerpAPI search
-search = SerpAPIWrapper()
-search_tool = Tool(
-    name="Internet Search",
-    func=search.run,
-    description="Useful for when you need to answer questions about current events or general knowledge. You should ask targeted questions."
-)
 
 def retry_on_overload(func, max_retries=5, initial_wait=1):
     def wrapper(*args, **kwargs):
@@ -65,8 +57,8 @@ def create_reader_agent():
         backstory="You are an expert in analyzing academic papers, capable of identifying crucial elements such as methodologies, findings, and recommendations.",
         verbose=True,
         allow_delegation=False,
-        llm=llm,
-        tools=[search_tool]
+        llm=ClaudeSonnet,
+        tools=[search_api_tool]
     )
 
 def create_summarizer_agent():
@@ -76,8 +68,8 @@ def create_summarizer_agent():
         backstory="You are a master of synthesizing academic research, capable of extracting and presenting the most important aspects of studies in a clear, concise manner.",
         verbose=True,
         allow_delegation=False,
-        llm=llm,
-        tools=[search_tool]
+        llm=ClaudeSonnet,
+        tools=[search_api_tool]
     )
 
 def create_podcast_question_generator():
@@ -87,8 +79,8 @@ def create_podcast_question_generator():
         backstory="You are an expert at crafting engaging questions that spark critical thinking and curiosity. Your questions aim to explore ideas that can lead to societal progress and personal fulfillment, with a focus on scalability to vast populations.",
         verbose=True,
         allow_delegation=False,
-        llm=llm,
-        tools=[search_tool]
+        llm=ClaudeSonnet,
+        tools=[search_api_tool]
     )
 
 def read_document_task(reader_agent, file_path):
@@ -188,6 +180,7 @@ def main(input_file_path, output_file_path, podcast_description, guest_name, gue
         )
         podcast_questions = kickoff_crew(question_crew)
         all_questions.append(podcast_questions)
+        print(podcast_questions)
 
         # Write the chunk's summary and questions to the file
         with open(output_file_path, 'a') as f:
@@ -199,8 +192,18 @@ def main(input_file_path, output_file_path, podcast_description, guest_name, gue
     print(f"All chunk summaries and questions have been written to {output_file_path}")
 
 if __name__ == "__main__":
-    input_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Oron Catts/ionat_zurr-phd-final.pdf"
-    output_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Oron Catts/pHDThesisBasedQuestions.txt"
+    input_file = input("Please enter the full path to the input PDF file: ").strip()
+    guest_name = input("Please enter the guest's name: ").strip()
+    guest_expertise = input("Please enter the guest's area of expertise: ").strip()
+
+    # output_file = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Oron Catts/pHDThesisBasedQuestions.txt"
+
+    # Generate output file path
+    input_dir = os.path.dirname(input_file)
+    input_filename = os.path.basename(input_file)
+    output_filename = os.path.splitext(input_filename)[0] + "_questions.txt"
+    output_file = os.path.join(input_dir, output_filename)
+
     podcast_description = """
     A Sandbox Approach To Harvesting/Distilling Great Ideas
     Welcome to the Idea Sandbox podcast, where we dive into the power of ideas and the belief that they are the foundation of all societal progress and personal fulfillment. In a world increasingly focused on legislative solutions, we explore a different path—one where the spread of enlightened ideas can shape our value system and inspire change far beyond what laws alone can achieve.
@@ -211,6 +214,6 @@ if __name__ == "__main__":
     
     Join us as we explore the limitless possibilities that come from thinking critically, living intentionally, and fostering a culture that values ideas as the catalysts for authentic, sustainable progress. Together, let's create a future that is not only imagined but actively built on the foundation of ideas that enlighten, empower, and connect us all.
     """
-    guest_name = "Kiran Garimella"  # Replace with actual guest name
-    guest_expertise = "Misinformation, Whatsapp"  # Replace with actual guest expertise
+    # guest_name = "Kiran Garimella"  # Replace with actual guest name
+    # guest_expertise = "Misinformation, Whatsapp"  # Replace with actual guest expertise
     main(input_file, output_file, podcast_description, guest_name, guest_expertise)

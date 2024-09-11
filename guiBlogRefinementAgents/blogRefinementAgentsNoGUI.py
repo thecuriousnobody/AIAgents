@@ -144,8 +144,8 @@ def run_content_enhancer(blog_content):
         process=Process.sequential
     )
 
-    output = crew.kickoff()
     return output
+    output = crew.kickoff()
 
 if __name__ == "__main__":
 

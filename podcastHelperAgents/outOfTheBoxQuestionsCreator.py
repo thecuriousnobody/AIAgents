@@ -27,16 +27,7 @@ llm = ChatOpenAI(
     model_name="llama3-70b-8192"
 )
 
-# crew_manager = ChatAnthropic(model="claude-3-5-sonnet-20240620", temperature=0, api_key=config.ANTHROPIC_API_KEY)
-crew_manager = ChatAnthropic(
-    model="claude-3-5-sonnet-20240620",
-    temperature=0,
-    max_tokens=1024,
-)
 
-
-# In the main function, create the manager agent
-# manager_agent = create_manager_agent()
 def create_research_agent(guest_name, profession):
     return Agent(
         role="Expert Research Agent",
@@ -220,13 +211,13 @@ def main(guest_name, profession):
     final_question_task = Task(
         description="Finalize the interview questions based on the refined research.",
         agent=question_agent,
-        expected_output="A final list of 10-15 well-crafted interview questions, incorporating insights from the refined research."
+        expected_output="A final list of 15-20 well-crafted interview questions, incorporating insights from the refined research."
     )
 
     creative_inquiry_task = Task(
         description="Generate highly original, thought-provoking questions based on the research and initial questions.",
         agent=creative_agent,
-        expected_output="A list of 5-7 unconventional and insightful questions that explore the guest's core motivations, visions, and potentially controversial ideas."
+        expected_output="A list of 15-20 unconventional and insightful questions that explore the guest's core motivations, visions, and potentially controversial ideas."
     )
 
     crew = Crew(
@@ -249,9 +240,9 @@ def main(guest_name, profession):
         print(f"An unexpected error occurred: {e}")
 
 if __name__ == "__main__":
-    # guest_name = input("Enter the guest's name: ")
-    # profession = input("Enter the guest's profession: ")
-    guest_name = "Marina Debris"
-    profession = "Creator of Trashion concept, "
+    guest_name = input("Enter the guest's name: ")
+    profession = input("Enter the guest's profession: ")
+    # guest_name = "Marina Debris"
+    # profession = "Creator of Trashion concept, "
     # output_file = input("Enter the path for the output file: ")
     main(guest_name, profession)

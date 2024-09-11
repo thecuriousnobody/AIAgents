@@ -8,53 +8,10 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 from usefulTools.search_tools import search_tool, youtube_tool,search_api_tool
-
-
+from usefulTools.llm_repository import ClaudeSonnet
 os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
-
-
-ClaudeSonnet = ChatAnthropic(model="claude-3-5-sonnet-20240620")
-
-# Initialize SerpAPIWrapper with the API key
-
-from crewai import Agent, Task, Crew, Process
-from langchain_openai import ChatOpenAI
-from langchain_anthropic import ChatAnthropic
-from langchain_community.utilities import SerpAPIWrapper
-import os
-import sys
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-import config
-
-os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
-os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
-
-ClaudeSonnet = ChatAnthropic(model="claude-3-5-sonnet-20240620")
-
-search_wrapper = SerpAPIWrapper(
-    serpapi_api_key=config.SERPAPI_API_KEY,
-    params={
-        "engine": "google",
-        "google_domain": "google.com",
-        "gl": "us",
-        "hl": "en",
-        "num": 10,
-        "tbm": "",
-        "safe": "active",
-        "device": "desktop",
-        "output": "json",
-        "no_cache": False
-    }
-)
-
-# Create a custom tool using the SerpAPIWrapper
-search_tool = Tool(
-    name="Search",
-    func=search_wrapper.run,
-    description="Useful for searching the internet to find information on people, topics, or current events."
-)
 
 def create_agents_and_tasks(niche_topic):
     topic_analyzer = Agent(
@@ -68,7 +25,7 @@ def create_agents_and_tasks(niche_topic):
 
     expert_finder = Agent(
         role="Expert Finder",
-        goal=f"Identify a diverse range of potential guests related to the analyzed topic.",
+        goal=f"Identify a diverse range of potential guests related to the analyzed topic, including those with high, medium, and low public profiles.",
         backstory="You have vast knowledge of people working across various disciplines, with a focus on both well-known experts and lesser-known but impactful individuals.",
         verbose=True,
         allow_delegation=False,
@@ -78,8 +35,8 @@ def create_agents_and_tasks(niche_topic):
 
     contact_researcher = Agent(
         role="Contact Information Researcher",
-        goal=f"Find contact information for the identified potential guests.",
-        backstory="You are skilled at finding contact information for individuals across various sectors.",
+        goal=f"Find contact information for all identified potential guests, regardless of their public profile.",
+        backstory="You are skilled at finding contact information for individuals across various sectors and levels of public visibility.",
         verbose=True,
         allow_delegation=False,
         llm=ClaudeSonnet,
@@ -93,20 +50,20 @@ def create_agents_and_tasks(niche_topic):
     )
 
     find_experts_task = Task(
-        description=f"Based on the analysis of the niche topic '{niche_topic}', identify a diverse range of potential guests who could provide valuable insights as podcast guests.",
+        description=f"Based on the analysis of the niche topic '{niche_topic}', identify a diverse range of potential guests who could provide valuable insights as podcast guests. Include individuals with high, medium, and low public profiles.",
         agent=expert_finder,
-        expected_output="""A comprehensive list of potential podcast guests, including:
+        expected_output="""A comprehensive list of at least 15 potential podcast guests, including:
         1. Their names and roles/affiliations
         2. A brief description of their work or experience related to the topic
         3. Why they would be a valuable guest (their unique perspective or contribution)
         4. Their approximate level of public profile (high, medium, low)
         
-        The list should include a mix of high-profile experts and lesser-known individuals doing important work in the field.""",
+        Ensure the list includes a balanced mix of high-profile experts, mid-level professionals, and lesser-known individuals doing important work in the field. Aim for at least 5 individuals in each category (high, medium, low profile).""",
         context=[analyze_topic_task]
     )
 
     research_contacts_task = Task(
-        description=f"For the identified potential guests, research and provide their contact information or suggest ways to reach them.",
+        description=f"For all identified potential guests, regardless of their public profile, research and provide their contact information or suggest ways to reach them.",
         agent=contact_researcher,
         expected_output="""For each potential guest:
         1. Any available contact information

@@ -19,7 +19,7 @@ from googleCustomSearch import google_custom_search
 from langchain.tools import Tool
 from langchain_community.utilities import SerpAPIWrapper
 from usefulTools.search_tools import search_tool, youtube_tool, search_api_tool
-
+from usefulTools.llm_repository import ClaudeSonnet
 
 from crewai_tools.tools import SerperDevTool
 from langchain.tools import Tool
@@ -28,10 +28,6 @@ os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
 
-
-ClaudeSonnet = ChatAnthropic(
-    model="claude-3-5-sonnet-20240620"
-)
 
 def get_user_input_path():
     while True:

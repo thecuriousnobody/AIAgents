@@ -8,7 +8,7 @@ from langchain_community.utilities import SerpAPIWrapper
 import datetime
 from serpapi import GoogleSearch
 from search_tools import search_tool, youtube_tool, search_api_tool
-
+from usefulTools.llm_repository import ClaudeSonnet
 
 # Add the parent directory to sys.path to import config
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -19,9 +19,10 @@ os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
 
-# Initialize AI models
-ClaudeSonnet = ChatAnthropic(model="claude-3-5-sonnet-20240620")
+# Define the output directory
+OUTPUT_DIR = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Google_Searcher_Agents_Output"
 
+# Initialize AI models
 
 # Define agents
 query_refiner = Agent(
@@ -36,7 +37,7 @@ query_refiner = Agent(
 researcher = Agent(
     role='Researcher',
     goal='Conduct comprehensive searches and gather vital information from both web and video sources',
-    backstory="You are a skilled researcher with a knack for finding the most relevant and important information on any topic, using both web and video sources. You can effectively use parsed YouTube data to enhance your research.",
+    backstory="You are a skilled researcher with a knack for finding the most relevant and important information on any topic, using both web and video sources. You can effectively use parsed YouTube data to enhance your research. Include all links found in your research.",
     verbose=True,
     allow_delegation=False,
     tools=[search_api_tool,youtube_tool],
@@ -46,7 +47,7 @@ researcher = Agent(
 organizer = Agent(
     role='Information Organizer',
     goal='Organize research results into a structured, easy-to-understand format, integrating both web and video content',
-    backstory="You are an expert in information management, capable of organizing complex data from various sources into clear, concise, and useful formats. You excel at integrating information from both textual and video sources.",
+    backstory="You are an expert in information management, capable of organizing complex data from various sources into clear, concise, and useful formats. You excel at integrating information from both textual and video sources. Include all links in your organization, along with a summary of key points.",
     verbose=True,
     allow_delegation=False,
     llm=ClaudeSonnet
@@ -62,21 +63,21 @@ def refine_query_task_routine(topic):
 
 def research_task_routine(refine_query_task):
     return Task(
-        description="Use the refined queries to conduct comprehensive searches using both web and YouTube sources. Gather the most vital information on the topic, including relevant video content.",
+        description="Use the refined queries to conduct comprehensive searches using both web and YouTube sources. Gather the most vital information on the topic, including relevant video content. Include all links found in your research.",
         agent=researcher,
-        expected_output="A comprehensive collection of the most relevant information from both web and video sources, including key points, links, and parsed YouTube video data.",
+        expected_output="A comprehensive collection of the most relevant information from both web and video sources, including key points, all links, and parsed YouTube video data.",
         context = [refine_query_task]
     )
 
 def organize_info_task_routine(research_task):
     return Task(
-        description="Take the research results from both web and video sources and organize them into a structured format. Integrate web-based information with relevant video content, ensuring clear attribution and easy navigation between different types of sources.",
+        description="Take the research results from both web and video sources and organize them into a structured format. Integrate web-based information with relevant video content, ensuring clear attribution and easy navigation between different types of sources. Include all links and a summary of key points.",
         agent=organizer,
-        expected_output="A well-organized document with key information from both web and video sources, including parsed YouTube data. The document should have clear sections for textual and video content, with easy-to-follow links and a coherent narrative that integrates both types of information.",
+        expected_output="A well-organized document with key information from both web and video sources, including parsed YouTube data. The document should have clear sections for textual and video content, with all links included and a coherent narrative that integrates both types of information. Provide a summary of key points at the end.",
         context = [research_task]
     )
 
-# Function to run the research process
+# Function to run the research process and save output to file
 def conduct_research(topic):
     print(f"Starting research on topic: {topic}")
     
@@ -95,6 +96,17 @@ def conduct_research(topic):
     
     # Run the crew with the topic as input
     result = research_crew.kickoff(inputs={"topic": topic})
+    
+    # Save the result to a file
+    sanitized_topic = ''.join(e for e in topic if e.isalnum() or e.isspace())
+    filename = f"{sanitized_topic}_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
+    filepath = os.path.join(OUTPUT_DIR, filename)
+    
+    with open(filepath, 'w', encoding='utf-8') as f:
+        f.write(f"Research Results for: {topic}\n\n")
+        f.write(result)
+    
+    print(f"\nResearch results saved to: {filepath}")
     return result
 
 # Example usage
