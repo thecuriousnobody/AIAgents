@@ -15,10 +15,8 @@ from langchain.tools import Tool
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 
 # Initialize language model and search tool
-ClaudeSonnet = ChatAnthropic(
-    model="claude-3-5-sonnet-20240620"
-)
-search_tool = DuckDuckGoSearchRun()
+from usefulTools.search_tools import search_tool, youtube_tool, search_api_tool
+
 
 # Contact Information Researcher Agent
 contact_researcher = Agent(

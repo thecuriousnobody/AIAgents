@@ -2,14 +2,12 @@ from crewai import Agent, Task, Crew, Process
 from langchain_openai import ChatOpenAI
 from langchain_anthropic import ChatAnthropic
 from langchain_community.utilities import SerpAPIWrapper
-
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
-from usefulTools.search_tools import search_tool, youtube_tool
+from usefulTools.search_tools import search_api_tool, youtube_tool
 from usefulTools.llm_repository import ClaudeSonnet
-
 import logging
 import time
 
@@ -20,14 +18,6 @@ os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
 
-
-def anthropic_llm():
-    return ChatAnthropic(
-        model="claude-3-5-sonnet-20240620",
-        max_tokens=8192,        
-        temperature=0.5,
-        api_key=os.environ.get("ANTHROPIC_API_KEY"),
-    )
 
 IDEA_SANDBOX_MISSION = """
     A Sandbox Approach To Harvesting/Distilling Great Ideas
@@ -47,7 +37,7 @@ def create_agents_and_tasks(full_transcript, chapter_script):
         verbose=True,
         allow_delegation=False,
          max_iter = 100,
-        llm=anthropic_llm()
+        llm=ClaudeSonnet
     )
 
     creative_script_composer = Agent(
@@ -57,7 +47,7 @@ def create_agents_and_tasks(full_transcript, chapter_script):
         verbose=True,
         allow_delegation=False,
         max_iter = 100,
-        llm=anthropic_llm()
+        llm=ClaudeSonnet
     )
 
     fact_checker = Agent(
@@ -68,7 +58,7 @@ def create_agents_and_tasks(full_transcript, chapter_script):
         allow_delegation=False,
         llm=ClaudeSonnet,
         max_iter = 100,
-        tools=[search_tool]
+        tools=[search_api_tool]
     )
 
     script_compiler = Agent(
@@ -78,7 +68,7 @@ def create_agents_and_tasks(full_transcript, chapter_script):
         verbose=True,
         allow_delegation=False,
         max_iter = 100,
-        llm=anthropic_llm()
+        llm=ClaudeSonnet
     )
 
     if chapter_script:
