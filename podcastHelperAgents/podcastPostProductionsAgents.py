@@ -9,7 +9,7 @@ from langchain.agents import Tool
 import config
 from anthropic import APIStatusError
 import time
-from usefulTools.search_tools import search_tool, youtube_tool
+from usefulTools.search_tools import search_tool, youtube_tool, search_api_tool
 from usefulTools.llm_repository import ClaudeSonnet
 
 # Set up environment variables and API keys
@@ -65,7 +65,7 @@ def create_data_researcher_agent():
         verbose=True,
         allow_delegation=False,
         llm=llm,
-        tools=[search_tool]
+        tools=[search_api_tool]
     )
 
 
@@ -94,7 +94,7 @@ def research_data_task(agent, distilled_ideas):
         description=f"Research and gather relevant, up-to-date information and statistics related to the following theme and points:\n\n{distilled_ideas}\n\nProvide a comprehensive summary of your findings, including sources where appropriate.",
         agent=agent,
         expected_output="A detailed summary of relevant data and statistics, with sources, that either support or challenge the central theme.",
-        tools=[search_tool],
+        tools=[search_api_tool],
         context=["distill_ideas_task"]
     )
 
