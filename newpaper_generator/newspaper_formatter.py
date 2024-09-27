@@ -1,5 +1,6 @@
 import sys
 import os
+import json
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 from crewai import Agent, Task
@@ -38,33 +39,37 @@ def create_newspaper_formatter_agent():
         llm=llm
     )
 
-def create_newspaper_formatting_task(written_articles):
+def create_newspaper_formatting_task(newspaper_layout):
     return Task(
-        description=f"""Format the following articles into a cohesive digital newspaper:
-
-        {written_articles}
-
-        Your task includes:
-        1. Organizing articles into appropriate sections
-        2. Creating a visually appealing layout
-        3. Adding headlines, subheadings, and pull quotes
-        4. Suggesting placement for images or infographics (if applicable)
-        5. Ensuring a consistent style throughout the newspaper
-        6. Creating a table of contents or navigation menu
-
-        Provide a detailed description of the formatted newspaper, including the overall structure, 
-        section organization, and any design elements you've incorporated.""",
-        agent=create_newspaper_formatter_agent()
+        description="Format the newspaper layout into a visually appealing HTML document.",
+        expected_output="A formatted HTML document containing the complete newspaper.",
+        input_data={
+            "newspaper_layout": newspaper_layout
+        }
     )
 
 if __name__ == "__main__":
     # For testing purposes
-    import json
-    with open("written_articles.json", "r") as f:
-        written_articles = json.load(f)
+    sample_newspaper_layout = {
+        "sections": [
+            {
+                "name": "Top Stories",
+                "articles": [
+                    {
+                        "title": "Sample Article 1",
+                        "content": "This is the content of sample article 1."
+                    },
+                    {
+                        "title": "Sample Article 2",
+                        "content": "This is the content of sample article 2."
+                    }
+                ]
+            }
+        ]
+    }
     
     agent = create_newspaper_formatter_agent()
-    task = create_newspaper_formatting_task(written_articles)
+    task = create_newspaper_formatting_task(sample_newspaper_layout)
     formatted_newspaper = format_newspaper(agent, task)
 
     # Save the formatted newspaper to a file

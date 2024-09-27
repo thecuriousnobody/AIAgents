@@ -25,10 +25,19 @@ def send_emails(agent, task):
     email_result = agent.execute_task(task)
 
     print("\nEmail Sending Results:")
-    print(f"Emails sent: {email_result['sent']}")
-    print(f"Emails failed: {email_result['failed']}")
-    print(f"Open rate: {email_result['open_rate']}%")
-    print(f"Click-through rate: {email_result['click_rate']}%")
+    print(email_result)  # Print the raw result for debugging
+
+    # Check if email_result is a string (error message) or a dictionary
+    if isinstance(email_result, str):
+        print("Error occurred during email sending:")
+        print(email_result)
+        return {"error": email_result, "sent": 0, "failed": 0, "open_rate": 0, "click_rate": 0}
+    
+    # If it's a dictionary, proceed as before
+    print(f"Emails sent: {email_result.get('sent', 'N/A')}")
+    print(f"Emails failed: {email_result.get('failed', 'N/A')}")
+    print(f"Open rate: {email_result.get('open_rate', 'N/A')}%")
+    print(f"Click-through rate: {email_result.get('click_rate', 'N/A')}%")
 
     print("\nEmail sending process complete.")
     return email_result
@@ -56,7 +65,8 @@ def create_email_sending_task(newspaper_layout):
         6. Provide a summary of the email campaign performance
 
         Ensure compliance with anti-spam regulations and email best practices.""",
-        agent=create_email_sender_agent()
+        agent=create_email_sender_agent(),
+        expected_output="A dictionary containing email sending results, including number of emails sent, failed, open rate, and click-through rate."
     )
 
 if __name__ == "__main__":

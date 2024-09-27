@@ -26,12 +26,7 @@ def design_layout(agent, task):
     layout = agent.execute_task(task)
 
     print("\nNewspaper Layout:")
-    print(layout['description'])
-    print("\nSection breakdown:")
-    for section, content in layout['sections'].items():
-        print(f"\n{section}:")
-        for item in content:
-            print(f"  - {item}")
+    print(layout)
 
     print("\nLayout design process complete.")
     return layout
@@ -59,7 +54,8 @@ def create_layout_design_task(written_articles):
 
         Provide a detailed description of the layout, including the placement of articles, 
         suggested visual elements, and the overall structure of the newspaper.""",
-        agent=create_layout_designer_agent()
+        agent=create_layout_designer_agent(),
+        expected_output="A detailed description of the newspaper layout as a string, including sections, article placements, and design elements."
     )
 
 if __name__ == "__main__":

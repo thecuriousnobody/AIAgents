@@ -6,7 +6,6 @@ import json
 from crewai import Agent, Task
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
-
 # Initialize the language model
 llm = ChatOpenAI(
     openai_api_base="https://api.groq.com/openai/v1",
@@ -65,6 +64,46 @@ def create_news_fetching_task(topics):
         expected_output="A list of news articles for each selected topic, including titles, summaries, and source URLs.",
         agent=create_news_fetcher_agent()
     )
+
+def select_topics(agent, task):
+    print("Starting topic selection process...")
+    print("Agent role:", agent.role)
+    print("Agent goal:", agent.goal)
+    print("Task description:", task.description)
+
+    # Execute the task
+    selected_topics = agent.execute_task(task)
+
+    print("\nSelected topics:")
+    for topic in selected_topics.split('\n'):
+        if topic.strip():
+            print(f"- {topic.strip()}")
+
+    print("\nTopic selection process complete.")
+    return selected_topics.split('\n')
+
+def create_topic_selector_agent():
+    return Agent(
+        role="Topic Selector",
+        goal="Select engaging and relevant topics for the AI newspaper",
+        backstory="""You are an AI with a broad knowledge of current events and trending topics. 
+        Your task is to select a diverse range of engaging and relevant topics for the AI newspaper. 
+        You understand what makes a story newsworthy and can identify topics that will interest readers.""",
+        verbose=True,
+        llm=llm
+    )
+
+def create_topic_selection_task():
+    return Task(
+        description="""Select 5-7 diverse and engaging topics for today's AI newspaper. 
+        Consider current events, technology trends, scientific discoveries, cultural phenomena, 
+        and human interest stories. Provide each topic on a new line.""",
+        expected_output="A list of 5-7 current and engaging news topics, one per line.",
+        agent=create_topic_selector_agent()
+    )
+
+# Add this line at the end of the file to ensure all functions are exported
+__all__ = ['select_topics', 'create_topic_selector_agent', 'create_topic_selection_task']
 
 if __name__ == "__main__":
     # For testing purposes

@@ -3,6 +3,8 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 import json
+import requests
+from bs4 import BeautifulSoup
 from crewai import Agent, Task
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
@@ -15,25 +17,34 @@ llm = ChatOpenAI(
     model_name="llama3-70b-8192"
 )
 
-def fetch_news(agent, task):
+def fetch_news(news_agent, news_task):
     print("Starting news fetching process...")
-    print("Agent role:", agent.role)
-    print("Agent goal:", agent.goal)
-    print("Task description:", task.description)
+    print("Agent role:", news_agent.role)
+    print("Agent goal:", news_agent.goal)
+    print("Task description:", news_task.description)
 
     # Execute the task
-    fetched_news = news_agent.execute_task(news_task)
+    try:
+        fetched_news = news_agent.execute_task(news_task)
 
-    print("\nFetched news articles:")
-    for topic, articles in fetched_news.items():
-        print(f"\nTopic: {topic}")
-        for i, article in enumerate(articles, 1):
-            print(f"  {i}. {article['title']}")
-            print(f"     Source: {article['source']}")
-            print(f"     URL: {article['url']}")
+        # Check if fetched_news is a string (error message) or a dictionary
+        if isinstance(fetched_news, str):
+            print(f"An error occurred while fetching news: {fetched_news}")
+            return None
 
-    print("\nNews fetching process complete.")
-    return fetched_news
+        print("\nFetched news articles:")
+        for topic, articles in fetched_news.items():
+            print(f"\nTopic: {topic}")
+            for i, article in enumerate(articles, 1):
+                print(f"  {i}. {article['title']}")
+                print(f"     Source: {article['source']}")
+                print(f"     URL: {article['url']}")
+
+        print("\nNews fetching process complete.")
+        return fetched_news
+    except Exception as e:
+        print(f"An error occurred while fetching news: {e}")
+        return None
 
 
 def create_news_fetcher_agent():
