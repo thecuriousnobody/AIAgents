@@ -117,10 +117,10 @@ def create_creative_inquiry_task(question_agent, content_analysis):
     )
 
 def main():
-    # guest_name = input("Enter the name of the podcast guest: ")
-    # youtube_url = input("Enter the URL of the YouTube video to analyze: ")
-    guest_name = "Marina Debris"
-    youtube_url = "https://youtu.be/yrKfPqs0jE4?si=E_Aecpl6b9kdcadj"
+    guest_name = input("Enter the name of the podcast guest: ")
+    youtube_url = input("Enter the URL of the YouTube video to analyze: ")
+    # guest_name = "Marina Debris"
+    # youtube_url = "https://youtu.be/yrKfPqs0jE4?si=E_Aecpl6b9kdcadj"
 
     analyzer = create_youtube_analyzer_agent(youtube_url)
     question_generator = create_question_generator_agent()

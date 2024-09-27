@@ -32,8 +32,8 @@ def pdf_to_text(pdf_path, output_path, dpi=200, chunk_size=10):
         sys.exit(1)
 
 # Usage
-pdf_path = '/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Oron Catts/oronCattsFullBook.pdf'
-output_path = '/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Oron Catts/output.txt'
+pdf_path = '/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Kalpana Sharma/DharawiBook.pdf'
+output_path = '/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Kalpana Sharma/DharawiBookOutput.txt'
 
 try:
     pdf_to_text(pdf_path, output_path)

@@ -7,7 +7,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 from usefulTools.llm_repository import ClaudeOpus,ClaudeSonnet
-from usefulTools.search_tools import search_tool
+from usefulTools.search_tools import search_tool, search_api_tool
 from crewai import Agent, Task, Crew, Process
 from langchain.agents import Tool
 llm = ClaudeSonnet
@@ -21,7 +21,7 @@ def create_podcast_prep_crew(guest_name):
         verbose=True,
         allow_delegation=False,
         llm=llm,
-        tools=[search_tool]
+        tools=[search_api_tool]
     )
 
     distillation_agent = Agent(
@@ -70,7 +70,7 @@ def create_podcast_prep_crew(guest_name):
     )
 
 # Usage
-guest_name = "Marina Debris"
+guest_name = "Kalpana Sharma"
 crew = create_podcast_prep_crew(guest_name)
 result = crew.kickoff()
 

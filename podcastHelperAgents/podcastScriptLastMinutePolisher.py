@@ -13,7 +13,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 from usefulTools.llm_repository import ClaudeOpus,ClaudeSonnet
-from usefulTools.search_tools import search_tool
+from usefulTools.search_tools import search_tool, search_api_tool
 
 
 # Initialize LLM and search tool
@@ -49,7 +49,7 @@ def create_information_gatherer_agent():
         verbose=True,
         allow_delegation=False,
         llm=llm,
-        tools=[search_tool]
+        tools=[search_api_tool]
     )
 
 def create_keyword_generator_agent():
