@@ -102,7 +102,7 @@ def create_indian_city_rename_cost_crew(city_name, new_name, population):
     return Crew(
         agents=[research_agent, cost_estimation_agent, impact_analysis_agent, error_checking_agent, cultural_impact_agent],
         tasks=[research_task, cost_estimation_task, impact_analysis_task, error_checking_task, cultural_impact_task, final_report_task],
-        verbose=2,
+        verbose=True,
         process=Process.sequential
     )
 

@@ -6,8 +6,8 @@ from langchain_openai import ChatOpenAI
 from langchain_anthropic import ChatAnthropic
 from langchain_community.utilities import SerpAPIWrapper
 import datetime
-from serpapi import GoogleSearch
-from search_tools import search_tool, youtube_tool, search_api_tool
+# from serpapi import GoogleSearch
+from usefulTools.search_tools import search_tool, youtube_tool, search_api_tool
 from usefulTools.llm_repository import ClaudeSonnet
 
 # Add the parent directory to sys.path to import config

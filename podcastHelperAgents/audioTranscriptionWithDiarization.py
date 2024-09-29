@@ -5,6 +5,7 @@ from pyannote.audio.pipelines.utils.hook import ProgressHook
 import whisper
 import sys
 import os
+os.environ["PATH"] += os.pathsep + "/opt/homebrew/bin"
 from tqdm import tqdm
 import re
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
