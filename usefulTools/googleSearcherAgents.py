@@ -104,7 +104,7 @@ def conduct_research(topic):
     
     with open(filepath, 'w', encoding='utf-8') as f:
         f.write(f"Research Results for: {topic}\n\n")
-        f.write(result)
+        f.write(str(result))
     
     print(f"\nResearch results saved to: {filepath}")
     return result
