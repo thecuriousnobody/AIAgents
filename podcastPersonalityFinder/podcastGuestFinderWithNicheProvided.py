@@ -3,10 +3,6 @@ from crewai_tools import Tool
 from langchain_openai import ChatOpenAI
 from langchain_anthropic import ChatAnthropic
 from langchain_community.utilities import SerpAPIWrapper
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/macMiniAug2024_Development
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -77,11 +73,7 @@ def create_agents_and_tasks(niche_topic):
         verbose=True,
         allow_delegation=False,
         llm=ClaudeSonnet,
-<<<<<<< HEAD
-        tools=[search_tool]
-=======
         tools = [search_tool]
->>>>>>> origin/macMiniAug2024_Development
     )
 
     contact_researcher = Agent(
@@ -91,11 +83,7 @@ def create_agents_and_tasks(niche_topic):
         verbose=True,
         allow_delegation=False,
         llm=ClaudeSonnet,
-<<<<<<< HEAD
-        tools=[search_tool]
-=======
         tools = [search_tool]
->>>>>>> origin/macMiniAug2024_Development
     )
 
     analyze_topic_task = Task(
@@ -107,9 +95,6 @@ def create_agents_and_tasks(niche_topic):
     find_experts_task = Task(
         description=f"Based on the analysis of the niche topic '{niche_topic}', identify a diverse range of potential guests who could provide valuable insights as podcast guests.",
         agent=expert_finder,
-<<<<<<< HEAD
-        expected_output="A list of potential podcast guests, including their names, roles/affiliations, relevance to the topic, and unique perspectives they could offer.",
-=======
         expected_output="""A comprehensive list of potential podcast guests, including:
         1. Their names and roles/affiliations
         2. A brief description of their work or experience related to the topic
@@ -117,22 +102,17 @@ def create_agents_and_tasks(niche_topic):
         4. Their approximate level of public profile (high, medium, low)
         
         The list should include a mix of high-profile experts and lesser-known individuals doing important work in the field.""",
->>>>>>> origin/macMiniAug2024_Development
         context=[analyze_topic_task]
     )
 
     research_contacts_task = Task(
         description=f"For the identified potential guests, research and provide their contact information or suggest ways to reach them.",
         agent=contact_researcher,
-<<<<<<< HEAD
-        expected_output="Contact information or suggested methods of reaching out for each identified potential guest, including professional email addresses, social media profiles, or affiliated organization contacts.",
-=======
         expected_output="""For each potential guest:
         1. Any available contact information
         2. Suggestions for reaching out if direct contact info is not available
         3. Notes on the best approach for contacting each individual (e.g., through their organization, via social media, etc.)
         4. Any relevant etiquette or cultural considerations for reaching out to these individuals""",
->>>>>>> origin/macMiniAug2024_Development
         context=[find_experts_task]
     )
 
@@ -158,24 +138,11 @@ if __name__ == '__main__':
     print("\nGuest Finder Results:")
     print(result)
 
-<<<<<<< HEAD
-    # Define the folder path
-    folder_path = "/Users/rajeevkumar/Documents/TISB/pitchEmails"
-    
-    # Create the folder if it doesn't exist
-    os.makedirs(folder_path, exist_ok=True)
-
-    # Define the file name with the full path
-    file_name = os.path.join(folder_path, f"potential_guests_{niche_topic.replace(' ', '_')}.txt")
-
-    # Write the generated content to the file
-=======
     # Write the generated content to a file
     directory = "/Users/rajeevkumar/Documents/TISB/guestLeads"
     file_name = f"potential_guests_{niche_topic.replace(' ', '_')}.txt"
     full_path = os.path.join(directory, file_name)  
     
->>>>>>> origin/macMiniAug2024_Development
     try:
         with open(full_path, "w") as file:
             file.write(result)
