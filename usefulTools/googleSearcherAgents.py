@@ -7,7 +7,7 @@ from langchain_anthropic import ChatAnthropic
 from langchain_community.utilities import SerpAPIWrapper
 import datetime
 # from serpapi import GoogleSearch
-from usefulTools.search_tools import search_tool, youtube_tool, search_api_tool
+from usefulTools.search_tools import youtube_tool, search_api_tool
 from usefulTools.llm_repository import ClaudeSonnet
 
 # Add the parent directory to sys.path to import config
@@ -20,7 +20,7 @@ os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
 
 # Define the output directory
-OUTPUT_DIR = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Google_Searcher_Agents_Output"
+OUTPUT_DIR = "/Users/rajeevkumar/Documents/TISB Stuff/guestPrep/googleSearcherAgentOutput"
 
 # Initialize AI models
 

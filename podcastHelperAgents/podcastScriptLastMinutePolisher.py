@@ -139,7 +139,7 @@ def main(guest_name, script_path, topic):
     crew = Crew(
         agents=[polisher, gatherer, keyword_generator],
         tasks=[polishing_task, gathering_task, keyword_task],
-        verbose=2,
+        verbose=True,
         process=Process.sequential
     )
 
@@ -153,7 +153,7 @@ if __name__ == "__main__":
     # guest_name = input("Enter the name of the podcast guest: ")
     # script_path = input("Enter the local path to your PDF script: ")
     # topic = input("Enter the main topic of the podcast: ")
-    guest_name = "Marina Debris"
-    script_path = "/Users/rajeevkumar/Downloads/Marina DeBris Final Script.pdf"
-    topic = "Ocean waste, artivism"
+    guest_name = input("Enter Guest Name: ")
+    script_path = input("Enter Script Path: ").strip()
+    topic = input("What is the Big Picture Topic: ")
     main(guest_name, script_path, topic)

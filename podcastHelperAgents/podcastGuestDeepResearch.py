@@ -12,6 +12,8 @@ from crewai import Agent, Task, Crew, Process
 from langchain.agents import Tool
 llm = ClaudeSonnet
 
+os.environ["SEARCH_API_KEY"] = config.SEARCH_API_KEY
+
 def create_podcast_prep_crew(guest_name):
     # Define the agents
     research_agent = Agent(
@@ -65,12 +67,12 @@ def create_podcast_prep_crew(guest_name):
     return Crew(
         agents=[research_agent, distillation_agent, question_formulation_agent],
         tasks=[research_task, distillation_task, question_formulation_task],
-        verbose=2,
+        verbose=True,
         process=Process.sequential
     )
 
 # Usage
-guest_name = "Kalpana Sharma"
+guest_name = input ('Enter guest name: ')
 crew = create_podcast_prep_crew(guest_name)
 result = crew.kickoff()
 
