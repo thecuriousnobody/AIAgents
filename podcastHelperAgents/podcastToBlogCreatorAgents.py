@@ -6,15 +6,12 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 import datetime
 from usefulTools.search_tools import search_tool, youtube_tool
+from usefulTools.llm_repository import ClaudeSonnet
 
 # Set up environment variables
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 os.environ["OPENAI_API_KEY"] = config.OPENAI_API_KEY
 
-# Initialize language model
-ClaudeSonnet = ChatAnthropic(
-    model="claude-3-5-sonnet-20240620"
-    )
 
 # Define the mission statement
 mission_statement = """
@@ -148,7 +145,7 @@ def analyze_podcast_transcript(transcript_file_path, podcast_title):
     podcast_analysis_crew = Crew(
         agents=[document_reader, content_analyzer, blog_composer],
         tasks=[read_transcript_task, analyze_content_task, compose_blog_task],
-        verbose=2,
+        verbose=True,
         process=Process.sequential
     )
     
@@ -161,8 +158,16 @@ def analyze_podcast_transcript(transcript_file_path, podcast_title):
 
 # Example usage
 if __name__ == "__main__":
-    transcript_file_path = "/Volumes/Samsung/digitalArtifacts/podcastRawFootage/transcription_Kiran.txt"
-    podcast_title = "Whatsapp University"
+    # Get user input for transcript file path
+    transcript_file_path = input("Enter the transcript file path: ")
+
+    # Get user input for podcast title
+    podcast_title = input("Enter the podcast title: ")
+
+    # Print the entered values
+    print("\nYou entered:")
+    print(f"Transcript file path: {transcript_file_path}")
+    print(f"Podcast title: {podcast_title}")
     
     blog_post = analyze_podcast_transcript(transcript_file_path, podcast_title)
     

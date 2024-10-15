@@ -1,0 +1,42 @@
+{
+  "agents": [
+    {
+      "role": "Boxing Career Specialist",
+      "goal": "This agent will be responsible for researching and analyzing Mike Tyson's professional boxing career, including his fights, titles, and impact on the sport. They will focus on his training, fighting style, and major achievements in the ring.",
+      "backstory": "Agent 1 is a former professional boxer who transitioned into sports journalism and boxing analysis after retiring from the ring. With over two decades of experience in the boxing world, both as a competitor and a commentator, Agent 1 has developed a keen understanding of the sport's history, techniques, and the personal challenges faced by elite fighters. This background makes Agent 1 uniquely qualified to research and analyze Mike Tyson's life, both inside and outside the boxing ring."
+    },
+    {
+      "role": "Personal Life and Controversies Analyst",
+      "goal": "This agent will be responsible for investigating Mike Tyson's personal life, including his upbringing, relationships, legal issues, and public controversies. They will examine how these aspects influenced his career and public image.",
+      "backstory": "Agent 2 is a seasoned journalist with over two decades of experience covering celebrity news and scandals. Their career has been marked by a keen ability to uncover hidden details and present complex personal stories in a balanced, yet engaging manner. Agent 2's background in psychology and sociology provides a unique perspective when analyzing the personal lives and controversies surrounding public figures like Mike Tyson."
+    },
+    {
+      "role": "Post-Boxing Career and Media Presence Expert",
+      "goal": "This agent will be responsible for exploring Mike Tyson's life after his professional boxing career, including his business ventures, media appearances, and reinvention as a public figure. They will analyze his transition from athlete to entrepreneur and entertainer.",
+      "backstory": "Agent 3 is a former sports journalist who specialized in boxing coverage for over two decades before transitioning into academia. They now hold a position as a professor of sports media and communications, focusing on the intersection of athletic careers and public personas in the digital age. Agent 3's unique background combines hands-on experience in boxing journalism with scholarly research on post-career transitions for high-profile athletes, making them particularly well-suited to analyze Mike Tyson's life after his time in the ring."
+    },
+    {
+      "role": "Cultural Impact and Legacy Evaluator",
+      "goal": "This agent will be responsible for assessing Mike Tyson's overall impact on popular culture, sports history, and society at large. They will examine his influence on boxing, his representation in media, and his lasting legacy in the public consciousness.",
+      "backstory": "Agent 4 grew up in a family of sports historians and sociologists, developing a keen interest in the intersection of athletics, culture, and society from an early age. Their academic background in cultural studies and sports psychology, combined with years of experience analyzing the long-term impacts of iconic athletes on popular culture, makes them uniquely qualified to evaluate Mike Tyson's cultural legacy. Agent 4's expertise in tracing the ripple effects of sports figures' actions both inside and outside the ring will be invaluable in assessing Tyson's complex and controversial impact on boxing, entertainment, and society at large."
+    }
+  ],
+  "tasks": [
+    {
+      "description": "Based on your role as Boxing Career Specialist and your goal: This agent will be responsible for researching and analyzing Mike Tyson's professional boxing career, including his fights, titles, and impact on the sport. They will focus on his training, fighting style, and major achievements in the ring., perform your part of the research on the topic: 'Mike Tyson's life'. Provide a detailed analysis and findings related to your specific area of focus.",
+      "expected_output": "A comprehensive report on the aspects of 'Mike Tyson's life' relevant to Boxing Career Specialist's expertise and focus area."
+    },
+    {
+      "description": "Based on your role as Personal Life and Controversies Analyst and your goal: This agent will be responsible for investigating Mike Tyson's personal life, including his upbringing, relationships, legal issues, and public controversies. They will examine how these aspects influenced his career and public image., perform your part of the research on the topic: 'Mike Tyson's life'. Provide a detailed analysis and findings related to your specific area of focus.",
+      "expected_output": "A comprehensive report on the aspects of 'Mike Tyson's life' relevant to Personal Life and Controversies Analyst's expertise and focus area."
+    },
+    {
+      "description": "Based on your role as Post-Boxing Career and Media Presence Expert and your goal: This agent will be responsible for exploring Mike Tyson's life after his professional boxing career, including his business ventures, media appearances, and reinvention as a public figure. They will analyze his transition from athlete to entrepreneur and entertainer., perform your part of the research on the topic: 'Mike Tyson's life'. Provide a detailed analysis and findings related to your specific area of focus.",
+      "expected_output": "A comprehensive report on the aspects of 'Mike Tyson's life' relevant to Post-Boxing Career and Media Presence Expert's expertise and focus area."
+    },
+    {
+      "description": "Based on your role as Cultural Impact and Legacy Evaluator and your goal: This agent will be responsible for assessing Mike Tyson's overall impact on popular culture, sports history, and society at large. They will examine his influence on boxing, his representation in media, and his lasting legacy in the public consciousness., perform your part of the research on the topic: 'Mike Tyson's life'. Provide a detailed analysis and findings related to your specific area of focus.",
+      "expected_output": "A comprehensive report on the aspects of 'Mike Tyson's life' relevant to Cultural Impact and Legacy Evaluator's expertise and focus area."
+    }
+  ]
+}

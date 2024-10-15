@@ -176,7 +176,7 @@ def main(input_file_path, output_file_path):
     condense_crew = Crew(
         agents=[condenser_agent],
         tasks=[condense_task],
-        verbose=2,
+        verbose=True,
         process=Process.sequential
     )
     final_prompts = condense_crew.kickoff()

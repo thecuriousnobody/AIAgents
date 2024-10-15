@@ -21,9 +21,8 @@ def generate_agent_details(blog_rough_cut,goal, context):
 
     analysis_message = client.messages.create(
         model=model,
-        max_tokens=4096,
-        temperature=0.2,
-        # system="You are an expert content analyst. Your task is to analyze the given rough cut blog and provide a concise summary of its key points and areas for improvement.",
+        max_tokens=8192,
+        temperature=0.5,
         system="You are an expert content analyst with extensive experience in blog writing and editing. Your task is to thoroughly analyze the given rough cut blog, providing a comprehensive summary of its key points, strengths, and areas for improvement. Focus on content structure, argument flow, language use, and overall impact. Offer specific, actionable suggestions for enhancing the blog's quality and effectiveness.",
    
         messages=[

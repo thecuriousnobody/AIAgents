@@ -52,25 +52,27 @@ def create_podcast_prep_crew(guest_name):
     distillation_task = Task(
         description=f"Take the research findings and distill them into key points about {guest_name}'s work, expertise, and notable ideas or projects.",
         agent=distillation_agent,
-        expected_output="A list of concise, bullet-point style salient points that capture the essence of the guest's work and ideas."
+        expected_output="A list of concise, bullet-point style salient points that capture the essence of the guest's work and ideas.",
+        context = [research_task]
     )
 
     question_formulation_task = Task(
         description=f"Based on the distilled information, create a set of 10-15 thought-provoking questions for {guest_name} that align with The Idea Sandbox podcast's focus on transformative ideas and their practical applications.",
         agent=question_formulation_agent,
-        expected_output="A list of 10-15 well-crafted interview questions, incorporating insights from the research and distillation phases."
+        expected_output="A list of 10-15 well-crafted interview questions, incorporating insights from the research and distillation phases.",
+        context = [research_task, distillation_task]
     )
 
     # Create and return the crew
     return Crew(
         agents=[research_agent, distillation_agent, question_formulation_agent],
         tasks=[research_task, distillation_task, question_formulation_task],
-        verbose=2,
+        verbose=True,
         process=Process.sequential
     )
 
 # Usage
-guest_name = "Kalpana Sharma"
+guest_name = input("Enter Guest Name for Research: ")
 crew = create_podcast_prep_crew(guest_name)
 result = crew.kickoff()
 

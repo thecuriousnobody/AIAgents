@@ -182,7 +182,7 @@ suggest_guests = Task(
 idea_incubator_crew = Crew(
     agents=[idea_generator, idea_refiner, guest_suggester],
     tasks=[generate_ideas, refine_ideas, suggest_guests],
-    verbose=2,
+    verbose=True,
     process=Process.sequential
 )
 
