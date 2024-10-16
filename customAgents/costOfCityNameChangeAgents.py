@@ -1,3 +1,11 @@
+import sys
+import os
+
+# Add the parent directory to the Python path
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
+
 from crewai import Agent, Task, Crew, Process
 from langchain.agents import Tool
 from langchain_openai import ChatOpenAI
@@ -107,9 +115,9 @@ def create_indian_city_rename_cost_crew(city_name, new_name, population):
     )
 
 # Usage remains the same
-city_name = "Bangalore"
-new_name = "Bengaluru"
-population = 12000000
+city_name = input("Enter Old Name of City: ")
+new_name = input("Enter New Name of City: ")
+population = input("Enter Rough City Population: ")
 crew = create_indian_city_rename_cost_crew(city_name, new_name, population)
 result = crew.kickoff()
 
