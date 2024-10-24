@@ -1,37 +1,62 @@
 from crewai import Agent, Task, Crew, Process
-from langchain_openai import ChatOpenAI
-from langchain_anthropic import ChatAnthropic
-from crewai_tools import YoutubeVideoSearchTool
-from langchain_community.tools import DuckDuckGoSearchRun
 import sys
 import os
-
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 import config
-
 # Ensure you have set up your API keys in your environment variables
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 # Initialize LLMs
-claude = ChatAnthropic(
-    model="claude-3-5-sonnet-20240620"
-)
+from usefulTools.llm_repository import ClaudeSonnet
+from usefulTools.search_tools import search_api_tool
+from usefulTools.youtube_transcriber import get_video_id, get_video_title, consolidate_transcript
+import requests
 
-search_tool = DuckDuckGoSearchRun()
 os.environ["OPENAI_API_KEY"] = config.OPENAI_API_KEY
 
-def create_youtube_analyzer_agent(youtube_url):
-    youtube_tool = YoutubeVideoSearchTool(youtube_video_url=youtube_url)
+def get_youtube_transcript(youtube_url):
+    video_id = get_video_id(youtube_url)
+    if video_id is None:
+        print("Error: Unable to extract the video ID from the provided URL.")
+        return None
+
+    url = "https://www.searchapi.io/api/v1/search"
+    params = {
+        "engine": "youtube_transcripts",
+        "video_id": video_id,
+        "api_key": config.SEARCH_API_KEY,
+        "lang": "en"
+    }
+
+    response = requests.get(url, params=params)
+
+    if response.status_code == 200:
+        consolidated_transcript = consolidate_transcript(response.text)
+        if consolidated_transcript is not None:
+            return consolidated_transcript
+        else:
+            print("Failed to consolidate the transcript.")
+            return None
+    else:
+        print(f"Error: API request failed with status code {response.status_code}")
+        print(response.text)
+        return None
+
+def create_youtube_analyzer_agent(transcript):
+
     return Agent(
         role="YouTube Content Analyzer",
         goal="Analyze the content of the specified YouTube video",
-        backstory="""You are an expert in digital content analysis with a focus on YouTube videos. 
+        backstory=f"""You are an expert in digital content analysis with a focus on YouTube videos. 
         Your task is to thoroughly analyze the provided video, extracting key information, insights, 
-        and themes that could be relevant for a podcast interview.""",
+        and themes that could be relevant for a podcast interview. You have been provided with the full video transcript:
+
+        {transcript}
+
+        Use this transcript as your primary source of information for the analysis.""",
         verbose=True,
         allow_delegation=False,
-        llm=claude,
-        tools=[youtube_tool]
+        llm=ClaudeSonnet,
+        tools=[search_api_tool]
     )
 
 def create_question_generator_agent():
@@ -43,12 +68,16 @@ def create_question_generator_agent():
         video analysis to create questions that will resonate with both the guest and the audience.""",
         verbose=True,
         allow_delegation=False,
-        llm=claude
+        llm=ClaudeSonnet
     )
 
-def create_video_analysis_task(analyzer_agent):
+def create_video_analysis_task(analyzer_agent, transcript):
     return Task(
-        description="""Analyze the content of the YouTube video. Provide:
+        description=f"""Analyze the content of the YouTube video using the provided transcript:
+
+        {transcript}
+
+        Provide:
         1. A summary of the main topics discussed
         2. Key quotes or statements made by the speaker
         3. Any unique perspectives or insights shared
@@ -94,7 +123,7 @@ def create_question_generation_task(question_agent, content_analysis):
 
 def create_creative_inquiry_task(question_agent, content_analysis):
     return Task(
-        description=f"""Based on the following content analysis, generate 5-7 highly original, 
+        description=f"""Based on the following content analysis, generate 10-15 highly original, 
         thought-provoking questions for the podcast interview. Your questions should:
         1. Uncover the guest's core motivations and the deeper purpose behind their work
         2. Explore unconventional or potentially controversial ideas related to their field
@@ -107,32 +136,35 @@ def create_creative_inquiry_task(question_agent, content_analysis):
 
         Content Analysis: {content_analysis}""",
         agent=question_agent,
-        expected_output="""A list of 5-7 highly original and thought-provoking questions that:
-        1. Probe into the guest's core motivations (1-2 questions)
-        2. Explore unconventional ideas in the guest's field (1-2 questions)
-        3. Present a challenging hypothetical scenario (1 question)
-        4. Make an unexpected connection to broader concepts (1-2 questions)
-        5. Encourage sharing of ambitious future visions (1 question)
+        expected_output="""A list of 10-15 highly original and thought-provoking questions that:
+        1. Probe into the guest's core motivations (2-4 questions)
+        2. Explore unconventional ideas in the guest's field (2-4 questions)
+        3. Present a challenging hypothetical scenario (2 question)
+        4. Make an unexpected connection to broader concepts (2-4 questions)
+        5. Encourage sharing of ambitious future visions (4 question)
         Each question should be unique, surprising, and capable of eliciting deep, insightful responses."""
     )
 
 def main():
     guest_name = input("Enter the name of the podcast guest: ")
     youtube_url = input("Enter the URL of the YouTube video to analyze: ")
-    # guest_name = "Marina Debris"
-    # youtube_url = "https://youtu.be/yrKfPqs0jE4?si=E_Aecpl6b9kdcadj"
+   
+    transcript = get_youtube_transcript(youtube_url)
+    if transcript is None:
+        print("Failed to retrieve the transcript. Proceeding with analysis without transcript.")
+        transcript = ""
 
-    analyzer = create_youtube_analyzer_agent(youtube_url)
+    analyzer = create_youtube_analyzer_agent(transcript)
     question_generator = create_question_generator_agent()
 
-    analysis_task = create_video_analysis_task(analyzer)
+    analysis_task = create_video_analysis_task(analyzer, transcript)
     question_task = create_question_generation_task(question_generator, "{{analysis_task.output}}")
     creative_task = create_creative_inquiry_task(question_generator, "{{analysis_task.output}}")
 
     crew = Crew(
         agents=[analyzer, question_generator],
         tasks=[analysis_task, question_task, creative_task],
-        verbose=2,
+        verbose=True,
         process=Process.sequential
     )
 

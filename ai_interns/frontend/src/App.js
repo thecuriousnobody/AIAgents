@@ -1,10 +1,10 @@
 import React from 'react';
-import AIInterns from './AIInterns';
+import AISwissArmyInterns from './AIInterns';
 
 function App() {
   return (
     <div className="App">
-      <AIInterns />
+      <AISwissArmyInterns />
     </div>
   );
 }

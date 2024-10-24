@@ -1,29 +1,81 @@
-import os
-import json
-from crewai import Agent, Task
-from usefulTools.llm_repository import ClaudeSonnet
+import anthropic
+from crewai import Agent, Crew, Task
 from langchain_anthropic import ChatAnthropic
 from usefulTools.search_tools import search_api_tool
-import anthropic
 import config
+import time
+import re
 
-def generate_agents_and_tasks(research_topic):
+class SupervisorAgent:
+    def __init__(self, llm):
+        self.llm = llm
+        self.agents = []
+        self.tasks = []
+        self.status = "Initializing"
+
+    def add_agent(self, agent):
+        self.agents.append(agent)
+
+    def add_task(self, task):
+        self.tasks.append(task)
+
+    def monitor_progress(self):
+        # Implement logic to monitor task progress
+        pass
+
+    def handle_error(self, error):
+        # Implement error handling logic
+        self.status = f"Error occurred: {str(error)}"
+        # Attempt to recover or retry the task
+        pass
+
+    def get_status(self):
+        return self.status
+
+    def run_research(self):
+        self.status = "Research in progress"
+        crew = Crew(
+            agents=self.agents,
+            tasks=self.tasks,
+            verbose=True
+        )
+
+        results = []
+        try:
+            for step in crew.kickoff():
+                result = f"Step: {step}\n"
+                results.append(result)
+                yield result
+                self.status = f"Completed step: {step}"
+                time.sleep(1)  # Simulate some processing time
+
+            final_result = "\n".join(results)
+            self.status = "Research completed"
+            yield f"Final Result: {final_result}\n"
+        except Exception as e:
+            self.handle_error(e)
+            yield f"Error: {str(e)}\n"
+
+def generate_agents(query):
     client = anthropic.Anthropic(api_key=config.ANTHROPIC_API_KEY)
-    model_name = "claude-3-5-sonnet-20240620"  # or whatever the correct model name is
+    model_name = "claude-3-5-sonnet-20240620"
     llm = ChatAnthropic(model=model_name, anthropic_api_key=config.ANTHROPIC_API_KEY)
 
-    # Generate agents
-    agent_generation_prompt = f"""Given the research topic: '{research_topic}', determine the optimal number of expert agents needed (between 3 and 5) and generate a title and description for each agent that will contribute to successfully researching this topic. 
-    The agent titles should be formatted as 'Agent [number] Title: [title]' and the descriptions should be 1-2 sentences long, starting with 'This agent will be responsible for...'. 
-    Each agent should have a specific role in the research process, addressing different aspects of the topic.
-    Also, indicate whether each agent would benefit from having a search tool (yes/no).
+    supervisor = SupervisorAgent(llm)
+
+    agent_generation_prompt = f"""Given the research query: '{query}', determine the optimal number of expert agents needed (between 3 and 6) and generate a role and description for each agent that will contribute to successfully researching this query. 
+    For each agent, provide the information in the following format:
+    Agent [number]: [Role]
+    Description: [1-2 sentence description]
+
+    Each agent should have a specific role in the research process, addressing different aspects of the query.
     """
 
     agent_generation_message = client.messages.create(
         model=model_name,
         max_tokens=8192,
         temperature=0.5,
-        system="You are an AI assistant tasked with determining the optimal number of expert agents and generating their titles and descriptions to support the research of the given topic.",
+        system="You are an AI assistant tasked with determining the optimal number of expert agents and generating their roles and descriptions to support the research of the given query.",
         messages=[
             {
                 "role": "user",
@@ -36,74 +88,35 @@ def generate_agents_and_tasks(research_topic):
     
     # Parse agent details
     agents = []
-    lines = agent_generation_response.split('\n')
-    i = 0
-    while i < len(lines):
-        line = lines[i].strip()
-        if line.startswith("Agent"):
-            title = line.split(":")[1].strip()
-            i += 1
-            if i < len(lines):
-                description = lines[i].strip()
-                i += 1
-                if i < len(lines):
-                    needs_search = "yes" in lines[i].lower()
-                    agents.append({"title": title, "description": description, "needs_search": needs_search})
-        i += 1
-
-    # Generate backstories and create Agent objects
-    created_agents = []
-    for i, agent_info in enumerate(agents, 1):
-        backstory_prompt = f"Generate a 2-3 sentence backstory for Agent {i}, a {agent_info['title']}. The backstory should align with their role in researching the topic: '{research_topic}'. Do not include a specific name, just refer to them as 'Agent {i}'."
-        
-        backstory_message = client.messages.create(
-            model=model_name,
-            max_tokens=8192,
-            temperature=0.5,
-            system="Generate a concise backstory for an AI research agent without using a specific name.",
-            messages=[{"role": "user", "content": backstory_prompt}]
-        )
-        
-        backstory = backstory_message.content[0].text.strip()
-        
+    agent_pattern = re.compile(r'Agent \d+: (.+)\nDescription: (.+)')
+    matches = agent_pattern.findall(agent_generation_response)
+    
+    for role, description in matches:
         agent = Agent(
-            role=agent_info['title'],
-            goal=agent_info['description'],
-            backstory=backstory,
+            role=role.strip(),
+            goal=description.strip(),
+            backstory="An AI agent specialized in " + role.strip(),
             verbose=True,
             allow_delegation=False,
             llm=llm,
-            tools=[search_api_tool] if agent_info['needs_search'] else []
+            tools=[search_api_tool]
         )
-        created_agents.append(agent)
+        supervisor.add_agent(agent)
+        agents.append({
+            "role": agent.role,
+            "description": agent.goal,
+            "useGoogleSearch": True
+        })
 
-    # Generate tasks
-    tasks = []
-    for i, agent in enumerate(created_agents):
-        task_description = f"Based on your role as {agent.role} and your goal: {agent.goal}, perform your part of the research on the topic: '{research_topic}'. Provide a detailed analysis and findings related to your specific area of focus."
-        
+    return supervisor, agents
+
+def run_research(supervisor):
+    for i, agent in enumerate(supervisor.agents):
         task = Task(
-            description=task_description,
+            description=f"Research and provide insights related to your role as {agent.role}. Focus on your specific area of expertise and how it relates to the overall research query.",
             agent=agent,
-            expected_output=f"A comprehensive report on the aspects of '{research_topic}' relevant to {agent.role}'s expertise and focus area.",
-            context=[tasks[i-1]] if i > 0 else None
+            expected_output="A comprehensive report on the aspects relevant to the agent's expertise and focus area."
         )
-        tasks.append(task)
+        supervisor.add_task(task)
 
-    # Save generated agents and tasks to a file
-    output_data = {
-        "research_topic": research_topic,
-        "agents": [{"role": agent.role, "goal": agent.goal, "backstory": agent.backstory} for agent in created_agents],
-        "tasks": [{"description": task.description, "expected_output": task.expected_output} for task in tasks]
-    }
-    
-    directory = "/Volumes/Samsung/AI/AI_Prototype_Outputs"
-    os.makedirs(directory, exist_ok=True)
-    output_file = os.path.join(directory, f"{research_topic.replace(' ', '_')}_agents_and_tasks.json")
-    
-    with open(output_file, 'w') as f:
-        json.dump(output_data, f, indent=2)
-
-    print(f"Agents and tasks have been saved to: {output_file}")
-
-    return created_agents, tasks
+    return supervisor.run_research()

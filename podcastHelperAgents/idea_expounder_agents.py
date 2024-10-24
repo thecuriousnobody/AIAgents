@@ -80,12 +80,12 @@ def create_agents_and_tasks(initial_idea):
     cross_disciplinary_task = Task(
         description=f"""Identify 10-20 unique ways the initial idea '{initial_idea}' could be interpreted or applied across different academic or professional disciplines. Use the search tool to find recent developments or research in various fields that could relate to the idea. Strive for a broad range of disciplines and novel connections.
 
-For each interpretation or application:
-1. Clearly state the discipline or field.
-2. Explain how the initial idea intersects with or applies to this discipline.
-3. Provide at least one specific example or recent development.
-4. Include a direct quote or paraphrase from a relevant source, along with its URL.
-5. Briefly discuss the potential impact or implications of this application.""",
+    For each interpretation or application:
+    1. Clearly state the discipline or field.
+    2. Explain how the initial idea intersects with or applies to this discipline.
+    3. Provide at least one specific example or recent development.
+    4. Include a direct quote or paraphrase from a relevant source, along with its URL.
+    5. Briefly discuss the potential impact or implications of this application.""",
         agent=cross_disciplinary_linker,
         expected_output="A list of 10-20 cross-disciplinary applications or interpretations of the initial idea, demonstrating its potential relevance in diverse fields, supported by recent developments or research, including specific examples and source citations.",
         context=[futuristic_vision_task]

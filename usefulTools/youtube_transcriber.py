@@ -18,14 +18,18 @@ def consolidate_transcript(response_text):
 
 def get_video_id(url):
     # Extract video ID from YouTube URL
-    pattern = r'watch\?v=([^&]*)'
-    match = re.search(pattern, url)
+    patterns = [
+        r'(?:v=|\/)([0-9A-Za-z_-]{11}).*',  # Standard and shortened YouTube URLs
+        r'youtu\.be\/([0-9A-Za-z_-]{11})',  # youtu.be URLs
+    ]
     
-    if match is not None:
-        return match.group(1)
-    else:
-        print("Error: Unable to extract the video ID from the provided URL.")
-        return None
+    for pattern in patterns:
+        match = re.search(pattern, url)
+        if match:
+            return match.group(1)
+    
+    print("Error: Unable to extract the video ID from the provided URL.")
+    return None
 
 def get_video_title(url):
     # Extract video title from YouTube URL (this is a very basic approach and might not work for all cases)

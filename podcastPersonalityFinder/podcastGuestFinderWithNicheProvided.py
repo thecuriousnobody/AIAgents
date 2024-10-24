@@ -9,9 +9,9 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 from usefulTools.search_tools import search_tool, youtube_tool,search_api_tool
 from usefulTools.llm_repository import ClaudeSonnet
-os.environ["GROQ_API_KEY"] = config.GROQ_API_KEY
+
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
-os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
+
 
 def create_agents_and_tasks(niche_topic):
     topic_analyzer = Agent(
@@ -102,7 +102,7 @@ if __name__ == '__main__':
     
     try:
         with open(full_path, "w") as file:
-            file.write(result)
+            file.write(str(result))
         print(f"\nResults saved to {file_name}")
     except IOError as e:
         print(f"An error occurred while writing to the file: {e}")
