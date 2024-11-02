@@ -9,7 +9,7 @@ import config
 os.environ["SERPAPI_API_KEY"] = config.SERPAPI_API_KEY
 import logging
 import requests
-SERPAPI_API_KEY = os.environ.get("SERPAPI_API_KEY")
+# SERPAPI_API_KEY = os.environ.get("SERPAPI_API_KEY")
 
 # Set up logging
 logging.basicConfig(level=logging.DEBUG)
@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 
 
-# Set up Google search tool
+# # Set up Google search tool
 search = SerpAPIWrapper()
 search_tool = Tool(
     name="Internet Search",

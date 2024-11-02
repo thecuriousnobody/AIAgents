@@ -1,6 +1,7 @@
 import subprocess
 import os
 import sys
+from pathlib import Path
 
 def check_ffmpeg():
     ffmpeg_path = "/opt/homebrew/bin/ffmpeg"  # The path we know FFmpeg is installed at
@@ -32,8 +33,8 @@ def main():
     if not ffmpeg_path:
         sys.exit(1)
 
-    # Get input video path from user
-    video_path = input("Enter the path to your video file: ").strip()
+    # Get input video path from user and handle it robustly using pathlib
+    video_path = str(Path(input("Enter the path to your video file: ").strip()).resolve())
     
     # Generate output audio path
     audio_dir = "/Volumes/Samsung/digitalArtifacts/podcastRawFootage"

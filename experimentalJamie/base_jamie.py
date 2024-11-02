@@ -6,8 +6,11 @@ import sys
 import re
 import time
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from pathlib import Path
+root_dir = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(root_dir))  # 
 import config
-from usefulTools.search_tools import search_tool, youtube_tool
+from usefulTools.search_tools import search_api_tool, youtube_tool
 from usefulTools.llm_repository import ClaudeSonnet
 
 class AIJamieAssistant:
@@ -100,14 +103,14 @@ class AIJamieAssistant:
             verbose=True,
             allow_delegation=False,
             llm=ClaudeSonnet,
-            tools=[search_tool, youtube_tool]
+            tools=[search_api_tool, youtube_tool]
         )
 
         self.content_curator = Agent(
             role="Content Curator",
             goal="Format and present the found information in an easily digestible way",
             backstory="Expert at organizing information and presenting it in a clear, concise manner for live podcast discussions.",
-            verbose=True,
+            verbose=True, 
             allow_delegation=False,
             llm=ClaudeSonnet
         )

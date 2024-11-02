@@ -1,5 +1,5 @@
 import time
-from agent_generator import generate_agents, run_research
+from ai_interns.backend.frontend_simulator import generate_agents, run_research
 
 def simulate_frontend():
     print("Welcome to the AI Interns Research Assistant")

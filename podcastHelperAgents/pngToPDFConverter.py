@@ -54,6 +54,6 @@ def png_to_pdf(png_folder, output_filename):
 
 
 # Usage
-png_folder = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Kalpana Sharma/Dharawi Book"
-output_filename = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Kalpana Sharma/DharawiBook.pdf"
+png_folder = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Pranab Bardhan/books"
+output_filename = "/Volumes/Samsung/digitalArtifacts/podcastPrepDocuments/Pranab Bardhan/books/AWorldofInsecurityFull.pdf"
 png_to_pdf(png_folder, output_filename)
