@@ -7,11 +7,11 @@ from langchain_anthropic import ChatAnthropic
 from langchain_community.utilities import SerpAPIWrapper
 import datetime
 # from serpapi import GoogleSearch
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from usefulTools.search_tools import youtube_tool, search_api_tool
 from usefulTools.llm_repository import ClaudeSonnet
 
 # Add the parent directory to sys.path to import config
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 
 # Set up API keys
