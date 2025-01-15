@@ -272,6 +272,11 @@ humanlayer = "^0.5.5"
 speechrecognition = "^3.11.0"
 pyaudio = "^0.2.14"
 torchvision = ">=0.17.0"
+sounddevice = "^0.5.1"
+googletrans-py = "^4.0.0"
+soundcard = "^0.4.3"
+webrtcvad = "^2.0.10"
+youtube-transcript-api = "^0.6.3"
 
 [build-system]
 requires = ["poetry-core"]
