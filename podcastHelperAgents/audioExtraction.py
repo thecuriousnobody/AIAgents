@@ -33,8 +33,20 @@ def main():
     if not ffmpeg_path:
         sys.exit(1)
 
-    # Get input video path from user and handle it robustly using pathlib
-    video_path = str(Path(input("Enter the path to your video file: ").strip()).resolve())
+    # Get input video path from user and clean it
+    input_path = input("Enter the path to your video file: ").strip()
+    
+    # Remove any surrounding quotes
+    input_path = input_path.strip("'\"")
+    
+    # Handle the path correctly - if it's absolute, use it directly
+    if input_path.startswith('/'):
+        video_path = input_path
+    else:
+        # Only resolve relative paths
+        video_path = str(Path(input_path).resolve())
+        
+    print(f"Using video path: {video_path}")  # Debug print to verify path
     
     # Generate output audio path
     audio_dir = "/Volumes/Samsung/digitalArtifacts/podcastRawFootage"

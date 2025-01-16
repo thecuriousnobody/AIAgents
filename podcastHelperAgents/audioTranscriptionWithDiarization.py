@@ -11,8 +11,11 @@ import re
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 
-# Audio file path
-sample = input("Please enter the path to your audio file: ")
+# Get and clean audio file path
+sample = input("Please enter the path to your audio file: ").strip()
+sample = sample.strip("'\"")  # Remove any surrounding quotes
+
+print(f"Using audio file: {sample}")  # Debug print to verify path
 
 def transcribe_audio(filename):
     print("Loading Whisper model...")
