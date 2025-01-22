@@ -7,11 +7,12 @@ from langchain_anthropic import ChatAnthropic
 from langchain_community.utilities import SerpAPIWrapper
 import datetime
 # from serpapi import GoogleSearch
-from usefulTools.search_tools import search_tool, youtube_tool, search_api_tool
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from usefulTools.search_tools import serper_search_tool
 from usefulTools.llm_repository import ClaudeSonnet
 
 # Add the parent directory to sys.path to import config
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import config
 
 # Set up API keys
@@ -40,7 +41,7 @@ researcher = Agent(
     backstory="You are a skilled researcher with a knack for finding the most relevant and important information on any topic, using both web and video sources. You can effectively use parsed YouTube data to enhance your research. Include all links found in your research.",
     verbose=True,
     allow_delegation=False,
-    tools=[search_api_tool,youtube_tool],
+    tools=[serper_search_tool],
     llm=ClaudeSonnet
 )
 

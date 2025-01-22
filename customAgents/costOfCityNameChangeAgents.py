@@ -1,12 +1,16 @@
 from crewai import Agent, Task, Crew, Process
 from langchain.agents import Tool
 from langchain_openai import ChatOpenAI
-
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # Assume these are properly imported and set up
-from usefulTools.llm_repository import ClaudeOpus, ClaudeSonnet
-from usefulTools.search_tools import search_tool, search_api_tool
-
+from usefulTools.llm_repository import ClaudeSonnet
+from usefulTools.search_tools import serper_search_tool
+import os
+import config
 llm = ClaudeSonnet
+os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 
 def create_indian_city_rename_cost_crew(city_name, new_name, population):
     # Define the agents
@@ -17,7 +21,7 @@ def create_indian_city_rename_cost_crew(city_name, new_name, population):
         verbose=True,
         allow_delegation=False,
         llm=llm,
-        tools=[search_api_tool]
+        tools=[serper_search_tool]
     )
 
     cost_estimation_agent = Agent(
@@ -27,7 +31,7 @@ def create_indian_city_rename_cost_crew(city_name, new_name, population):
         verbose=True,
         allow_delegation=False,
         llm=llm,
-        tools=[search_api_tool]
+        tools=[serper_search_tool]
     )
 
     impact_analysis_agent = Agent(
