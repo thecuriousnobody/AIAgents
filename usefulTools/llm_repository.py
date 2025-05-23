@@ -7,7 +7,7 @@ import config
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
 
 ClaudeSonnet = ChatAnthropic(
-    model="claude-3-7-sonnet-20250219",
+    model="claude-sonnet-4-20250514",
     max_tokens = 8192,
     temperature=0.6
 )
