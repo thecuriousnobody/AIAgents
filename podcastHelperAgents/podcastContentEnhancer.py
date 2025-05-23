@@ -6,7 +6,7 @@ import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
-from usefulTools.search_tools import search_tool, youtube_tool, search_api_tool
+from usefulTools.search_tools import serper_search_tool
 from usefulTools.llm_repository import ClaudeSonnet
 
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
@@ -37,11 +37,15 @@ def create_agents_and_tasks(transcript):
         verbose=True,
         allow_delegation=False,
         llm=ClaudeSonnet,
-        tools=[search_api_tool]
+        tools=[serper_search_tool]
     )
 
     analyze_content_task = Task(
-        description=f"""Analyze the transcript and identify 5-10 key moments where supporting content could enhance the conversation.
+        description=f"""Analyze the following transcript and identify 5-10 key moments where supporting content could enhance the conversation.
+        
+        TRANSCRIPT:
+        {transcript}
+        
         Focus on moments where:
         1. Complex concepts are discussed that could benefit from visualization
         2. Claims or statements that could be supported by data or research
@@ -59,7 +63,10 @@ def create_agents_and_tasks(transcript):
     )
 
     extract_timestamps_task = Task(
-        description="For each identified moment, extract and process the timestamp information to provide precise timing for content insertion.",
+        description=f"""For each identified moment, extract and process the timestamp information to provide precise timing for content insertion.
+        
+        TRANSCRIPT:
+        {transcript}""",
         agent=timestamp_extractor,
         expected_output="""For each moment:
         1. Start timestamp
@@ -71,8 +78,11 @@ def create_agents_and_tasks(transcript):
     )
 
     suggest_content_task = Task(
-        description="""For each timestamped moment, suggest specific supporting content that would enhance the conversation.
-        Focus on compelling and credible sources that add genuine value.""",
+        description=f"""For each timestamped moment, suggest specific supporting content that would enhance the conversation.
+        Focus on compelling and credible sources that add genuine value.
+        
+        TRANSCRIPT:
+        {transcript}""",
         agent=content_suggester,
         expected_output="""For each moment:
         1. Specific content suggestions (URLs, descriptions, or search terms)
@@ -114,6 +124,9 @@ def save_enhancement_suggestions(transcript_name, result):
 if __name__ == '__main__':
     # Get transcript file path from user
     transcript_path = input("Enter the path to your transcript file: ")
+    
+    # Strip any surrounding quotes from the path
+    transcript_path = transcript_path.strip("'\"")
     
     try:
         # Read the transcript file

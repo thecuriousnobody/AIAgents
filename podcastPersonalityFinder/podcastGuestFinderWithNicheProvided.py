@@ -7,7 +7,7 @@ import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
-from usefulTools.search_tools import search_tool, youtube_tool,search_api_tool
+from usefulTools.search_tools import serper_search_tool
 from usefulTools.llm_repository import ClaudeSonnet
 
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
@@ -30,7 +30,7 @@ def create_agents_and_tasks(niche_topic):
         verbose=True,
         allow_delegation=False,
         llm=ClaudeSonnet,
-        tools = [search_api_tool]
+        tools = [serper_search_tool]
     )
 
     contact_researcher = Agent(
@@ -40,7 +40,7 @@ def create_agents_and_tasks(niche_topic):
         verbose=True,
         allow_delegation=False,
         llm=ClaudeSonnet,
-        tools = [search_api_tool]
+        tools = [serper_search_tool]
     )
 
     analyze_topic_task = Task(
