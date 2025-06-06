@@ -6,12 +6,183 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 import re
+from datetime import datetime
 from langchain.tools import Tool
 from usefulTools.llm_repository import ClaudeSonnet
 from usefulTools.search_tools import facebook_serper_tool, facebook_group_search_tool, us_serper_tool, uk_serper_tool, canada_serper_tool, australia_serper_tool
 
 # Set up environment variables
 os.environ["ANTHROPIC_API_KEY"] = config.ANTHROPIC_API_KEY
+
+def get_user_search_focus():
+    """
+    Interactive function to get the user's specific search focus for Facebook groups.
+    Makes the tool extensible for any product/service/topic.
+    """
+    print("=" * 80)
+    print("FACEBOOK GROUP FINDER - INTERACTIVE CONFIGURATION")
+    print("=" * 80)
+    print()
+    
+    print("This tool will help you find Facebook groups relevant to your product/service.")
+    print("Please provide the following information:")
+    print()
+    
+    # Get product/service details
+    product_name = input("1. What is your product/service name? (e.g., podcastbots.ai): ").strip()
+    
+    print()
+    product_description = input("2. Briefly describe what your product/service does: ").strip()
+    
+    print()
+    print("3. What type of Facebook groups are you looking for? Choose from:")
+    print("   a) General communities (broad audience)")
+    print("   b) Professional/Business groups")
+    print("   c) Niche/specialized communities")
+    print("   d) Regional/local groups")
+    print("   e) Mixed (combination of above)")
+    group_type = input("   Enter your choice (a/b/c/d/e): ").strip().lower()
+    
+    print()
+    target_audience = input("4. Who is your target audience? (e.g., podcasters, content creators, marketers): ").strip()
+    
+    print()
+    value_proposition = input("5. What value does your product provide? (e.g., saves time, improves quality): ").strip()
+    
+    print()
+    print("6. Select search regions (you can choose multiple):")
+    print("   1) Global English-speaking communities")
+    print("   2) North America (US/Canada)")
+    print("   3) Europe (UK/EU)")
+    print("   4) Asia-Pacific (Australia/NZ/India)")
+    print("   5) All regions")
+    region_choice = input("   Enter your choice(s) separated by commas (1,2,3,4 or 5): ").strip()
+    
+    print()
+    num_groups = input("7. How many groups would you like to find per focus area? (default: 15-20): ").strip()
+    if not num_groups:
+        num_groups = "15-20"
+    
+    print()
+    print("Configuration complete! Starting Facebook group research...")
+    print("=" * 80)
+    
+    return {
+        "product_name": product_name,
+        "product_description": product_description,
+        "group_type": group_type,
+        "target_audience": target_audience,
+        "value_proposition": value_proposition,
+        "region_choice": region_choice,
+        "num_groups": num_groups
+    }
+
+def generate_research_focuses(config):
+    """
+    Generate research focuses based on user configuration.
+    """
+    product_name = config["product_name"]
+    product_description = config["product_description"]
+    target_audience = config["target_audience"]
+    value_proposition = config["value_proposition"]
+    num_groups = config["num_groups"]
+    
+    # Map group type to focus areas
+    group_type_mapping = {
+        'a': 'General communities and broad audience groups',
+        'b': 'Professional and business-focused groups',
+        'c': 'Niche and specialized communities',
+        'd': 'Regional and local communities',
+        'e': 'Mixed communities (general, professional, niche, and regional)'
+    }
+    
+    # Map regions
+    region_mapping = {
+        '1': 'Global English-speaking communities',
+        '2': 'North America (US/Canada)',
+        '3': 'Europe (UK/EU)',
+        '4': 'Asia-Pacific (Australia/NZ/India)',
+        '5': 'All regions globally'
+    }
+    
+    selected_regions = []
+    if '5' in config["region_choice"]:
+        selected_regions = ['Global English-speaking communities']
+    else:
+        for region_num in config["region_choice"].split(','):
+            region_num = region_num.strip()
+            if region_num in region_mapping:
+                selected_regions.append(region_mapping[region_num])
+    
+    group_focus = group_type_mapping.get(config["group_type"], 'Mixed communities')
+    
+    research_focuses = []
+    
+    # Generate focus areas based on configuration
+    for i, region in enumerate(selected_regions, 1):
+        focus = f"""
+Research Focus {i}: {group_focus} - {region}
+- Product/Service: {product_name}
+- Description: {product_description}
+- Target: Facebook groups focused on {target_audience} and related communities
+- Geographic Scope: {region}
+- Audience: {target_audience} who would benefit from {product_description}
+- Product Relevance: Groups where members would be interested in tools/services that {value_proposition}
+- Business Context: {product_name} - {product_description}
+- Value Proposition: {value_proposition}
+- Group Count Target: Find approximately {num_groups} relevant groups
+- Group Types: Focus on {group_focus.lower()}
+"""
+        research_focuses.append(focus)
+    
+    return research_focuses
+
+def save_results_to_file(results, config, filename=None):
+    """
+    Save all research results to a comprehensive text file.
+    """
+    if filename is None:
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        safe_product_name = re.sub(r'[^\w\-_\.]', '_', config["product_name"])
+        filename = f"facebook_groups_research_{safe_product_name}_{timestamp}.txt"
+    
+    filepath = os.path.join(os.path.dirname(__file__), filename)
+    
+    with open(filepath, 'w', encoding='utf-8') as f:
+        # Write header
+        f.write("=" * 100 + "\n")
+        f.write("FACEBOOK GROUP RESEARCH RESULTS\n")
+        f.write("=" * 100 + "\n")
+        f.write(f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+        f.write(f"Product/Service: {config['product_name']}\n")
+        f.write(f"Description: {config['product_description']}\n")
+        f.write(f"Target Audience: {config['target_audience']}\n")
+        f.write(f"Value Proposition: {config['value_proposition']}\n")
+        f.write(f"Search Regions: {config['region_choice']}\n")
+        f.write(f"Groups per Focus: {config['num_groups']}\n")
+        f.write("=" * 100 + "\n\n")
+        
+        # Write results for each focus area
+        for i, result in enumerate(results, 1):
+            f.write(f"\nRESEARCH FOCUS AREA {i}:\n")
+            f.write("-" * 50 + "\n")
+            f.write(str(result))
+            f.write("\n" + "=" * 50 + "\n")
+        
+        # Write summary
+        f.write(f"\n\nSUMMARY:\n")
+        f.write("-" * 20 + "\n")
+        f.write(f"Total Focus Areas Researched: {len(results)}\n")
+        f.write(f"Research completed at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+        f.write(f"Results saved to: {filename}\n")
+        f.write("\nNext Steps:\n")
+        f.write("1. Review the group quality scores and recommendations\n")
+        f.write("2. Prioritize high-scoring groups for engagement\n")
+        f.write("3. Follow the compliance guidelines before posting\n")
+        f.write("4. Implement the suggested engagement strategies\n")
+        f.write("5. Track engagement metrics and adjust approach as needed\n")
+    
+    return filepath
 
 # Facebook Group Researcher Agent
 facebook_group_researcher = Agent(
@@ -194,6 +365,12 @@ assess_compliance_ethics = Task(
 
 # Function to process group research for a specific niche or region
 def process_group_research(research_focus):
+    """
+    Process research for a single focus area using the crew of agents.
+    """
+    print(f"\n🔍 Processing research focus...")
+    print("-" * 50)
+    
     crew = Crew(
         agents=[facebook_group_researcher, group_quality_analyzer, engagement_strategy_agent, compliance_ethics_agent],
         tasks=[research_facebook_groups, analyze_group_quality, develop_engagement_strategy, assess_compliance_ethics],
@@ -201,18 +378,66 @@ def process_group_research(research_focus):
         process=Process.sequential
     )
 
-    return crew.kickoff(inputs={"research_focus": research_focus})
+    result = crew.kickoff(inputs={"research_focus": research_focus})
+    print(f"✅ Research focus completed!")
+    return result
 
-# Main function to research Facebook groups for different podcast niches
-def find_facebook_groups(research_focuses):
+# Main function to research Facebook groups
+def find_facebook_groups_interactive():
+    """
+    Interactive function to find Facebook groups based on user configuration.
+    """
+    # Get user configuration
+    config = get_user_search_focus()
+    
+    # Generate research focuses based on configuration
+    research_focuses = generate_research_focuses(config)
+    
+    print(f"\n🚀 Starting research with {len(research_focuses)} focus area(s)...")
+    
     results = []
-    for focus in research_focuses:
+    for i, focus in enumerate(research_focuses, 1):
+        print(f"\n📋 Research Focus {i} of {len(research_focuses)}")
+        print("=" * 60)
+        result = process_group_research(focus)
+        results.append(result)
+        print(f"✅ Completed focus {i} of {len(research_focuses)}")
+    
+    # Save results to file
+    print(f"\n💾 Saving results to file...")
+    filepath = save_results_to_file(results, config)
+    
+    # Print completion summary
+    print("\n" + "=" * 80)
+    print("🎉 FACEBOOK GROUP RESEARCH COMPLETED!")
+    print("=" * 80)
+    print(f"✅ Total focus areas researched: {len(research_focuses)}")
+    print(f"✅ Results saved to: {filepath}")
+    print(f"✅ Research completed at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("\n📝 Next Steps:")
+    print("1. Review the saved file for detailed group analysis")
+    print("2. Prioritize high-scoring groups for engagement")
+    print("3. Follow compliance guidelines before posting")
+    print("4. Implement suggested engagement strategies")
+    print("5. Track engagement metrics and adjust approach")
+    print("=" * 80)
+    
+    return results, filepath
+
+# Legacy function for backward compatibility
+def find_facebook_groups(research_focuses):
+    """
+    Legacy function that takes predefined research focuses.
+    """
+    results = []
+    for i, focus in enumerate(research_focuses, 1):
+        print(f"\n📋 Processing Research Focus {i} of {len(research_focuses)}")
         result = process_group_research(focus)
         results.append(result)
     return results
 
-# Example usage:
-research_focuses = [
+# Example predefined research focuses for podcastbots.ai (kept for reference)
+example_research_focuses = [
     """
     Research Focus: General Podcasting and Broadcasting Communities
     - Target: Large, active Facebook groups focused on podcasting, radio broadcasting, and digital audio content
@@ -251,17 +476,46 @@ research_focuses = [
     """
 ]
 
-# Run the research
+# Main execution
 if __name__ == "__main__":
-    results = find_facebook_groups(research_focuses)
+    print("🚀 Welcome to the Facebook Group Finder Tool!")
+    print()
     
-    # Print results in a structured format
-    print("=" * 80)
-    print("FACEBOOK GROUP RESEARCH RESULTS FOR PODCASTBOTS.AI PROMOTION")
-    print("=" * 80)
+    # Ask user if they want to use interactive mode or example mode
+    print("Choose your mode:")
+    print("1) Interactive mode (customize search for your product/service)")
+    print("2) Example mode (use predefined podcastbots.ai search)")
+    print("3) Exit")
     
-    for i, result in enumerate(results, 1):
-        print(f"\n\nRESEARCH FOCUS {i}:")
-        print("-" * 40)
-        print(result)
-        print("\n" + "=" * 40)
+    choice = input("Enter your choice (1/2/3): ").strip()
+    
+    if choice == "1":
+        # Interactive mode
+        results, filepath = find_facebook_groups_interactive()
+        
+    elif choice == "2":
+        # Example mode with predefined focuses
+        print("\n🔄 Running example search for podcastbots.ai...")
+        results = find_facebook_groups(example_research_focuses)
+        
+        # Save example results
+        example_config = {
+            "product_name": "podcastbots.ai",
+            "product_description": "AI-powered podcast guest finding and contact tool",
+            "target_audience": "podcasters, broadcasters, content creators",
+            "value_proposition": "saves time in guest research and outreach",
+            "region_choice": "5",  # All regions
+            "num_groups": "15-20"
+        }
+        filepath = save_results_to_file(results, example_config)
+        
+        print("\n" + "=" * 80)
+        print("🎉 EXAMPLE FACEBOOK GROUP RESEARCH COMPLETED!")
+        print("=" * 80)
+        print(f"✅ Results saved to: {filepath}")
+        print("=" * 80)
+        
+    elif choice == "3":
+        print("👋 Goodbye!")
+    else:
+        print("❌ Invalid choice. Please run the script again.")
