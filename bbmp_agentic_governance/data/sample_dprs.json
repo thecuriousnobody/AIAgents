@@ -1,0 +1,159 @@
+[
+  {
+    "dpr_id": "DPR-2025-BOM-001",
+    "title": "Asphalting of 27th Main Road, HSR Layout Sector 1",
+    "zone": "Bommanahalli",
+    "ward": 195,
+    "project_type": "road_asphalting",
+    "submitted_by": "Asst. Executive Engineer, Zone-8",
+    "submission_date": "2025-01-15",
+    "estimated_cost": 4850000,
+    "description": "Asphalting of 27th Main Road from Agara Junction to BDA Complex. Total length: 1.2 km, Width: 12m. Includes DBM, BC layers and edge protection.",
+    "justification": "Road has deteriorated significantly. 245 citizen complaints received in last 6 months. Heavy traffic due to proximity to outer ring road.",
+    "technical_details": {
+      "length_meters": 1200,
+      "width_meters": 12,
+      "area_sqm": 14400,
+      "layers": [
+        {"type": "GSB", "thickness_mm": 150, "quantity": 216, "unit": "cum"},
+        {"type": "WMM", "thickness_mm": 200, "quantity": 288, "unit": "cum"},
+        {"type": "DBM", "thickness_mm": 50, "quantity": 14400, "unit": "sqm"},
+        {"type": "BC", "thickness_mm": 30, "quantity": 43200, "unit": "sqm_per_10mm"}
+      ],
+      "edge_protection": true,
+      "traffic_study_date": "2024-11-20",
+      "soil_test_date": "2024-12-05",
+      "aadt_vehicles": 8500
+    },
+    "citizen_complaints": 245,
+    "ward_committee_approval": "2024-12-28",
+    "environmental_clearance": "Not required (road width <18m)",
+    "estimated_timeline_days": 90,
+    "cost_breakdown": {
+      "materials": 3200000,
+      "labor": 950000,
+      "equipment": 450000,
+      "overhead": 250000
+    },
+    "flags": []
+  },
+  {
+    "dpr_id": "DPR-2025-BOM-002",
+    "title": "Asphalting of Service Road, Hosur Road (Silk Board to BTM)",
+    "zone": "Bommanahalli",
+    "ward": 188,
+    "project_type": "road_asphalting",
+    "submitted_by": "Executive Engineer, Zone-8",
+    "submission_date": "2025-01-20",
+    "estimated_cost": 12500000,
+    "description": "Asphalting of service road parallel to Hosur Road. Length: 2.8 km, Width: 8m. Critical connectivity for local traffic.",
+    "justification": "Service road is in deplorable condition. Required for traffic decongestion as per traffic police recommendation.",
+    "technical_details": {
+      "length_meters": 2800,
+      "width_meters": 8,
+      "area_sqm": 22400,
+      "layers": [
+        {"type": "GSB", "thickness_mm": 150, "quantity": 336, "unit": "cum"},
+        {"type": "WMM", "thickness_mm": 200, "quantity": 448, "unit": "cum"},
+        {"type": "DBM", "thickness_mm": 50, "quantity": 22400, "unit": "sqm"},
+        {"type": "BC", "thickness_mm": 30, "quantity": 67200, "unit": "sqm_per_10mm"}
+      ],
+      "edge_protection": true,
+      "traffic_study_date": "2024-06-10",
+      "soil_test_date": null,
+      "aadt_vehicles": 12000
+    },
+    "citizen_complaints": 0,
+    "ward_committee_approval": null,
+    "environmental_clearance": "Not required",
+    "estimated_timeline_days": 120,
+    "cost_breakdown": {
+      "materials": 8500000,
+      "labor": 2200000,
+      "equipment": 1200000,
+      "overhead": 600000
+    },
+    "flags": [
+      "Traffic study older than 6 months",
+      "No soil test conducted",
+      "No citizen complaints on record",
+      "No ward committee approval",
+      "Cost appears 35% higher than SoR estimates"
+    ]
+  },
+  {
+    "dpr_id": "DPR-2025-BOM-003",
+    "title": "Construction of Storm Water Drain, Koramangala 6th Block",
+    "zone": "Bommanahalli",
+    "ward": 176,
+    "project_type": "storm_water_drains",
+    "submitted_by": "Asst. Executive Engineer, Zone-8",
+    "submission_date": "2025-01-22",
+    "estimated_cost": 8900000,
+    "description": "Construction of RCC storm water drain along 80 Feet Road. Length: 850m, Size: 1m x 1m. Addresses chronic flooding issue.",
+    "justification": "Area experiences severe water-logging during monsoons. 412 citizen complaints. Ward committee has prioritized this as urgent.",
+    "technical_details": {
+      "length_meters": 850,
+      "drain_size": "1m x 1m",
+      "drain_type": "RCC",
+      "includes_chambers": true,
+      "chambers_count": 17,
+      "soil_test_date": "2024-12-18",
+      "hydrology_study_date": "2024-11-25"
+    },
+    "citizen_complaints": 412,
+    "ward_committee_approval": "2025-01-10",
+    "environmental_clearance": "Not required",
+    "estimated_timeline_days": 120,
+    "cost_breakdown": {
+      "materials": 6200000,
+      "labor": 1800000,
+      "equipment": 600000,
+      "overhead": 300000
+    },
+    "flags": []
+  },
+  {
+    "dpr_id": "DPR-2025-BOM-004",
+    "title": "Asphalting of 15th Cross, JP Nagar 7th Phase",
+    "zone": "Bommanahalli",
+    "ward": 196,
+    "project_type": "road_asphalting",
+    "submitted_by": "Asst. Executive Engineer, Zone-8",
+    "submission_date": "2025-01-25",
+    "estimated_cost": 3200000,
+    "description": "Asphalting of 15th Cross. Length: 450m, Width: 10m.",
+    "justification": "Road maintenance required.",
+    "technical_details": {
+      "length_meters": 450,
+      "width_meters": 10,
+      "area_sqm": 4500,
+      "layers": [
+        {"type": "DBM", "thickness_mm": 50, "quantity": 4500, "unit": "sqm"},
+        {"type": "BC", "thickness_mm": 30, "quantity": 13500, "unit": "sqm_per_10mm"}
+      ],
+      "edge_protection": false,
+      "traffic_study_date": null,
+      "soil_test_date": null,
+      "aadt_vehicles": null
+    },
+    "citizen_complaints": 0,
+    "ward_committee_approval": null,
+    "environmental_clearance": "Not required",
+    "estimated_timeline_days": 45,
+    "cost_breakdown": {
+      "materials": 2400000,
+      "labor": 500000,
+      "equipment": 200000,
+      "overhead": 100000
+    },
+    "flags": [
+      "Duplicate: DPR-2024-BOM-234 proposed same road 8 months ago (within 500m radius)",
+      "No traffic study",
+      "No soil test",
+      "No citizen complaints",
+      "Vague justification",
+      "No ward committee approval"
+    ]
+  }
+]

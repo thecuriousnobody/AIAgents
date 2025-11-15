@@ -1,0 +1,76 @@
+# BBMP Agentic Governance System Configuration
+
+# API Keys (use environment variables)
+api_keys:
+  openai_api_key: ${OPENAI_API_KEY}
+  anthropic_api_key: ${ANTHROPIC_API_KEY}
+  serper_api_key: ${SERPER_API_KEY}
+
+# Agent Configuration
+agents:
+  budget_sentinel:
+    model: "claude-sonnet-4-5"
+    temperature: 0.1
+    max_iterations: 5
+    auto_approve_threshold: 0.10  # 10% variance
+    review_threshold: 0.20  # 20% variance
+    reject_threshold: 0.50  # 50% variance
+
+  dpr_integrity:
+    model: "claude-sonnet-4-5"
+    temperature: 0.2
+    max_iterations: 5
+    survey_age_limit_days: 730  # 2 years
+    duplicate_radius_meters: 500
+
+  tender_monitor:
+    model: "claude-sonnet-4-5"
+    temperature: 0.1
+    max_iterations: 5
+    min_bidders: 3
+    price_variance_threshold: 0.20
+
+# Database Configuration
+database:
+  type: "sqlite"  # For demo; use PostgreSQL in production
+  path: "data/bbmp_governance.db"
+
+# Blockchain Configuration (Mock for Phase 0)
+blockchain:
+  network: "testnet"
+  type: "ethereum"
+  provider: "ganache"
+
+# Thresholds & Rules
+thresholds:
+  budget:
+    minor_variance: 0.10
+    major_variance: 0.20
+    critical_variance: 0.50
+  quality:
+    min_concrete_strength_mpa: 30
+    min_asphalt_density: 2.35
+  payment:
+    milestone_based: true
+    max_advance_percentage: 0.10
+
+# Karnataka PWD Zones
+zones:
+  - "Bommanahalli"
+  - "Dasarahalli"
+  - "Mahadevapura"
+  - "RR Nagar"
+  - "Yelahanka"
+  - "East"
+  - "West"
+  - "South"
+
+# Project Types
+project_types:
+  - "road_asphalting"
+  - "concrete_roads"
+  - "storm_water_drains"
+  - "footpaths"
+  - "street_lights"
+  - "parks"
+  - "bridges"

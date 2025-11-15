@@ -1,0 +1,92 @@
+[
+  {
+    "item_code": "SoR-2024-R001",
+    "description": "Asphaltic Concrete (BC Grade-1) per 10mm thick per sqm",
+    "unit": "sqm",
+    "rate_inr": 125.50,
+    "category": "road_asphalting",
+    "effective_date": "2024-04-01",
+    "zone": "all"
+  },
+  {
+    "item_code": "SoR-2024-R002",
+    "description": "Dense Bituminous Macadam (DBM) per sqm per 50mm thick",
+    "unit": "sqm",
+    "rate_inr": 285.75,
+    "category": "road_asphalting",
+    "effective_date": "2024-04-01",
+    "zone": "all"
+  },
+  {
+    "item_code": "SoR-2024-R003",
+    "description": "Wet Mix Macadam (WMM) per cum",
+    "unit": "cum",
+    "rate_inr": 2150.00,
+    "category": "road_asphalting",
+    "effective_date": "2024-04-01",
+    "zone": "all"
+  },
+  {
+    "item_code": "SoR-2024-R004",
+    "description": "Cement Concrete M30 grade per cum",
+    "unit": "cum",
+    "rate_inr": 5800.00,
+    "category": "concrete_roads",
+    "effective_date": "2024-04-01",
+    "zone": "all"
+  },
+  {
+    "item_code": "SoR-2024-R005",
+    "description": "Granular Sub Base (GSB) per cum",
+    "unit": "cum",
+    "rate_inr": 1850.00,
+    "category": "road_asphalting",
+    "effective_date": "2024-04-01",
+    "zone": "all"
+  },
+  {
+    "item_code": "SoR-2024-D001",
+    "description": "RCC Storm Water Drain per meter (1m x 1m)",
+    "unit": "meter",
+    "rate_inr": 8500.00,
+    "category": "storm_water_drains",
+    "effective_date": "2024-04-01",
+    "zone": "all"
+  },
+  {
+    "item_code": "SoR-2024-D002",
+    "description": "RCC Storm Water Drain per meter (0.6m x 0.6m)",
+    "unit": "meter",
+    "rate_inr": 4200.00,
+    "category": "storm_water_drains",
+    "effective_date": "2024-04-01",
+    "zone": "all"
+  },
+  {
+    "item_code": "SoR-2024-F001",
+    "description": "Concrete Footpath (80mm thick) per sqm",
+    "unit": "sqm",
+    "rate_inr": 450.00,
+    "category": "footpaths",
+    "effective_date": "2024-04-01",
+    "zone": "all"
+  },
+  {
+    "item_code": "SoR-2024-F002",
+    "description": "Paver Block Footpath per sqm",
+    "unit": "sqm",
+    "rate_inr": 550.00,
+    "category": "footpaths",
+    "effective_date": "2024-04-01",
+    "zone": "all"
+  },
+  {
+    "item_code": "SoR-2024-L001",
+    "description": "LED Street Light Installation (40W) per pole",
+    "unit": "pole",
+    "rate_inr": 12500.00,
+    "category": "street_lights",
+    "effective_date": "2024-04-01",
+    "zone": "all"
+  }
+]

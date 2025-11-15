@@ -1,0 +1,151 @@
+[
+  {
+    "contractor_id": "CONT-2024-001",
+    "name": "Bangalore Infrastructure Pvt Ltd",
+    "registration_number": "KA-REG-1234567",
+    "pan": "AABCB1234C",
+    "gst": "29AABCB1234C1Z5",
+    "category": "A",
+    "specialization": ["road_asphalting", "concrete_roads"],
+    "registration_date": "2018-03-15",
+    "completed_projects": 45,
+    "total_value_completed": 125000000,
+    "blacklisted": false,
+    "reputation_score": 82,
+    "directors": ["Ramesh Kumar", "Sunita Devi"],
+    "address": "JP Nagar, Bangalore - 560078",
+    "contact": "+91-9876543210",
+    "performance_history": {
+      "on_time_completion_rate": 0.87,
+      "quality_pass_rate": 0.92,
+      "citizen_complaints": 3,
+      "safety_violations": 0
+    }
+  },
+  {
+    "contractor_id": "CONT-2024-002",
+    "name": "Karnataka Road Builders",
+    "registration_number": "KA-REG-2345678",
+    "pan": "AABCK2345D",
+    "gst": "29AABCK2345D1Z6",
+    "category": "A",
+    "specialization": ["road_asphalting", "storm_water_drains"],
+    "registration_date": "2016-07-22",
+    "completed_projects": 67,
+    "total_value_completed": 230000000,
+    "blacklisted": false,
+    "reputation_score": 88,
+    "directors": ["Prakash Sharma", "Anita Reddy"],
+    "address": "Jayanagar, Bangalore - 560041",
+    "contact": "+91-9876543211",
+    "performance_history": {
+      "on_time_completion_rate": 0.91,
+      "quality_pass_rate": 0.95,
+      "citizen_complaints": 1,
+      "safety_violations": 0
+    }
+  },
+  {
+    "contractor_id": "CONT-2024-003",
+    "name": "Urban Developers & Associates",
+    "registration_number": "KA-REG-3456789",
+    "pan": "AABCU3456E",
+    "gst": "29AABCU3456E1Z7",
+    "category": "B",
+    "specialization": ["footpaths", "street_lights", "parks"],
+    "registration_date": "2019-11-10",
+    "completed_projects": 28,
+    "total_value_completed": 45000000,
+    "blacklisted": false,
+    "reputation_score": 75,
+    "directors": ["Vijay Malhotra"],
+    "address": "Indiranagar, Bangalore - 560038",
+    "contact": "+91-9876543212",
+    "performance_history": {
+      "on_time_completion_rate": 0.79,
+      "quality_pass_rate": 0.86,
+      "citizen_complaints": 5,
+      "safety_violations": 1
+    }
+  },
+  {
+    "contractor_id": "CONT-2024-004",
+    "name": "Quick Build Construction",
+    "registration_number": "KA-REG-4567890",
+    "pan": "AABCQ4567F",
+    "gst": "29AABCQ4567F1Z8",
+    "category": "C",
+    "specialization": ["road_asphalting"],
+    "registration_date": "2023-02-28",
+    "completed_projects": 3,
+    "total_value_completed": 8000000,
+    "blacklisted": false,
+    "reputation_score": 45,
+    "directors": ["Mohan Patel", "Rajesh Gupta"],
+    "address": "Whitefield, Bangalore - 560066",
+    "contact": "+91-9876543213",
+    "performance_history": {
+      "on_time_completion_rate": 0.67,
+      "quality_pass_rate": 0.67,
+      "citizen_complaints": 8,
+      "safety_violations": 2
+    },
+    "red_flags": [
+      "Recently incorporated",
+      "Low experience",
+      "Shared director with CONT-2024-005"
+    ]
+  },
+  {
+    "contractor_id": "CONT-2024-005",
+    "name": "Fast Track Infra Solutions",
+    "registration_number": "KA-REG-5678901",
+    "pan": "AABCF5678G",
+    "gst": "29AABCF5678G1Z9",
+    "category": "C",
+    "specialization": ["road_asphalting"],
+    "registration_date": "2023-03-15",
+    "completed_projects": 2,
+    "total_value_completed": 6000000,
+    "blacklisted": false,
+    "reputation_score": 42,
+    "directors": ["Rajesh Gupta", "Suresh Kumar"],
+    "address": "Electronic City, Bangalore - 560100",
+    "contact": "+91-9876543214",
+    "performance_history": {
+      "on_time_completion_rate": 0.50,
+      "quality_pass_rate": 0.50,
+      "citizen_complaints": 12,
+      "safety_violations": 3
+    },
+    "red_flags": [
+      "Recently incorporated",
+      "Shared director with CONT-2024-004",
+      "High complaint rate",
+      "Potential shell company indicator"
+    ]
+  },
+  {
+    "contractor_id": "CONT-2024-006",
+    "name": "Mega Infrastructure Corp",
+    "registration_number": "KA-REG-6789012",
+    "pan": "AABCM6789H",
+    "gst": "29AABCM6789H1ZA",
+    "category": "A",
+    "specialization": ["road_asphalting", "concrete_roads", "bridges"],
+    "registration_date": "2012-05-20",
+    "completed_projects": 134,
+    "total_value_completed": 580000000,
+    "blacklisted": false,
+    "reputation_score": 94,
+    "directors": ["Subramaniam Iyer", "Lakshmi Venkatesh", "Ravi Shankar"],
+    "address": "Koramangala, Bangalore - 560034",
+    "contact": "+91-9876543215",
+    "performance_history": {
+      "on_time_completion_rate": 0.96,
+      "quality_pass_rate": 0.98,
+      "citizen_complaints": 0,
+      "safety_violations": 0
+    }
+  }
+]
